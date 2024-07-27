@@ -1,0 +1,151 @@
+[
+  {
+    "avatar": "82aec8e811b839b8ec25d7b458afd57b",
+    "display_name": "EvanderH",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "avatar": "https://sleepercdn.com/uploads/8d2a3fb5de73a816c2d879f0ae664af4.jpg",
+      "mention_pn": "on",
+      "team_name": "Cheeks Klapanen"
+    },
+    "settings": null,
+    "user_id": "863476197265354752"
+  },
+  {
+    "avatar": "09cc596ea9fcb6bf256c222d3bcbd08e",
+    "display_name": "KidsWithPolio",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "allow_sms": "on",
+      "avatar": "https://sleepercdn.com/uploads/61bd506e78bffe00f550d63a48b63031",
+      "mascot_message": "on",
+      "mention_pn": "on",
+      "player_like_pn": "on",
+      "player_nickname_update": "on",
+      "team_name": "My Josh has Downs",
+      "team_name_update": "on",
+      "trade_block_pn": "on",
+      "transaction_commissioner": "on",
+      "transaction_free_agent": "on",
+      "transaction_trade": "on",
+      "transaction_waiver": "on",
+      "user_message_pn": "on"
+    },
+    "settings": null,
+    "user_id": "873581177716563968"
+  },
+  {
+    "avatar": "20fe6b83583945e5788d95ef8dd90b52",
+    "display_name": "coleschmeling",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "allow_sms": "on",
+      "avatar": "https://sleepercdn.com/uploads/9adc5bc396eb80db285d96226046dfbb.jpg",
+      "mention_pn": "on",
+      "team_name": "Purple Reign"
+    },
+    "settings": null,
+    "user_id": "990409125953622016"
+  },
+  {
+    "avatar": "b319fdf8b7b5b0359d3c78622ba4d70c",
+    "display_name": "mattspringer22",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "off",
+      "mascot_message": "off",
+      "mention_pn": "off",
+      "player_like_pn": "off",
+      "player_nickname_update": "off",
+      "team_name": "Spring’s Team...Good?",
+      "team_name_update": "off",
+      "trade_block_pn": "off",
+      "transaction_commissioner": "off",
+      "transaction_free_agent": "off",
+      "transaction_trade": "off",
+      "transaction_waiver": "off",
+      "user_message_pn": "off"
+    },
+    "settings": null,
+    "user_id": "992120789191192576"
+  },
+  {
+    "avatar": "e7af4deab0289b4f5505646424895246",
+    "display_name": "Dranny23",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "avatar": "https://sleepercdn.com/uploads/529e1e8703216781e1009d123246f9ff",
+      "mascot_message": "on",
+      "mention_pn": "on",
+      "player_like_pn": "on",
+      "player_nickname_update": "on",
+      "team_name": "Spanky",
+      "team_name_update": "on",
+      "trade_block_pn": "on",
+      "transaction_commissioner": "on",
+      "transaction_free_agent": "on",
+      "transaction_trade": "on",
+      "transaction_waiver": "on",
+      "user_message_pn": "on"
+    },
+    "settings": null,
+    "user_id": "994684782980169728"
+  },
+  {
+    "avatar": "b319fdf8b7b5b0359d3c78622ba4d70c",
+    "display_name": "aPawg",
+    "is_bot": false,
+    "is_owner": true,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "avatar": "https://sleepercdn.com/images/v2/avatars/avatar_default_pink.webp",
+      "mention_pn": "on",
+      "team_name": "AP FC"
+    },
+    "settings": null,
+    "user_id": "996177809884266496"
+  },
+  {
+    "avatar": "f0edbf4278f53f9425db175073df6584",
+    "display_name": "JPunchy",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "mention_pn": "on",
+      "team_name": "I have Josh Downs"
+    },
+    "settings": null,
+    "user_id": "996205199675052032"
+  },
+  {
+    "avatar": "198d3637dfcabc123aff3d3f126a3df8",
+    "display_name": "MoneyMakinMitch69",
+    "is_bot": false,
+    "is_owner": null,
+    "league_id": "996177997512290304",
+    "metadata": {
+      "allow_pn": "on",
+      "mention_pn": "on",
+      "team_name": "HopRhamonMyRichard,Son"
+    },
+    "settings": null,
+    "user_id": "998078351430660096"
+  }
+]
