@@ -99,7 +99,7 @@ const SleeperStats: React.FC = () => {
 
   return (
     <div className='flex flex-col h-screen justify-center max-w-screen-md mx-auto my-auto w-full'>
-      <h1 className='text-center text-xl'>Sleeper Stats</h1>
+      <h1 className='text-center text-xl'>Users</h1>
       <form onSubmit={handleSubmit} className='mx-auto'>
         <div className="flex flex-col space-y-4">
           <input
