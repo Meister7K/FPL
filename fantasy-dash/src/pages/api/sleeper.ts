@@ -21,6 +21,8 @@ type MemberData = {
 type RosterData = {
   roster_id: number;
   owner_id: string;
+  fpts: number;
+  fpts_against: number;
   // Add other roster properties as needed
 };
 
@@ -60,10 +62,10 @@ export default async function handler(
       const membersData: MemberData[] = await membersResponse.json();
 
       // Fetch rosters
-      const rostersResponse = await fetch(`https://api.sleeper.app/v1/league/${leaguesData[0].league_id}/rosters`);
-      const rostersData: RosterData[] = await rostersResponse.json();
+      const rosterResponse = await fetch(`https://api.sleeper.app/v1/league/${leaguesData[0].league_id}/rosters`);
+const rosterData: RosterData[] = await rosterResponse.json();
 
-      const sleeperData: SleeperData = { user: userData, leagues: leaguesData, members: membersData, rosters: rostersData };
+const sleeperData: SleeperData = { user: userData, leagues: leaguesData, members: membersData, rosters: rosterData };
 
       // Return combined data
       res.status(200).json(sleeperData);

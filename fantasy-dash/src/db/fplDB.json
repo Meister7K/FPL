@@ -12,6 +12,7 @@
       "team_name": "Cheeks Klapanen"
     },
     "settings": null,
+    "roster_id": 3,
     "user_id": "863476197265354752"
   },
   {
@@ -38,6 +39,7 @@
       "user_message_pn": "on"
     },
     "settings": null,
+    "roster_id": 2,
     "user_id": "873581177716563968"
   },
   {
@@ -54,6 +56,7 @@
       "team_name": "Purple Reign"
     },
     "settings": null,
+    "roster_id": 5,
     "user_id": "990409125953622016"
   },
   {
@@ -78,6 +81,7 @@
       "user_message_pn": "off"
     },
     "settings": null,
+    "roster_id": 4,
     "user_id": "992120789191192576"
   },
   {
@@ -103,6 +107,7 @@
       "user_message_pn": "on"
     },
     "settings": null,
+    "roster_id": 8,
     "user_id": "994684782980169728"
   },
   {
@@ -118,6 +123,7 @@
       "team_name": "AP FC"
     },
     "settings": null,
+    "roster_id": 1,
     "user_id": "996177809884266496"
   },
   {
@@ -132,6 +138,7 @@
       "team_name": "I have Josh Downs"
     },
     "settings": null,
+    "roster_id": 7,
     "user_id": "996205199675052032"
   },
   {
@@ -146,6 +153,7 @@
       "team_name": "HopRhamonMyRichard,Son"
     },
     "settings": null,
+    "roster_id": 6,
     "user_id": "998078351430660096"
   }
 ]

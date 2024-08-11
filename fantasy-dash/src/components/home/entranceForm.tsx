@@ -15,6 +15,9 @@ const EnterForm = () => {
   const setUserData = useFPLStore((state) => state.setUserData);
   const setLeagueData = useFPLStore((state) => state.setLeagueData);
   const setMatchupData = useFPLStore((state) => state.setMatchupData);
+  const setRosterData = useFPLStore((state) => state.setRosterData);
+
+  const leagueID = '996177997512290304';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +49,16 @@ const EnterForm = () => {
         throw new Error(leagueData.error || 'An error occurred fetching league data');
       }
 
+      //Fetch RosterData
+      const rosterResponse = await fetch(`https://api.sleeper.app/v1/league/${leagueID}/rosters`)
+      const rosterData = await rosterResponse.json();
+
+      if (!rosterResponse.ok) {
+        throw new Error(rosterData.error || 'An error occurred fetching roster data');
+      }
+
+      setRosterData(rosterData);
+      console.log(rosterData)
       setLeagueData(year, leagueData);
       setMatchupData(leagueData.matchupData);
       router.push('/dashboard');
@@ -67,7 +80,7 @@ const EnterForm = () => {
   return (
     <>
       <h1 className='text-center text-xl'>Select User</h1>
-      <form onSubmit={handleSubmit} className='mx-auto'>
+      <form onSubmit={handleSubmit} className='mx-auto flex flex-col items-center'>
         <div className="flex flex-col space-y-4">
           <select
             className='text-black p-2 rounded'

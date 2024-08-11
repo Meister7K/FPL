@@ -30,3 +30,10 @@ export interface User {
     opponent_id: number;
     // Add any other relevant fields
   }
+
+  export interface RosterData{
+    roster_id: number;
+  owner_id: string;
+  fpts: number;
+  fpts_against: number;
+  }

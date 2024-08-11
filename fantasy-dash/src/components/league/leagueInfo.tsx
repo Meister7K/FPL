@@ -1,5 +1,6 @@
 import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, AwaitedReactNode } from 'react';
 import { League } from '../../types';
+import fplDB from '../../db/fplDB.json';
 
 interface LeagueInfoProps {
   leagueData: League;
@@ -7,12 +8,17 @@ interface LeagueInfoProps {
 
 const LeagueInfo = ({ leagueData }: LeagueInfoProps) => {
 
-  // console.log(leagueData);
+  const getDisplayName = (ownerId: string) => {
+    const user = fplDB.find(user => user.user_id === ownerId);
+    return user ? user.display_name : `Team ${ownerId}`;
+  };
+
+  console.log(leagueData);
   return (
-    <div>
-      <h2 className="text-xl font-bold mb-4">League Information</h2>
-      <h3 className="text-lg font-semibold mb-2">Standings</h3>
-      <table className="w-full">
+    <div className='mx-auto max-w-full box-border'>
+      <h2 className="text-xl font-bold mb-4 text-center">{leagueData.league.name}</h2>
+      <h3 className="text-lg font-semibold mb-2 text-center">Standings</h3>
+      <table className="w-full items-center text-center">
         <thead>
           <tr>
             <th>Team</th>
@@ -25,7 +31,7 @@ const LeagueInfo = ({ leagueData }: LeagueInfoProps) => {
         <tbody>
           {leagueData.rosters.map((team) => (
             <tr key={team.league_id}>
-              <td>{team.owner_id}</td>
+              <td className='text-start'>{getDisplayName(team.owner_id)}</td>
               <td>{team.settings.wins}</td>
               <td>{team.settings.losses}</td>
               <td>{team.settings.fpts}</td>
