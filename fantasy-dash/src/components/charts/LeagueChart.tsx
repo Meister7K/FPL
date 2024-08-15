@@ -102,7 +102,7 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData }) => {
           <option value="fptsAgainst">FPTS Against (Descending)</option>
         </select>
       </div>
-      <div className="relative w-full h-96 lg:h-auto min-h-10 overflow-x-visible box-border mx-auto">
+      <div className="relative w-full min-h-96 lg:h-auto overflow-x-visible box-border mx-auto">
         <Bar options={options} data={data}/>
       </div>
       

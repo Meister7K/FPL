@@ -22,6 +22,7 @@ const LeagueInfo = ({ leagueData }: LeagueInfoProps) => {
         <thead>
           <tr>
             <th>Team</th>
+            <th>Evaluation</th>
             <th>Wins</th>
             <th>Losses</th>
             <th>Points For</th>
@@ -32,6 +33,7 @@ const LeagueInfo = ({ leagueData }: LeagueInfoProps) => {
           {leagueData.rosters.map((team) => (
             <tr key={team.league_id}>
               <td className='text-start'>{getDisplayName(team.owner_id)}</td>
+              <td> </td>
               <td>{team.settings.wins}</td>
               <td>{team.settings.losses}</td>
               <td>{team.settings.fpts}</td>
