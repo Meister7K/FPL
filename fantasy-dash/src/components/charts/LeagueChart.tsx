@@ -1,6 +1,5 @@
-"use client";
+"use client";"use client";
 import { RosterData } from "@/types";
-import fplDB from '../../db/fplDB.json';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,40 +10,52 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { useState } from 'react';
-import { plugin } from "postcss";
-import { color } from "chart.js/helpers";
+import { useEffect, useState } from "react";
+import { fetchLeagueManagers } from "@/utils/fetchManagers";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 interface LeagueChartProps {
   rosterData: RosterData[];
+  leagueId: string; // Add leagueId as a prop
 }
 
-type SortOption = 'alphabetical' | 'fpts' | 'fptsAgainst';
+type SortOption = "alphabetical" | "fpts" | "fptsAgainst";
 
-const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData }) => {
-  const [sortOption, setSortOption] = useState<SortOption>('alphabetical');
+const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData, leagueId }) => {
+  const [sortOption, setSortOption] = useState<SortOption>("alphabetical");
+  const [managerNames, setManagerNames] = useState<{ [ownerId: string]: string }>({});
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const getDisplayName = (ownerId: string) => {
-    const user = fplDB.find(user => user.user_id === ownerId);
-    return user ? user.display_name : `Team ${ownerId}`;
-  };
+  useEffect(() => {
+    const fetchManagers = async () => {
+      try {
+        const managers = await fetchLeagueManagers(leagueId);
+        const managerMap: { [ownerId: string]: string } = {};
+        managers.forEach((manager) => {
+          managerMap[manager.user_id] = manager.username;
+        });
+        setManagerNames(managerMap);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch manager names");
+        setLoading(false);
+      }
+    };
+
+    fetchManagers();
+  }, [leagueId]);
 
   const sortData = (data: RosterData[]): RosterData[] => {
     switch (sortOption) {
-      case 'alphabetical':
-        return [...data].sort((a, b) => getDisplayName(a.owner_id).localeCompare(getDisplayName(b.owner_id)));
-      case 'fpts':
+      case "alphabetical":
+        return [...data].sort((a, b) =>
+          (managerNames[a.owner_id] || "").localeCompare(managerNames[b.owner_id] || "")
+        );
+      case "fpts":
         return [...data].sort((a, b) => b.settings.fpts - a.settings.fpts);
-      case 'fptsAgainst':
+      case "fptsAgainst":
         return [...data].sort((a, b) => b.settings.fpts_against - a.settings.fpts_against);
       default:
         return data;
@@ -55,47 +66,57 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData }) => {
 
   const options = {
     responsive: true,
-   maintainAspectRatio: false,
-  
+    maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: "top" as const,
       },
       title: {
         display: true,
-        text: 'League Points',
+        text: "League Points",
       },
     },
   };
 
-  const labels = sortedData.map(roster => getDisplayName(roster.owner_id));
+  const labels = sortedData.map((roster) => managerNames[roster.owner_id] || `Team ${roster.owner_id}`);
   const data = {
     labels,
     datasets: [
       {
-        label: 'Points For',
-        data: sortedData.map(roster => roster.settings.fpts),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        stack:0,
+        label: "Points For",
+        data: sortedData.map((roster) => roster.settings.fpts),
+        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        stack: 0,
       },
       {
-        label: 'Points Against',
-        data: sortedData.map(roster => -roster.settings.fpts_against),
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        label: "Points Against",
+        data: sortedData.map((roster) => -roster.settings.fpts_against),
+        backgroundColor: "rgba(53, 162, 235, 0.5)",
         stack: 0,
       },
     ],
   };
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   return (
-    <div className=" mx-auto max-w-full items-center">
-      <div className="mb-4 flex items-center pt-10">
-        <label htmlFor="sort-select" className="mx-auto ">Sort by:</label>
+    <div className="mx-auto max-w-full items-center my-10">
+      <h2 className="w-full text-center">FPTS Chart</h2>
+      <div className="mb-4 flex items-center pt-10 w-full justify-center">
+        <label htmlFor="sort-select" >
+          Sort by:
+        </label>
         <select
           id="sort-select"
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value as SortOption)}
-          className="m-2 border rounded  bg-stone-900"
+          className="m-2 border rounded bg-stone-900"
         >
           <option value="alphabetical">Alphabetical</option>
           <option value="fpts">FPTS (Descending)</option>
@@ -103,11 +124,10 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData }) => {
         </select>
       </div>
       <div className="relative w-full min-h-96 lg:h-auto overflow-x-visible box-border mx-auto">
-        <Bar options={options} data={data}/>
+        <Bar options={options} data={data} />
       </div>
-      
     </div>
   );
-}
+};
 
 export default LeagueChart;

@@ -1,36 +1,95 @@
 "use client";
 
-import { useState } from 'react';
-import { MatchupData } from '@/types';
-import fplDB from '../../db/fplDB.json';
+import { useState, useEffect } from 'react';
+import { MatchupData, RosterData } from '@/types';
+import { fetchLeagueManagers } from '@/utils/fetchManagers';
+import { fetchMatchupData } from '../../utils/fetchMatchups';
 
 interface MatrixProps {
-  matchupData: { [week: string]: { points: number; roster_id: number; matchup_id: number }[] };
+  leagueId: string;
 }
 
 interface WeekRecord {
   week: number;
-  record: { [team_id: number]: string }; // Win/Loss record for each team
+  record: { [roster_id: number]: string };
 }
 
-const MatchupMatrix: React.FC<MatrixProps> = ({ matchupData }) => {
-  const [sortedTeams, setSortedTeams] = useState<{ team_id: number; name: string }[]>([]);
+interface Team {
+  team_id: number;
+  name: string;
+}
+
+const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
+  const [managers, setManagers] = useState<{ [ownerId: string]: string }>({});
+  const [matchupData, setMatchupData] = useState<{ [week: string]: { points: number; roster_id: number; matchup_id: number }[] }>({});
+  const [weekRecords, setWeekRecords] = useState<WeekRecord[]>([]);
+  const [displayTeams, setDisplayTeams] = useState<Team[]>([]);
   const [filterWeek, setFilterWeek] = useState<number | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [rosterToTeamMapping, setRosterToTeamMapping] = useState<{[key: number]: number}>({});
 
-  // Collect teams information
-  const teams: { team_id: number; name: string }[] = fplDB.map((team) => ({
-    team_id: team.roster_id,
-    name: team.display_name,
-  }));
+  useEffect(() => {
+    const fetchManagersAndMatchups = async () => {
+      try {
+        const managers = await fetchLeagueManagers(leagueId);
+        const managerMap: { [ownerId: string]: string } = {};
+        managers.forEach((manager) => {
+          managerMap[manager.user_id] = manager.username;
+        });
+        setManagers(managerMap);
 
-  // Process matchup data and calculate win/loss record for each week
-  const calculateWeekRecords = (data: { [week: string]: { points: number; roster_id: number }[] }) => {
+        const matchups = await fetchMatchupData(leagueId);
+        setMatchupData(matchups);
+
+        const teams: Team[] = Object.entries(managerMap).map(([ownerId, name]) => ({
+          team_id: parseInt(ownerId),
+          name,
+        }));
+        setDisplayTeams(teams);
+
+        const mapping = createRosterToTeamMapping(matchups, teams);
+        setRosterToTeamMapping(mapping);
+
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to fetch data');
+        setLoading(false);
+      }
+    };
+
+    fetchManagersAndMatchups();
+  }, [leagueId]);
+
+  useEffect(() => {
+    if (Object.keys(matchupData).length > 0) {
+      const calculatedRecords = calculateWeekRecords(matchupData);
+      setWeekRecords(calculatedRecords);
+      console.log("Calculated weekRecords:", calculatedRecords);
+    }
+  }, [matchupData]);
+
+  const createRosterToTeamMapping = (matchupData: { [week: string]: { roster_id: number }[] }, teams: Team[]) => {
+    const mapping: {[key: number]: number} = {};
+    const rosterIds = new Set(Object.values(matchupData).flatMap(week => week.map(match => match.roster_id)));
+    
+    Array.from(rosterIds).forEach((rosterId, index) => {
+      if (teams[index]) {
+        mapping[rosterId] = teams[index].team_id;
+      }
+    });
+
+    return mapping;
+  };
+
+  const calculateWeekRecords = (data: { [week: string]: { points: number; roster_id: number; matchup_id: number }[] }) => {
     const records: WeekRecord[] = [];
 
     for (const [week, matches] of Object.entries(data)) {
       const weekNumber = parseInt(week);
+      console.log(`Processing Week ${weekNumber}:`, matches);
 
-      const weekRecord: { [team_id: number]: string } = {};
+      const weekRecord: { [roster_id: number]: string } = {};
 
       matches.forEach(({ roster_id, points }) => {
         let winCount = 0;
@@ -47,92 +106,105 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ matchupData }) => {
         });
 
         weekRecord[roster_id] = `${winCount}-${lossCount}`;
+        console.log(`Team ${roster_id}: ${winCount}-${lossCount}`);
       });
 
+      console.log(`Week ${weekNumber} record:`, weekRecord);
       records.push({ week: weekNumber, record: weekRecord });
     }
 
+    console.log("Final records:", records);
     return records;
   };
 
-  const weekRecords = calculateWeekRecords(matchupData);
-
-  // Calculate total win/loss record for each team
   const calculateTotalRecords = () => {
     const totals: { [team_id: number]: { wins: number; losses: number } } = {};
 
-    teams.forEach((team) => {
+    displayTeams.forEach((team) => {
       totals[team.team_id] = { wins: 0, losses: 0 };
+      const rosterId = Object.keys(rosterToTeamMapping).find(key => rosterToTeamMapping[parseInt(key)] === team.team_id);
 
-      weekRecords.forEach((record) => {
-        const teamRecord = record.record[team.team_id];
-        if (teamRecord) {
-          const [wins, losses] = teamRecord.split('-').map(Number);
-          totals[team.team_id].wins += wins;
-          totals[team.team_id].losses += losses;
-        }
-      });
+      if (rosterId) {
+        weekRecords.forEach((record) => {
+          const teamRecord = record.record[parseInt(rosterId)];
+          if (teamRecord) {
+            const [wins, losses] = teamRecord.split('-').map(Number);
+            totals[team.team_id].wins += wins;
+            totals[team.team_id].losses += losses;
+          }
+        });
+      }
     });
 
     return totals;
   };
 
-  const totalRecords = calculateTotalRecords();
-
-  // Sort teams based on total wins
   const sortTeamsByWins = () => {
-    const sorted = [...teams].sort((a, b) => {
-      const aWins = totalRecords[a.team_id].wins;
-      const bWins = totalRecords[b.team_id].wins;
-      return bWins - aWins; // Sort descending by wins
+    const totalRecords = calculateTotalRecords();
+    const sorted = [...displayTeams].sort((a, b) => {
+      const aWins = totalRecords[a.team_id]?.wins || 0;
+      const bWins = totalRecords[b.team_id]?.wins || 0;
+      return bWins - aWins;
     });
 
-    setSortedTeams(sorted);
-    setFilterWeek(null); // Clear week filter when sorting by total wins
+    setDisplayTeams(sorted);
+    setFilterWeek(null);
   };
 
-  // Sort teams based on total losses
   const sortTeamsByLosses = () => {
-    const sorted = [...teams].sort((a, b) => {
-      const aLosses = totalRecords[a.team_id].losses;
-      const bLosses = totalRecords[b.team_id].losses;
-      return bLosses - aLosses; // Sort descending by losses
+    const totalRecords = calculateTotalRecords();
+    const sorted = [...displayTeams].sort((a, b) => {
+      const aLosses = totalRecords[a.team_id]?.losses || 0;
+      const bLosses = totalRecords[b.team_id]?.losses || 0;
+      return bLosses - aLosses;
     });
 
-    setSortedTeams(sorted);
-    setFilterWeek(null); // Clear week filter when sorting by total losses
+    setDisplayTeams(sorted);
+    setFilterWeek(null);
   };
 
-  // Filter teams by most wins in a specific week
   const filterTeamsByMostWinsInWeek = (week: number) => {
     const weekRecord = weekRecords.find((record) => record.week === week);
 
     if (weekRecord) {
-      const sorted = [...teams].sort((a, b) => {
-        const aWins = parseInt(weekRecord.record[a.team_id]?.split('-')[0]) || 0;
-        const bWins = parseInt(weekRecord.record[b.team_id]?.split('-')[0]) || 0;
-        return bWins - aWins; // Sort descending by wins in that week
+      const sorted = [...displayTeams].sort((a, b) => {
+        const aRosterId = Object.keys(rosterToTeamMapping).find(key => rosterToTeamMapping[parseInt(key)] === a.team_id);
+        const bRosterId = Object.keys(rosterToTeamMapping).find(key => rosterToTeamMapping[parseInt(key)] === b.team_id);
+        const aWins = aRosterId ? parseInt(weekRecord.record[parseInt(aRosterId)]?.split('-')[0]) || 0 : 0;
+        const bWins = bRosterId ? parseInt(weekRecord.record[parseInt(bRosterId)]?.split('-')[0]) || 0 : 0;
+        return bWins - aWins;
       });
 
-      setSortedTeams(sorted);
+      setDisplayTeams(sorted);
       setFilterWeek(week);
     }
   };
 
-  // Sort teams if not sorted yet, otherwise use sorted teams
-  const displayTeams = sortedTeams.length ? sortedTeams : teams;
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  const totalRecords = calculateTotalRecords();
 
   return (
-    <div>
-        <h2 className='text-center text-2xl'>Matchup Matrix</h2>
+    <div className='pb-20'>
+      <h2 className="text-center text-2xl mx-auto p-10 box-border">Matchup Matrix</h2>
       <div>
-        <button className='border rounded-md hover:bg-stone-800 margin-4' onClick={sortTeamsByWins}>Sort by Total Wins</button>
-        <button className='border rounded-md hover:bg-stone-800 margin-4' onClick={sortTeamsByLosses}>Sort by Total Losses</button>
+        <button className="border rounded-md hover:bg-stone-800 margin-4" onClick={sortTeamsByWins}>
+          Sort by Total Wins
+        </button>
+        <button className="border rounded-md hover:bg-stone-800 margin-4" onClick={sortTeamsByLosses}>
+          Sort by Total Losses
+        </button>
       </div>
 
-      <table border={1} className='w-full border p-20 box-border'>
+      <table border={1} className="w-full border p-20 box-border">
         <thead>
-          <tr className='border'>
+          <tr className="border">
             <th>Teams</th>
             {Array.from({ length: 17 }, (_, i) => (
               <th
@@ -148,15 +220,23 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ matchupData }) => {
         </thead>
         <tbody>
           {displayTeams.map((team) => (
-            <tr className='border' key={team.team_id}>
+            <tr className="border" key={team.team_id}>
               <td>{team.name}</td>
-              {weekRecords.map((record) => (
-                <td className='text-center' key={record.week}>
-                  {record.record[team.team_id] || 'N/A'}
-                </td>
-              ))}
-              <td className='text-center'>
-                {totalRecords[team.team_id].wins}-{totalRecords[team.team_id].losses}
+              {Array.from({ length: 17 }, (_, i) => {
+                const weekNumber = i + 1;
+                const weekRecord = weekRecords.find(record => record.week === weekNumber);
+                const rosterId = Object.keys(rosterToTeamMapping).find(key => rosterToTeamMapping[parseInt(key)] === team.team_id);
+                const teamRecord = rosterId && weekRecord ? weekRecord.record[parseInt(rosterId)] : undefined;
+                return (
+                  <td className="text-center" key={weekNumber}>
+                    {teamRecord || '-'}
+                  </td>
+                );
+              })}
+              <td className="text-center">
+                {totalRecords[team.team_id] 
+                  ? `${totalRecords[team.team_id].wins}-${totalRecords[team.team_id].losses}` 
+                  : '-'}
               </td>
             </tr>
           ))}
