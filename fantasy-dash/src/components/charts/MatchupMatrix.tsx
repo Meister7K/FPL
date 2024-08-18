@@ -65,7 +65,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
     if (Object.keys(matchupData).length > 0) {
       const calculatedRecords = calculateWeekRecords(matchupData);
       setWeekRecords(calculatedRecords);
-      console.log("Calculated weekRecords:", calculatedRecords);
+      // console.log("Calculated weekRecords:", calculatedRecords);
     }
   }, [matchupData]);
 
@@ -87,7 +87,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
 
     for (const [week, matches] of Object.entries(data)) {
       const weekNumber = parseInt(week);
-      console.log(`Processing Week ${weekNumber}:`, matches);
+      // console.log(`Processing Week ${weekNumber}:`, matches);
 
       const weekRecord: { [roster_id: number]: string } = {};
 
@@ -106,14 +106,14 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
         });
 
         weekRecord[roster_id] = `${winCount}-${lossCount}`;
-        console.log(`Team ${roster_id}: ${winCount}-${lossCount}`);
+        // console.log(`Team ${roster_id}: ${winCount}-${lossCount}`);
       });
 
-      console.log(`Week ${weekNumber} record:`, weekRecord);
+      // console.log(`Week ${weekNumber} record:`, weekRecord);
       records.push({ week: weekNumber, record: weekRecord });
     }
 
-    console.log("Final records:", records);
+    // console.log("Final records:", records);
     return records;
   };
 

@@ -4,93 +4,101 @@
   "season_standings": [
     {
       "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
       "team_name": "Minneapolis Saints",
       "wins": 10,
       "losses": 4,
-      "ties": 0
+      "ties": 0,
+      "fpts": 2085
     },
     {
       "roster_id": 6,
-      "user_id": "998078351430660096",
+      "owner_id": "998078351430660096",
       "display_name": "MoneyMakinMitch69",
       "team_name": "Team MagicSKOL Bus",
       "wins": 9,
       "losses": 5,
-      "ties": 0
+      "ties": 0,
+      "fpts": 2000
     },
     {
       "roster_id": 2,
-      "user_id": "873581177716563968",
+      "owner_id": "873581177716563968",
       "display_name": "Meister7K",
       "team_name": "Baby Shark Du Du Du",
       "wins": 8,
       "losses": 6,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1906
     },
     {
       "roster_id": 5,
-      "user_id": "990409125953622016",
+      "owner_id": "990409125953622016",
       "display_name": "coleschmeling",
       "team_name": "Saquon deez Nuks",
       "wins": 7,
       "losses": 7,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1894
     },
     {
       "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
       "team_name": "My New 9 to 5",
       "wins": 7,
       "losses": 7,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1811
     },
     {
       "roster_id": 4,
-      "user_id": "992120789191192576",
+      "owner_id": "992120789191192576",
       "display_name": "mattspringer22",
       "team_name": "I can feel it in Mahomes",
       "wins": 6,
       "losses": 8,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1897
     },
     {
       "roster_id": 3,
-      "user_id": "863476197265354752",
+      "owner_id": "863476197265354752",
       "display_name": "EvanderH",
       "team_name": "Gronkubots a Bustubot",
       "wins": 5,
       "losses": 9,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1685
     },
     {
       "roster_id": 3,
-      "user_id": "996177809884266496",
+      "owner_id": "996177809884266496",
       "display_name": "aPawg",
       "team_name": "Faget Forts",
       "wins": 4,
       "losses": 10,
-      "ties": 0
+      "ties": 0,
+      "fpts": 1740
     }
   ],
   "podium": [
     {
       "roster_id": 5,
-      "user_id": "990409125953622016",
+      "owner_id": "990409125953622016",
       "display_name": "coleschmeling",
       "team_name": "Saquon deez Nuks"
     },
     {
       "roster_id": 6,
-      "user_id": "998078351430660096",
+      "owner_id": "998078351430660096",
       "display_name": "MoneyMakinMitch69",
       "team_name": "Team MagicSKOL Bus"
     },
     {
       "roster_id": 2,
-      "user_id": "873581177716563968",
+      "owner_id": "873581177716563968",
       "display_name": "Meister7K",
       "team_name": "Baby Shark Du Du Du"
     }
@@ -98,14 +106,14 @@
   "toilet_bowl": [
     {
       "roster_id": 3,
-      "user_id": "863476197265354752",
+      "owner_id": "863476197265354752",
       "display_name": "EvanderH",
       "team_name": "Gronkubots a Bustubot",
       "is_loser": true
     },
     {
       "roster_id": 3,
-      "user_id": "996177809884266496",
+      "owner_id": "996177809884266496",
       "display_name": "aPawg",
       "team_name": "Faget Forts",
       "is_loser":false
@@ -117,93 +125,101 @@
     "season_standings": [
       {
         "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "Baby It's Cole Outside",
         "wins": 9,
         "losses": 5,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1652
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "Lamari Cooper",
         "wins": 9,
         "losses": 5,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1736
       },
       {
         "roster_id": 3,
-      "user_id": "996177809884266496",
+      "owner_id": "996177809884266496",
       "display_name": "aPawg",
         "team_name": "AP FC",
         "wins": 9,
         "losses": 5,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1708
       },
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Me and Mecole",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1555
       },
       {
         "roster_id": 4,
-        "user_id": "992120789191192576",
+        "owner_id": "992120789191192576",
         "display_name": "mattspringer22",
         "team_name": "I have C Kupps",
         "wins": 7,
         "losses": 7,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1650
       },
       {
         "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Deez Nuks",
         "wins": 5,
         "losses": 9,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1527
       },
       {
         "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "My Team is Assssss",
         "wins": 5,
         "losses": 9,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1394
       },
       {
         "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "Daddy Went For a Walk",
         "wins": 4,
         "losses": 10,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1449
       }
     ],
     "podium": [
       {
         "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "Baby It's Cole Outside"
       },
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Me and Mecole"
       },
       {
        "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "Lamari Cooper"
       }
@@ -211,14 +227,14 @@
     "toilet_bowl": [
       {
         "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "Daddy Went For a Walk",
         "is_loser":true
       },
       {
         "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "My Team is Assssss",
         "is_loser":false
@@ -230,93 +246,101 @@
     "season_standings": [
       {
         "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Purple Reign",
         "wins": 11,
         "losses": 3,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1923
       },
       {
        "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "Karl and Jack Are Hunts",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1648
       },
       {
         "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "It Comes",
         "wins": 7,
         "losses": 7,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1608
       },
       {
        "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "Simple Ryan",
         "wins": 7,
         "losses": 7,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1642
       },
       {
         "roster_id": 4,
-        "user_id": "992120789191192576",
+        "owner_id": "992120789191192576",
         "display_name": "mattspringer22",
         "team_name": "Dalvin makes me Hardman",
         "wins": 6,
         "losses": 8,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1688
       },
       {
         "roster_id": 3,
-      "user_id": "996177809884266496",
+      "owner_id": "996177809884266496",
       "display_name": "aPawg",
         "team_name": "AP FC",
         "wins": 6,
         "losses": 8,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1570
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "Sink the Hink",
         "wins": 6,
         "losses": 8,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1508
       },
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Fresh Prince Of Helaire",
         "wins": 5,
         "losses": 9,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1451
       }
     ],
     "podium": [
       {
         "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "Karl and Jack Are Hunts"
       },
       {
         "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "It Comes"
       },
       {
       "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Purple Reign"
       }
@@ -324,14 +348,14 @@
     "toilet_bowl": [
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Fresh Prince Of Helaire",
         "is_loser":true
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "Sink the Hink",
         "is_loser":false
@@ -343,93 +367,101 @@
     "season_standings": [
       {
        "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "The Tomlettes And Greggs",
         "wins": 10,
         "losses": 4,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1915
       },
       {
        "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "Bishop Sycamore",
         "wins": 9,
         "losses": 5,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1843
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "Apunch is a Lil' Stinker",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1777
       },
       {
       "roster_id": 4,
-        "user_id": "992120789191192576",
+        "owner_id": "992120789191192576",
         "display_name": "mattspringer22",
         "team_name": "Fighting AirBears",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1759
       },
       {
       "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Purple Reign",
         "wins": 7,
         "losses": 7,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1851
       },
       {
         "roster_id": 3,
-      "user_id": "996177809884266496",
+      "owner_id": "996177809884266496",
       "display_name": "aPawg",
         "team_name": "AP FC",
         "wins": 6,
         "losses": 8,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1684
       },
       {
        "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "Third times The Charm",
         "wins": 5,
         "losses": 9,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1781
       },
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Long hair Don't Care",
         "wins": 3,
         "losses": 11,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1676
       }
     ],
     "podium": [
       {
        "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Purple Reign"
       },
       {
         "roster_id": 3,
-        "user_id": "996177809884266496",
+        "owner_id": "996177809884266496",
         "display_name": "aPawg",
           "team_name": "AP FC"
       },
       {
       "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "Bishop Sycamore"
       }
@@ -437,14 +469,14 @@
     "toilet_bowl": [
       {
        "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "Third times The Charm",
         "is_loser":true
       },
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Long Hair Don't Care",
         "is_loser":false
@@ -456,93 +488,101 @@
     "season_standings": [
       {
        "roster_id": 2,
-        "user_id": "873581177716563968",
+        "owner_id": "873581177716563968",
         "display_name": "Meister7K",
         "team_name": "Some Good Copy Pasta",
         "wins": 10,
         "losses": 4,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1887
       },
       {
        "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Goodbye Mooney Man",
         "wins": 9,
         "losses": 5,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1917
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "CeeDeez Nutz",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1657
       },
       {
         "roster_id": 3,
-        "user_id": "996177809884266496",
+        "owner_id": "996177809884266496",
         "display_name": "aPawg",
           "team_name": "AP FC",
         "wins": 8,
         "losses": 6,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1734
       },
       {
       "roster_id": 5,
-        "user_id": "990409125953622016",
+        "owner_id": "990409125953622016",
         "display_name": "coleschmeling",
         "team_name": "Purple Reign",
         "wins": 7,
         "losses": 7,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1669
       },
       {
         "roster_id": 8,
-      "user_id": "994684782980169728",
+      "owner_id": "994684782980169728",
       "display_name": "Dranny23",
         "team_name": "Check Out CamDaddy.com",
         "wins": 6,
         "losses": 8,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1600
       },
       {
        "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "Bishop Sycamore",
         "wins": 5,
         "losses": 9,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1740
       },
       {
         "roster_id": 4,
-        "user_id": "992120789191192576",
+        "owner_id": "992120789191192576",
         "display_name": "mattspringer22",
         "team_name": "Spring Country let's Ride",
         "wins": 3,
         "losses": 11,
-        "ties": 0
+        "ties": 0,
+        "fpts": 1594
       }
     ],
     "podium": [
       {
         "roster_id": 3,
-        "user_id": "863476197265354752",
+        "owner_id": "863476197265354752",
         "display_name": "EvanderH",
         "team_name": "Goodbye Mooney Man"
       },
       {
         "roster_id": 6,
-        "user_id": "998078351430660096",
+        "owner_id": "998078351430660096",
         "display_name": "MoneyMakinMitch69",
         "team_name": "CeeDeez Nutz"
       },
       {
         "roster_id": 8,
-        "user_id": "994684782980169728",
+        "owner_id": "994684782980169728",
         "display_name": "Dranny23",
           "team_name": "Check Out CamDaddy.com"
       }
@@ -550,14 +590,14 @@
     "toilet_bowl": [
       {
        "roster_id": 4,
-        "user_id": "992120789191192576",
+        "owner_id": "992120789191192576",
         "display_name": "mattspringer22",
         "team_name": "Spring Country let's Ride",
         "is_loser":true
       },
       {
         "roster_id": 7,
-      "user_id": "996205199675052032",
+      "owner_id": "996205199675052032",
       "display_name": "JPunchy",
         "team_name": "Bishop Sycamore",
         "is_loser":false

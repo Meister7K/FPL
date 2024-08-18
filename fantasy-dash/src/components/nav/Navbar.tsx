@@ -31,10 +31,10 @@ const Navbar = () => {
 
     useEffect(() => {
         if (leagueId) {
-            console.log('Fetching managers for league:', leagueId);
+            // console.log('Fetching managers for league:', leagueId);
             fetchLeagueManagers(leagueId)
                 .then((data) => {
-                    console.log('Fetched managers data:', data);
+                    // console.log('Fetched managers data:', data);
                     const formattedManagers = data.map((user: { user_id: string; username: string }) => ({
                         name: user.username,
                         path: `/dashboard/managers/${user.user_id}`
@@ -51,7 +51,7 @@ const Navbar = () => {
         setDropdownOpen(!isDropdownOpen);
     };
 
-    console.log(Object.entries(managers))
+    // console.log(Object.entries(managers))
     return (
         <nav className={navClass}>
             <ul className="flex space-x-4 w-full justify-end items-center">

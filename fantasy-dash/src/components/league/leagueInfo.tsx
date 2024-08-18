@@ -61,8 +61,8 @@ const LeagueInfo = () => {
               <td className='border'>{manager.roster.wins}</td>
               <td className='border'>{manager.roster.losses}</td>
               <td className='border'>{manager.roster.ties}</td>
-              <td className='border'>{manager.roster.fpts.toFixed(2)}</td>
-              <td className='border'>{manager.roster.fpts_against.toFixed(2)}</td>
+              <td className='border'>{manager.roster.fpts? manager.roster.fpts.toFixed(2): "0"}</td>
+              <td className='border'>{manager.roster.fpts_against ? manager.roster.fpts_against.toFixed(2): "0"}</td>
             </tr>
           ))}
         </tbody>
