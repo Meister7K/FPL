@@ -1,6 +1,35 @@
 import create from 'zustand';
 import { User, League, MatchupData,RosterData } from '../types';
 
+interface HistoricalData {
+  year: number;
+  managers: ManagerData[];
+}
+
+interface ManagerData {
+  owner_id: string;
+  username: string;
+  wins: number;
+  losses: number;
+  fpts: number;
+  fpts_against: number;
+}
+
+
+interface TotalData {
+  username: string;
+  totalWins: number;
+  totalLosses: number;
+  totalFpts: number;
+  totalFptsAgainst: number;
+  yearsPlayed: number;
+  averageFptsPerYear: number;
+  avgWinPerYear: number;
+  avgLossPerYear: number;
+  winPercentage: number;
+}
+
+
 interface Roster {
   roster_id: string;
   wins: number;
@@ -20,6 +49,8 @@ interface Manager {
 }
 
 interface FPLState {
+  historicalData: HistoricalData[];
+  totalData: TotalData[];
   userData: User | null;
   leagueData: League | null;
   matchupData: Record<number, any[]> | null;
@@ -33,9 +64,13 @@ interface FPLState {
   managers: Manager[];
   setManagers: (managers: Manager[]) => void;
   getManagerById: (user_id: string) => Manager | undefined;
+  setHistoricalData: (data: HistoricalData[]) => void;
+  setTotalData: (data: TotalData[]) => void;
 }
 
 export const useFPLStore = create<FPLState>((set) => ({
+  historicalData: [],
+  totalData: [],
   userData: null,
   leagueData: null,
   matchupData: null,
@@ -60,6 +95,8 @@ export const useFPLStore = create<FPLState>((set) => ({
   setManagers: (managers) => set({ managers }),
   getManagerById: (user_id) => {
       const state = useFPLStore.getState();
-      return state.managers.find((manager) => manager.user_id === user_id);
-  }
+      return state.managers.find((manager: { user_id: string; }) => manager.user_id === user_id);
+  },
+  setHistoricalData: (data) => set({ historicalData: data }),
+  setTotalData: (data) => set({ totalData: data }),
 }));

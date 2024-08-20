@@ -31,14 +31,16 @@ const Navbar = () => {
 
     useEffect(() => {
         if (leagueId) {
-            // console.log('Fetching managers for league:', leagueId);
             fetchLeagueManagers(leagueId)
                 .then((data) => {
-                    // console.log('Fetched managers data:', data);
                     const formattedManagers = data.map((user: { user_id: string; username: string }) => ({
                         name: user.username,
                         path: `/dashboard/managers/${user.user_id}`
                     }));
+
+                    // Sort the managers alphabetically by their name
+                    formattedManagers.sort((a, b) => a.name.localeCompare(b.name));
+
                     setManagers(formattedManagers);
                 })
                 .catch((error) => {
@@ -51,7 +53,6 @@ const Navbar = () => {
         setDropdownOpen(!isDropdownOpen);
     };
 
-    // console.log(Object.entries(managers))
     return (
         <nav className={navClass}>
             <ul className="flex space-x-4 w-full justify-end items-center">
@@ -79,11 +80,10 @@ const Navbar = () => {
                     {isDropdownOpen && (
                         <ul className="absolute right-0 mt-2 w-48 bg-gray-700 text-white border border-gray-600 rounded-md shadow-lg">
                             {managers.map((manager) => (
-                                
                                 <li key={manager.name}>
                                     <Link 
                                         href={manager.path} 
-                                        className="block px-4 py-2 hover:bg-gray-600 text-black"
+                                        className="block px-4 py-2 hover:bg-gray-600 text-white hover:text-black"
                                     >
                                         {manager.name}
                                     </Link>
@@ -98,6 +98,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-

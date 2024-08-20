@@ -59,6 +59,7 @@ const ManagerPage = () => {
         <div className="p-4">
             <h1 className="text-2xl font-bold">Manager Details</h1>
             <div className="mt-4">
+            <img className='rounded-full w-36 h-auto border border-slate-200' src={`https://sleepercdn.com/avatars/${manager.avatar}`}  />
                 <p><strong>Username:</strong> {manager.username}</p>
                 <p><strong>Wins:</strong> {manager.roster.wins}</p>
                 <p><strong>Losses:</strong> {manager.roster.losses}</p>

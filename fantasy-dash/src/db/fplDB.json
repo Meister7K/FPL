@@ -155,5 +155,27 @@
     "settings": null,
     "roster_id": 6,
     "user_id": "998078351430660096"
-  }
+  }, {
+    "avatar": "e7af4deab0289b4f5505646424895246",
+    "cookies": null,
+    "created": null,
+    "currencies": null,
+    "data_updated": null,
+    "deleted": null,
+    "display_name": "augie3210",
+    "email": null,
+    "is_bot": false,
+    "metadata": null,
+    "notifications": null,
+    "pending": null,
+    "phone": null,
+    "real_name": null,
+    "solicitable": null,
+    "summoner_name": null,
+    "summoner_region": null,
+    "token": null,
+    "user_id": "1000906345878560768",
+    "username": "augie3210",
+    "verification": null
+}
 ]

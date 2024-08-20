@@ -127,7 +127,8 @@ const LeagueInfo = () => {
 
   return (
     <div className='mx-auto max-w-screen-xl box-border w-full'>
-      <h2 className="text-xl font-bold mb-4 text-center">{leagueData.name}</h2>
+      <h1 className="text-2xl font-bold mb-4 text-center">{leagueData.name}</h1>
+      <h2 className="text-xl font-bold mb-4 text-center">{leagueData.season}</h2>
       <h3 className="text-lg font-semibold mb-2 text-center">Standings</h3>
       <table className="w-full items-center text-center">
         <thead className='border'>

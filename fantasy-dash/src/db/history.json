@@ -10,7 +10,8 @@
       "wins": 10,
       "losses": 4,
       "ties": 0,
-      "fpts": 2085
+      "fpts": 2085,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 6,
@@ -20,7 +21,8 @@
       "wins": 9,
       "losses": 5,
       "ties": 0,
-      "fpts": 2000
+      "fpts": 2000,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 2,
@@ -30,7 +32,8 @@
       "wins": 8,
       "losses": 6,
       "ties": 0,
-      "fpts": 1906
+      "fpts": 1906,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 5,
@@ -40,7 +43,8 @@
       "wins": 7,
       "losses": 7,
       "ties": 0,
-      "fpts": 1894
+      "fpts": 1894,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 8,
@@ -50,7 +54,8 @@
       "wins": 7,
       "losses": 7,
       "ties": 0,
-      "fpts": 1811
+      "fpts": 1811,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 4,
@@ -60,7 +65,8 @@
       "wins": 6,
       "losses": 8,
       "ties": 0,
-      "fpts": 1897
+      "fpts": 1897,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 3,
@@ -70,7 +76,8 @@
       "wins": 5,
       "losses": 9,
       "ties": 0,
-      "fpts": 1685
+      "fpts": 1685,
+      "fpts_against": 1877.25
     },
     {
       "roster_id": 3,
@@ -80,7 +87,8 @@
       "wins": 4,
       "losses": 10,
       "ties": 0,
-      "fpts": 1740
+      "fpts": 1740,
+      "fpts_against": 1877.25
     }
   ],
   "podium": [
@@ -131,7 +139,8 @@
         "wins": 9,
         "losses": 5,
         "ties": 0,
-        "fpts": 1652
+        "fpts": 1652,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 6,
@@ -141,7 +150,8 @@
         "wins": 9,
         "losses": 5,
         "ties": 0,
-        "fpts": 1736
+        "fpts": 1736,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 3,
@@ -151,7 +161,8 @@
         "wins": 9,
         "losses": 5,
         "ties": 0,
-        "fpts": 1708
+        "fpts": 1708,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 3,
@@ -161,7 +172,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1555
+        "fpts": 1555,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 4,
@@ -171,7 +183,8 @@
         "wins": 7,
         "losses": 7,
         "ties": 0,
-        "fpts": 1650
+        "fpts": 1650,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 5,
@@ -181,7 +194,8 @@
         "wins": 5,
         "losses": 9,
         "ties": 0,
-        "fpts": 1527
+        "fpts": 1527,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 7,
@@ -191,7 +205,8 @@
         "wins": 5,
         "losses": 9,
         "ties": 0,
-        "fpts": 1394
+        "fpts": 1394,
+        "fpts_against": 1583.88
       },
       {
         "roster_id": 8,
@@ -201,7 +216,8 @@
         "wins": 4,
         "losses": 10,
         "ties": 0,
-        "fpts": 1449
+        "fpts": 1449,
+        "fpts_against": 1583.88
       }
     ],
     "podium": [
@@ -252,7 +268,8 @@
         "wins": 11,
         "losses": 3,
         "ties": 0,
-        "fpts": 1923
+        "fpts": 1923,
+        "fpts_against": 1629.75
       },
       {
        "roster_id": 8,
@@ -262,7 +279,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1648
+        "fpts": 1648,
+        "fpts_against": 1629.75
       },
       {
         "roster_id": 2,
@@ -272,7 +290,8 @@
         "wins": 7,
         "losses": 7,
         "ties": 0,
-        "fpts": 1608
+        "fpts": 1608,
+        "fpts_against": 1629.75
       },
       {
        "roster_id": 7,
@@ -282,7 +301,8 @@
         "wins": 7,
         "losses": 7,
         "ties": 0,
-        "fpts": 1642
+        "fpts": 1642,
+        "fpts_against": 1629.75
       },
       {
         "roster_id": 4,
@@ -292,7 +312,8 @@
         "wins": 6,
         "losses": 8,
         "ties": 0,
-        "fpts": 1688
+        "fpts": 1688,
+        "fpts_against": 1629.75
       },
       {
         "roster_id": 3,
@@ -302,7 +323,8 @@
         "wins": 6,
         "losses": 8,
         "ties": 0,
-        "fpts": 1570
+        "fpts": 1570,
+        "fpts_against": 1629.75
       },
       {
         "roster_id": 6,
@@ -312,7 +334,8 @@
         "wins": 6,
         "losses": 8,
         "ties": 0,
-        "fpts": 1508
+        "fpts": 1508,
+        "fpts_against": 1629.75
       },
       {
         "roster_id": 3,
@@ -322,7 +345,8 @@
         "wins": 5,
         "losses": 9,
         "ties": 0,
-        "fpts": 1451
+        "fpts": 1451,
+        "fpts_against": 1629.75
       }
     ],
     "podium": [
@@ -373,7 +397,8 @@
         "wins": 10,
         "losses": 4,
         "ties": 0,
-        "fpts": 1915
+        "fpts": 1915,
+        "fpts_against": 154.38
       },
       {
        "roster_id": 7,
@@ -383,7 +408,8 @@
         "wins": 9,
         "losses": 5,
         "ties": 0,
-        "fpts": 1843
+        "fpts": 1843,
+        "fpts_against": 154.38
       },
       {
         "roster_id": 6,
@@ -393,7 +419,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1777
+        "fpts": 1777,
+        "fpts_against": 154.38
       },
       {
       "roster_id": 4,
@@ -403,7 +430,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1759
+        "fpts": 1759,
+        "fpts_against": 154.38
       },
       {
       "roster_id": 5,
@@ -413,7 +441,8 @@
         "wins": 7,
         "losses": 7,
         "ties": 0,
-        "fpts": 1851
+        "fpts": 1851,
+        "fpts_against": 154.38
       },
       {
         "roster_id": 3,
@@ -423,7 +452,8 @@
         "wins": 6,
         "losses": 8,
         "ties": 0,
-        "fpts": 1684
+        "fpts": 1684,
+        "fpts_against": 154.38
       },
       {
        "roster_id": 2,
@@ -433,7 +463,8 @@
         "wins": 5,
         "losses": 9,
         "ties": 0,
-        "fpts": 1781
+        "fpts": 1781,
+        "fpts_against": 154.38
       },
       {
         "roster_id": 3,
@@ -443,7 +474,8 @@
         "wins": 3,
         "losses": 11,
         "ties": 0,
-        "fpts": 1676
+        "fpts": 1676,
+        "fpts_against": 154.38
       }
     ],
     "podium": [
@@ -494,7 +526,8 @@
         "wins": 10,
         "losses": 4,
         "ties": 0,
-        "fpts": 1887
+        "fpts": 1887,
+        "fpts_against": 1724.75
       },
       {
        "roster_id": 3,
@@ -504,7 +537,8 @@
         "wins": 9,
         "losses": 5,
         "ties": 0,
-        "fpts": 1917
+        "fpts": 1917,
+        "fpts_against": 1724.75
       },
       {
         "roster_id": 6,
@@ -514,7 +548,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1657
+        "fpts": 1657,
+        "fpts_against": 1724.75
       },
       {
         "roster_id": 3,
@@ -524,7 +559,8 @@
         "wins": 8,
         "losses": 6,
         "ties": 0,
-        "fpts": 1734
+        "fpts": 1734,
+        "fpts_against": 1724.75
       },
       {
       "roster_id": 5,
@@ -534,7 +570,8 @@
         "wins": 7,
         "losses": 7,
         "ties": 0,
-        "fpts": 1669
+        "fpts": 1669,
+        "fpts_against": 1724.75
       },
       {
         "roster_id": 8,
@@ -544,7 +581,8 @@
         "wins": 6,
         "losses": 8,
         "ties": 0,
-        "fpts": 1600
+        "fpts": 1600,
+        "fpts_against": 1724.75
       },
       {
        "roster_id": 7,
@@ -554,7 +592,8 @@
         "wins": 5,
         "losses": 9,
         "ties": 0,
-        "fpts": 1740
+        "fpts": 1740,
+        "fpts_against": 1724.75
       },
       {
         "roster_id": 4,
@@ -564,7 +603,8 @@
         "wins": 3,
         "losses": 11,
         "ties": 0,
-        "fpts": 1594
+        "fpts": 1594,
+        "fpts_against": 1724.75
       }
     ],
     "podium": [

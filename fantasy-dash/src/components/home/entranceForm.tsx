@@ -5,6 +5,33 @@ import { useState, useEffect } from 'react';
 import { useFPLStore } from '../../store/fplStore';
 import { useRouter } from 'next/router';
 import LeagueSelectionModal from './LeagueSelectionModal';
+import historyData from '../../db/history.json';
+
+interface TotalData {
+    username: string;
+    totalWins: number;
+    totalLosses: number;
+    totalFpts: number;
+    totalFptsAgainst: number;
+    yearsPlayed: number;
+    averageFptsPerYear: number; // New field for average FPTS per year
+    avgWinPerYear: number;      // New field for average wins per year
+    avgLossPerYear: number;     // New field for average losses per year
+    winPercentage: number;      // New field for win percentage
+}
+
+
+interface HistoricalData {
+    year: number;
+    managers: {
+        owner_id: string;
+        username: string;
+        wins: number;
+        losses: number;
+        fpts: number;
+        fpts_against: number;
+    }[];
+}
 
 // Utility function to handle API requests
 const fetchData = async (url: string) => {
@@ -16,21 +43,27 @@ const fetchData = async (url: string) => {
     return response.json();
 };
 
+const ensureNumber = (value: any): number => {
+    return typeof value === 'number' && !isNaN(value) ? value : 0;
+};
+
 const EnterForm = () => {
     const router = useRouter();
-    const [year, setYear] = useState('2023');
+    const [year, setYear] = useState('2024');
     const [selectedUsername, setSelectedUsername] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [leagues, setLeagues] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
-    const setUserData = useFPLStore((state) => state.setUserData);
-    const setLeagueData = useFPLStore((state) => state.setLeagueData);
-    const setMatchupData = useFPLStore((state) => state.setMatchupData);
-    const setRosterData = useFPLStore((state) => state.setRosterData);
-    const setLeagueId = useFPLStore((state) => state.setLeagueId);
-    const setManagers = useFPLStore((state)=>state.setManagers)
+    const setUserData = useFPLStore((state: { setUserData: any; }) => state.setUserData);
+    const setLeagueData = useFPLStore((state: { setLeagueData: any; }) => state.setLeagueData);
+    const setMatchupData = useFPLStore((state: { setMatchupData: any; }) => state.setMatchupData);
+    const setRosterData = useFPLStore((state: { setRosterData: any; }) => state.setRosterData);
+    const setLeagueId = useFPLStore((state: { setLeagueId: any; }) => state.setLeagueId);
+    const setManagers = useFPLStore((state: { setManagers: any; }) => state.setManagers);
+    const setHistoricalData = useFPLStore((state: { setHistoricalData: any; }) => state.setHistoricalData);
+    const setTotalData = useFPLStore((state: { setTotalData: any; }) => state.setTotalData);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -60,17 +93,104 @@ const EnterForm = () => {
     const handleLeagueSelect = async (leagueId: string) => {
         setShowModal(false);
         setLoading(true);
-      
+
         try {
             const leagueData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}`);
             const rosterData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/rosters`);
 
             const currentWeek = leagueData.settings.current_week;
-            const matchupData = [];
+            const matchupData: Record<number, any[]> = {};
             for (let week = 1; week <= currentWeek; week++) {
                 const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
-                matchupData.push({ week, matchups: weekMatchups });
+                matchupData[week] = weekMatchups;
             }
+
+            // Fetch historical data from Sleeper API
+            let historicalData: HistoricalData[] = [];
+            let currentLeagueId = leagueId;
+            let year = parseInt(leagueData.season);
+
+            while (currentLeagueId) {
+                const leagueInfo = await fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}`);
+                const leagueRosters = await fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}/rosters`);
+
+                const yearData: HistoricalData = {
+                    year: year,
+                    managers: await Promise.all(leagueRosters.map(async (roster: any) => {
+                        const userData = await fetchData(`https://api.sleeper.app/v1/user/${roster.owner_id}`);
+                        return {
+                            owner_id: roster.owner_id,
+                            username: userData.display_name,
+                            wins: roster.settings.wins,
+                            losses: roster.settings.losses,
+                            fpts: ensureNumber(roster.settings.fpts),
+                            fpts_against: ensureNumber(roster.settings.fpts_against),
+                        };
+                    }))
+                };
+
+                historicalData.push(yearData);
+
+                currentLeagueId = leagueInfo.previous_league_id;
+                year--;
+            }
+
+            // Merge with historical data from history.json if applicable
+            if (leagueData.name === "Fantasy Premier League") {
+                const jsonHistoricalData = historyData.map(yearData => ({
+                    year: yearData.year,
+                    managers: yearData.season_standings.map(manager => ({
+                        owner_id: manager.owner_id,
+                        username: manager.display_name,
+                        wins: manager.wins,
+                        losses: manager.losses,
+                        fpts: ensureNumber(manager.fpts),
+                        fpts_against: ensureNumber(manager.fpts_against),
+                    }))
+                }));
+
+                historicalData = [...historicalData, ...jsonHistoricalData];
+                historicalData.sort((a, b) => b.year - a.year);
+            }
+
+            // Calculate total data across all years
+            const totalData: TotalData[] = historicalData.reduce((acc, yearData) => {
+                yearData.managers.forEach(manager => {
+                    const existingManager = acc.find(m => m.username === manager.username);
+                    if (existingManager) {
+                        existingManager.totalWins += manager.wins;
+                        existingManager.totalLosses += manager.losses;
+                        existingManager.totalFpts += manager.fpts;
+                        existingManager.totalFptsAgainst += manager.fpts_against;
+                        existingManager.yearsPlayed++;
+                    } else {
+                        acc.push({
+                            username: manager.username,
+                            totalWins: manager.wins,
+                            totalLosses: manager.losses,
+                            totalFpts: manager.fpts,
+                            totalFptsAgainst: manager.fpts_against,
+                            yearsPlayed: 1,
+                            averageFptsPerYear: 0,
+                            avgWinPerYear: 0,
+                            avgLossPerYear: 0,
+                            winPercentage: 0
+                        });
+                    }
+                });
+                return acc;
+            }, [] as TotalData[]);
+
+            // Calculate average FPTS/year, average wins/year, average losses/year, and win percentage
+            totalData.forEach(manager => {
+                manager.averageFptsPerYear = manager.totalFpts / manager.yearsPlayed;
+                manager.avgWinPerYear = manager.totalWins / manager.yearsPlayed;
+                manager.avgLossPerYear = manager.totalLosses / manager.yearsPlayed;
+                manager.winPercentage = manager.totalWins / (manager.totalWins + manager.totalLosses);
+            });
+
+            setHistoricalData(historicalData);
+            setTotalData(totalData);
 
             const managers = await Promise.all(
                 rosterData.map(async (roster: any) => {
@@ -87,9 +207,9 @@ const EnterForm = () => {
                             wins: roster.settings.wins,
                             losses: roster.settings.losses,
                             ties: roster.settings.ties,
-                            fpts: roster.settings.fpts,
-                            fpts_against: roster.settings.fpts_against,
-                            players: roster.players, // Assuming `players` contains an array of player IDs/names
+                            fpts: ensureNumber(roster.settings.fpts),
+                            fpts_against: ensureNumber(roster.settings.fpts_against),
+                            players: roster.players,
                         }
                     };
                 })
@@ -99,7 +219,7 @@ const EnterForm = () => {
             setLeagueData(year, leagueData);
             setMatchupData(matchupData);
             setLeagueId(leagueId);
-            setManagers(managers); 
+            setManagers(managers);
 
             router.push('/dashboard');
         } catch (err) {
