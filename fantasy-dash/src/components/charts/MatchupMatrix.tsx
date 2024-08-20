@@ -29,6 +29,8 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
   const [error, setError] = useState<string | null>(null);
   const [rosterToTeamMapping, setRosterToTeamMapping] = useState<{[key: number]: number}>({});
 
+ 
+
   useEffect(() => {
     const fetchManagersAndMatchups = async () => {
       try {
@@ -191,7 +193,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
   const totalRecords = calculateTotalRecords();
 
   return (
-    <div className='pb-20'>
+    <div className='pb-20 w-full overflow-x-scroll'>
       <h2 className="text-center text-2xl mx-auto p-10 box-border">Matchup Matrix</h2>
       <div>
         <button className="border rounded-md hover:bg-stone-800 margin-4" onClick={sortTeamsByWins}>
@@ -202,7 +204,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
         </button>
       </div>
 
-      <table border={1} className="w-full border p-20 box-border">
+      <table border={1} className="w-full border m-2 mx-auto box-border min-w-fit whitespace-nowrap block overflow-x-scroll">
         <thead>
           <tr className="border">
             <th>Teams</th>

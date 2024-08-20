@@ -67,6 +67,11 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData, leagueId }) => {
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+          grid: {
+              color: '#222222'
+            },}},
     plugins: {
       legend: {
         position: "top" as const,

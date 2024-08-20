@@ -98,12 +98,45 @@ const EnterForm = () => {
             const leagueData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}`);
             const rosterData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/rosters`);
 
-            const currentWeek = leagueData.settings.current_week;
-            const matchupData: Record<number, any[]> = {};
-            for (let week = 1; week <= currentWeek; week++) {
-                const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
-                matchupData[week] = weekMatchups;
-            }
+            console.log("League Data:", leagueData);
+const currentWeek = leagueData?.settings?.current_week;
+console.log("Current week from league data:", currentWeek);
+
+// If currentWeek is still undefined, let's set a default value
+const effectiveCurrentWeek = currentWeek || 18;  // Assuming a full NFL season
+console.log("Effective current week:", effectiveCurrentWeek);
+
+const matchupData: Record<number, any[]> = {};
+for (let week = 1; week <= effectiveCurrentWeek; week++) {
+    console.log(`Fetching data for week ${week}`);
+    try {
+        const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
+        console.log(`Week ${week} data:`, weekMatchups);
+        if (weekMatchups && weekMatchups.length > 0) {
+            matchupData[week] = weekMatchups;
+        } else {
+            console.log(`No matchups found for week ${week}`);
+        }
+    } catch (error) {
+        console.error(`Error fetching data for week ${week}:`, error);
+    }
+}
+
+if (Object.keys(matchupData).length > 0) {
+    console.log("Setting non-empty matchupData in store");
+    setMatchupData(matchupData);
+} else {
+    console.warn("No matchup data available to set");
+}
+
+            console.log("Current week:", currentWeek);
+for (let week = 1; week <= currentWeek; week++) {
+    console.log(`Fetching data for week ${week}`);
+    const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
+    console.log(`Week ${week} data:`, weekMatchups);
+    matchupData[week] = weekMatchups;
+}
+console.log("Final matchupData:", matchupData);
 
             // Fetch historical data from Sleeper API
             let historicalData: HistoricalData[] = [];
@@ -236,6 +269,8 @@ const EnterForm = () => {
     const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setYear(e.target.value);
     };
+
+    
 
     const currentYear = new Date().getFullYear();
     const yearsArray = Array.from({ length: currentYear - 2018 + 1 }, (_, i) => 2018 + i);

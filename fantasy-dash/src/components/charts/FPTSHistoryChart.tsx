@@ -46,14 +46,14 @@ const FPTSLineChart = () => {
                 map[manager] = generateColor(manager);
                 return map;
             }, {} as Record<string, { borderColor: string; backgroundColor: string }>);
-            
+
             setColorMap(colorMap);
         }
     }, [historicalData]);
 
     // Toggle visibility of a year
     const toggleYear = (year: string) => {
-        setVisibleYears(prev => 
+        setVisibleYears(prev =>
             prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
         );
     };
@@ -105,6 +105,11 @@ const FPTSLineChart = () => {
 
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+            intersect: false,
+            mode: 'nearest'
+        },
         plugins: {
             legend: {
                 position: 'top' as const,
@@ -117,6 +122,9 @@ const FPTSLineChart = () => {
         },
         scales: {
             x: {
+                grid: {
+                    color: '#222222'
+                  },
                 title: {
                     display: true,
                     text: 'Year'
@@ -128,6 +136,9 @@ const FPTSLineChart = () => {
                 },
             },
             y: {
+                grid: {
+                    color: '#222222'
+                  },
                 title: {
                     display: true,
                     text: 'FPTS'
@@ -140,7 +151,7 @@ const FPTSLineChart = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="mb-96 md:mb-40 min-h-fit h-3/4 md:h-2/5 max-h-screen w-full">
             <h2 className="text-xl font-semibold text-center">FPTS Over the Years</h2>
             <div className="flex flex-wrap justify-center mb-4">
                 {historicalData.slice().reverse().map(yearData => (
@@ -153,6 +164,7 @@ const FPTSLineChart = () => {
                     </button>
                 ))}
             </div>
+           
             <Line data={data} options={options} />
         </div>
     );

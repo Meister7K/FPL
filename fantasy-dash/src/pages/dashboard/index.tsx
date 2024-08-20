@@ -9,6 +9,7 @@ import MatchupInfo from '../../components/league/matchupInfo';
 import LeagueChart from '../../components/charts/LeagueChart';
 import MatchupMatrix from '@/components/charts/MatchupMatrix';
 import PlayoffBracket from '@/components/league/PlayoffBracket';
+import FPTSSeasonChart from '@/components/charts/FPTSSeasonChart';
 
 const Dashboard = () => {
   const router = useRouter();
@@ -32,9 +33,11 @@ const Dashboard = () => {
       <UserInfo userData={userData} />
       <LeagueInfo leagueData={leagueData} />
       <LeagueChart rosterData={rosterData} leagueId={leagueId} />
+      <FPTSSeasonChart/>
       <MatchupMatrix leagueId={leagueId } />
       <MatchupInfo matchupData={matchupData} />
       <PlayoffBracket leagueId={leagueId }/>
+      
     </div>
   );
 };

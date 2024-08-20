@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { User, League, MatchupData,RosterData } from '../types';
+import { User, League, RosterData } from '../types';
 
 interface HistoricalData {
   year: number;

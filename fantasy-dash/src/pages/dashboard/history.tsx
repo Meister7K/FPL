@@ -67,7 +67,7 @@ const HistoryPage = () => {
       <h1 className="text-2xl font-bold text-center">League History</h1>
 
         {/* Total Data */}
-        <div className="mt-8">
+        <div className="mt-8 overflow-x-scroll">
         <h2 className="text-xl font-semibold text-center">Total Data</h2>
         <table className="mt-4 w-full max-w-screen-2xl mx-auto">
           <thead className="border">
