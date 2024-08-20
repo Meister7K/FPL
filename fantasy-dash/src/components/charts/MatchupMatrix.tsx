@@ -204,7 +204,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
         </button>
       </div>
 
-      <table border={1} className="w-full border m-2 mx-auto box-border min-w-fit whitespace-nowrap block overflow-x-scroll">
+      <table border={1} className="w-full border m-2 mx-auto box-border">
         <thead>
           <tr className="border">
             <th>Teams</th>
