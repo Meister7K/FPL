@@ -15,6 +15,11 @@ interface ManagerData {
   fpts_against: number;
 }
 
+interface WinnerLoserData {
+  year: number;
+  winners: number[];
+  losers: number[];
+}
 
 interface TotalData {
   username: string;
@@ -45,6 +50,7 @@ interface Manager {
   user_id: string;
   username: string;
   roster: Roster;
+  roster_id: number;
   // Add other relevant fields
 }
 
@@ -66,6 +72,8 @@ interface FPLState {
   getManagerById: (user_id: string) => Manager | undefined;
   setHistoricalData: (data: HistoricalData[]) => void;
   setTotalData: (data: TotalData[]) => void;
+  winnerLoserData: WinnerLoserData[];
+  setWinnerLoserData: (data: WinnerLoserData[]) => void;
 }
 
 export const useFPLStore = create<FPLState>((set) => ({
@@ -99,4 +107,6 @@ export const useFPLStore = create<FPLState>((set) => ({
   },
   setHistoricalData: (data) => set({ historicalData: data }),
   setTotalData: (data) => set({ totalData: data }),
+  winnerLoserData: [],
+  setWinnerLoserData: (data) => set({ winnerLoserData: data }),
 }));

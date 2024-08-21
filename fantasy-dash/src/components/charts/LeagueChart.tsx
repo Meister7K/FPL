@@ -90,13 +90,13 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData, leagueId }) => {
       {
         label: "Points For",
         data: sortedData.map((roster) => roster.settings.fpts),
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "rgba(53, 162, 255, 0.7)",
         stack: 0,
       },
       {
         label: "Points Against",
         data: sortedData.map((roster) => -roster.settings.fpts_against),
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "rgba(255, 70, 90, 0.7)",
         stack: 0,
       },
     ],

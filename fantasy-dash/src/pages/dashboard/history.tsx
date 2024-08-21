@@ -1,11 +1,12 @@
 'use client';
 import { useState } from 'react';
 import { useFPLStore } from '../../store/fplStore';
-import FPTSLineChart from '../../components/charts/FPTSHistoryChart'
+import FPTSLineChart from '../../components/charts/FPTSHistoryChart';
 
 const HistoryPage = () => {
   const historicalData = useFPLStore((state) => state.historicalData);
   const totalDataFromStore = useFPLStore((state) => state.totalData);
+  const winnerLoserData = useFPLStore((state) => state.winnerLoserData);
 
   // State to manage sorting
   const [sortedData, setSortedData] = useState(totalDataFromStore);
@@ -46,8 +47,40 @@ const HistoryPage = () => {
     setSortConfig({ key, direction });
   };
 
+  const getPlacement = (year, rosterId) => {
+    // Find the data for the specific year
+    const yearData = winnerLoserData.find(data => data.year === year);
+  
+    // If no data for the year, return an empty string
+    if (!yearData) return '';
+  
+    // Find the entry within that year's data that matches the rosterId
+    const rosterData = yearData.data.find(item => item.roster_id === rosterId);
+  
+    // If no matching rosterId found, return an empty string
+    if (!rosterData) return '';
+  
+    // Return the rank with the appropriate ordinal suffix
+    const place = rosterData.rank;
+    return place;
+  };
+  
+  const getOrdinalSuffix = (i) => {
+    const j = i % 10,
+      k = i % 100;
+    if (j === 1 && k !== 11) {
+      return "st";
+    }
+    if (j === 2 && k !== 12) {
+      return "nd";
+    }
+    if (j === 3 && k !== 13) {
+      return "rd";
+    }
+    return "th";
+  };
+  
 
-  // Table headers with onClick to sort by column
   const headers = [
     { label: 'Username', key: 'username' },
     { label: 'Total Wins', key: 'totalWins' },
@@ -60,14 +93,32 @@ const HistoryPage = () => {
     { label: 'Avg Loss/Year', key: 'avgLossPerYear' },      // New column
     { label: 'Win %', key: 'winPercentage' },               // New column
   ];
+  
+  console.log(winnerLoserData)
 
+  const renderSwitch=(param)=>{
+    switch(param) {
+      case 1:
+        return ' 👑';
+        case 2:
+          return ' 🥈';
+          case 3:
+            return ' 🥉';
+            case winnerLoserData[0].data.length -1:
+              return ' 🤡';
+              case winnerLoserData[0].data.length:
+              return ' 💩';
+      default:
+        return '';
+    }
+  }
 
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold text-center">League History</h1>
 
-        {/* Total Data */}
-        <div className="mt-8 overflow-x-scroll">
+      {/* Total Data */}
+      <div className="mt-8 overflow-x-scroll">
         <h2 className="text-xl font-semibold text-center">Total Data</h2>
         <table className="mt-4 w-full max-w-screen-2xl mx-auto">
           <thead className="border">
@@ -116,16 +167,18 @@ const HistoryPage = () => {
           });
 
           return (
-            <div key={yearData.year} className="mt-4 flex flex-wrap border ">
+            <div key={yearData.year} className="mt-4 flex flex-wrap border">
               <h3 className="text-lg font-semibold w-full text-center">Year: {yearData.year}</h3>
-              <ol className='list-decimal marker:text-red-700 list-outside flex flex-wrap justify-evenly items-center'>
+              <ol className='list-decimal marker:text-red-700 list-outside flex flex-wrap justify-evenly items-center w-full'>
                 {sortedManagers.map((manager, index) => (
                   <li key={index} className="m-10">
-                    <h4 className='text-lg'>{manager.username}</h4>
+                    <h4 className='text-lg'>{manager.username}
+                     { renderSwitch(getPlacement(yearData.year, manager.roster_id))}</h4>
                     <p>Wins: {manager.wins}</p>
                     <p>Losses: {manager.losses}</p>
                     <p>FPTS: {manager.fpts}</p>
                     <p>FPTS Against: {manager.fpts_against}</p>
+                    <p>Final Rank: {getPlacement(yearData.year, manager.roster_id)}</p> {/* Add Final Rank */}
                   </li>
                 ))}
               </ol>
@@ -133,9 +186,6 @@ const HistoryPage = () => {
           );
         })}
       </div>
-
-    
-
     </div>
   );
 };

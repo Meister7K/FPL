@@ -32,6 +32,7 @@ export interface User {
   }
 
   export interface RosterData{
+    settings: any;
     roster_id: number;
   owner_id: string;
   fpts: number;

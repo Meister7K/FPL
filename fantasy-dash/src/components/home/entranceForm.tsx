@@ -14,12 +14,11 @@ interface TotalData {
     totalFpts: number;
     totalFptsAgainst: number;
     yearsPlayed: number;
-    averageFptsPerYear: number; // New field for average FPTS per year
-    avgWinPerYear: number;      // New field for average wins per year
-    avgLossPerYear: number;     // New field for average losses per year
-    winPercentage: number;      // New field for win percentage
+    averageFptsPerYear: number;
+    avgWinPerYear: number;
+    avgLossPerYear: number;
+    winPercentage: number;
 }
-
 
 interface HistoricalData {
     year: number;
@@ -33,7 +32,12 @@ interface HistoricalData {
     }[];
 }
 
-// Utility function to handle API requests
+interface WinnerLoserData {
+    year: number;
+    winners: number[];
+    losers: number[];
+}
+
 const fetchData = async (url: string) => {
     const response = await fetch(url);
     if (!response.ok) {
@@ -64,6 +68,7 @@ const EnterForm = () => {
     const setManagers = useFPLStore((state: { setManagers: any; }) => state.setManagers);
     const setHistoricalData = useFPLStore((state: { setHistoricalData: any; }) => state.setHistoricalData);
     const setTotalData = useFPLStore((state: { setTotalData: any; }) => state.setTotalData);
+    const setWinnerLoserData = useFPLStore((state: { setWinnerLoserData: any; }) => state.setWinnerLoserData);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -98,60 +103,77 @@ const EnterForm = () => {
             const leagueData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}`);
             const rosterData = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/rosters`);
 
-            console.log("League Data:", leagueData);
-const currentWeek = leagueData?.settings?.current_week;
-console.log("Current week from league data:", currentWeek);
-
-// If currentWeek is still undefined, let's set a default value
-const effectiveCurrentWeek = currentWeek || 18;  // Assuming a full NFL season
-console.log("Effective current week:", effectiveCurrentWeek);
-
-const matchupData: Record<number, any[]> = {};
-for (let week = 1; week <= effectiveCurrentWeek; week++) {
-    console.log(`Fetching data for week ${week}`);
-    try {
-        const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
-        console.log(`Week ${week} data:`, weekMatchups);
-        if (weekMatchups && weekMatchups.length > 0) {
-            matchupData[week] = weekMatchups;
-        } else {
-            console.log(`No matchups found for week ${week}`);
-        }
-    } catch (error) {
-        console.error(`Error fetching data for week ${week}:`, error);
-    }
-}
-
-if (Object.keys(matchupData).length > 0) {
-    console.log("Setting non-empty matchupData in store");
-    setMatchupData(matchupData);
-} else {
-    console.warn("No matchup data available to set");
-}
-
-            console.log("Current week:", currentWeek);
-for (let week = 1; week <= currentWeek; week++) {
-    console.log(`Fetching data for week ${week}`);
-    const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
-    console.log(`Week ${week} data:`, weekMatchups);
-    matchupData[week] = weekMatchups;
-}
-console.log("Final matchupData:", matchupData);
-
-            // Fetch historical data from Sleeper API
+            const winnerLoserData: WinnerLoserData[] = [];
             let historicalData: HistoricalData[] = [];
             let currentLeagueId = leagueId;
-            let year = parseInt(leagueData.season);
+            let currentYear = parseInt(leagueData.season);
 
             while (currentLeagueId) {
-                const leagueInfo = await fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}`);
-                const leagueRosters = await fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}/rosters`);
-
+                const [leagueInfo, winnersResponse, losersResponse] = await Promise.all([
+                    fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}`),
+                    fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}/winners_bracket`),
+                    fetchData(`https://api.sleeper.app/v1/league/${currentLeagueId}/losers_bracket`)
+                ]);
+    
+                let losers = [];
+                let winners = [];
+    
+                // Process the winnersResponse array
+                for (const obj of winnersResponse) {
+                    if (obj.hasOwnProperty('p')) {
+                        const pValue = obj.p;
+                        const wValue = obj.w;
+                        const lValue = obj.l;
+    
+                        // Add winner and loser to the winners array
+                        winners.push({
+                            rank: pValue,
+                            roster_id: wValue
+                        });
+                        winners.push({
+                            rank: pValue + 1,
+                            roster_id: lValue
+                        });
+                    }
+                }
+    
+                // Process the losersResponse array
+                for (const obj of losersResponse) {
+                    if (obj.hasOwnProperty('p')) {
+                        const pValue = leagueData.total_rosters; // Using total_rosters for "p"
+                        const wValue = obj.w;
+                        const lValue = obj.l;
+    
+                        // Add loser and winner to the losers array
+                        losers.push({
+                            rank: pValue,
+                            roster_id: wValue
+                        });
+                        losers.push({
+                            rank: pValue - 1,
+                            roster_id: lValue
+                        });
+                    }
+                }
+    
+                // Combine winners and losers into one array
+                let combined = [...winners, ...losers];
+    
+                // Filter out any non-object values (e.g., numbers or nulls)
+                combined = combined.filter(item => typeof item === 'object' && item !== null);
+    
+                // Sort combined array by rank
+                combined.sort((a, b) => a.rank - b.rank);
+    
+                // Add the sorted and filtered data to winnerLoserData
+                winnerLoserData.push({ year: currentYear, data: combined });
+    
                 const yearData: HistoricalData = {
-                    year: year,
-                    managers: await Promise.all(leagueRosters.map(async (roster: any) => {
+                    year: currentYear,
+                    managers: await Promise.all(rosterData.map(async (roster: any) => {
                         const userData = await fetchData(`https://api.sleeper.app/v1/user/${roster.owner_id}`);
                         return {
+                            roster_id:roster.roster_id,
                             owner_id: roster.owner_id,
                             username: userData.display_name,
                             wins: roster.settings.wins,
@@ -161,18 +183,33 @@ console.log("Final matchupData:", matchupData);
                         };
                     }))
                 };
-
+    
                 historicalData.push(yearData);
-
+    
                 currentLeagueId = leagueInfo.previous_league_id;
-                year--;
+                currentYear--;
             }
+            setWinnerLoserData(winnerLoserData);
 
+            if (leagueData.name === "Fantasy Premier League") {
+                const jsonWinnerLoserData = historyData.map(yearData => ({
+                  year: yearData.year,
+                  data: yearData.season_standings.map(manager => ({
+                    rank: manager.rank,
+                    roster_id: manager.roster_id
+                  }))
+                }));
+              
+                setWinnerLoserData([...winnerLoserData, ...jsonWinnerLoserData]);
+              } else {
+                setWinnerLoserData(winnerLoserData);
+              }
             // Merge with historical data from history.json if applicable
             if (leagueData.name === "Fantasy Premier League") {
                 const jsonHistoricalData = historyData.map(yearData => ({
                     year: yearData.year,
                     managers: yearData.season_standings.map(manager => ({
+                        roster_id:manager.roster_id,
                         owner_id: manager.owner_id,
                         username: manager.display_name,
                         wins: manager.wins,
@@ -184,6 +221,8 @@ console.log("Final matchupData:", matchupData);
 
                 historicalData = [...historicalData, ...jsonHistoricalData];
                 historicalData.sort((a, b) => b.year - a.year);
+
+                
             }
 
             // Calculate total data across all years
@@ -224,6 +263,25 @@ console.log("Final matchupData:", matchupData);
 
             setHistoricalData(historicalData);
             setTotalData(totalData);
+           
+
+ 
+            const currentWeek = leagueData?.settings?.current_week;
+            const effectiveCurrentWeek = currentWeek || 18;  // Assuming a full NFL season
+
+            const matchupData: Record<number, any[]> = {};
+            for (let week = 1; week <= effectiveCurrentWeek; week++) {
+                try {
+                    const weekMatchups = await fetchData(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
+                    if (weekMatchups && weekMatchups.length > 0) {
+                        matchupData[week] = weekMatchups;
+                    }
+                } catch (error) {
+                    console.error(`Error fetching data for week ${week}:`, error);
+                }
+            }
+
+            setMatchupData(matchupData);
 
             const managers = await Promise.all(
                 rosterData.map(async (roster: any) => {
@@ -249,8 +307,7 @@ console.log("Final matchupData:", matchupData);
             );
 
             setRosterData(rosterData);
-            setLeagueData(year, leagueData);
-            setMatchupData(matchupData);
+            setLeagueData(parseInt(leagueData.season), leagueData);
             setLeagueId(leagueId);
             setManagers(managers);
 
@@ -269,8 +326,6 @@ console.log("Final matchupData:", matchupData);
     const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setYear(e.target.value);
     };
-
-    
 
     const currentYear = new Date().getFullYear();
     const yearsArray = Array.from({ length: currentYear - 2018 + 1 }, (_, i) => 2018 + i);

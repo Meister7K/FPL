@@ -27,8 +27,7 @@ const LeagueInfo = () => {
         const winnersData = await winnersResponse.json();
         const losersData = await losersResponse.json();
 
-        console.log(winnersData);
-        console.log(losersData);
+       
 
         let lastPlace;
         let secondLast;
