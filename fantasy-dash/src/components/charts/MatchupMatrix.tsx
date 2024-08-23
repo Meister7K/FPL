@@ -67,7 +67,7 @@ const MatchupMatrix: React.FC<MatrixProps> = ({ leagueId }) => {
     if (Object.keys(matchupData).length > 0) {
       const calculatedRecords = calculateWeekRecords(matchupData);
       setWeekRecords(calculatedRecords);
-      // console.log("Calculated weekRecords:", calculatedRecords);
+     
     }
   }, [matchupData]);
 

@@ -94,7 +94,7 @@ const HistoryPage = () => {
     { label: 'Win %', key: 'winPercentage' },               // New column
   ];
   
-  console.log(winnerLoserData)
+  // console.log(winnerLoserData)
 
   const renderSwitch=(param)=>{
     switch(param) {
@@ -172,7 +172,7 @@ const HistoryPage = () => {
               <ol className='list-decimal marker:text-red-700 list-outside flex flex-wrap justify-evenly items-center w-full'>
                 {sortedManagers.map((manager, index) => (
                   <li key={index} className="m-10">
-                    <h4 className='text-lg'>{manager.username}
+                    <h4 className='text-lg font-extrabold'>{manager.username}
                      { renderSwitch(getPlacement(yearData.year, manager.roster_id))}</h4>
                     <p>Wins: {manager.wins}</p>
                     <p>Losses: {manager.losses}</p>
