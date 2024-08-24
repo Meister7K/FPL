@@ -11,6 +11,7 @@ import useFetchRosters from '@/hooks/useFetchRosters';
 import useFetchLeagueUsers from '@/hooks/useFetchLeagueUsers';
 import useFetchLeagueMatchups from '@/hooks/useFetchLeagueMatchups';
 import useFetchLeagueBrackets from '@/hooks/useFetchLeagueBrackets';
+import useFetchDraftPicks from '../../hooks/useFetchDraftPicks';
 
 const LeagueSelector: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -25,6 +26,7 @@ const LeagueSelector: React.FC = () => {
     const { fetchLeagueUsers } = useFetchLeagueUsers();
     const { fetchLeagueMatchups } = useFetchLeagueMatchups();
     const { fetchLeagueBrackets } = useFetchLeagueBrackets();
+    const { fetchDraftPicks } = useFetchDraftPicks();
   
     const leagues = useLeagueStore((state) => state.leagues);
     const selectLeague = useLeagueStore((state) => state.selectLeague);
@@ -75,6 +77,18 @@ const LeagueSelector: React.FC = () => {
 
             // Step 6: Fetch League Brackets
             await fetchLeagueBrackets();
+            
+            await fetchCurrentRoster(league.league_id);
+
+            // Fetch Roster History
+            await fetchRosterHistory();
+
+    //         const leagueData = useLeagueStore.getState().leagueData;
+    //   if (leagueData.length > 0 && leagueData[0].draft_id) {
+    //     await fetchDraftPicks(leagueData[0].draft_id);
+    //   } else {
+    //     console.warn('No draft_id available for fetching draft picks');
+    //   }
 
             router.push(`/test/${league.league_id}`); // Navigate to the selected league page
         } catch (error) {

@@ -38,6 +38,7 @@ interface LeagueStoreState {
   leagueUsers: { [leagueId: string]: LeagueUser[] };
 leagueMatchups: { [leagueId: string]: Matchup[][] };
 leagueBrackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } };
+draftPicks: DraftPick[];
   setUserId: (userId: string) => void;
   setLeagues: (leagues: League[]) => void;
   selectLeague: (league: League) => void;
@@ -48,6 +49,8 @@ leagueBrackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } };
   setLeagueUsers: (users: { [leagueId: string]: LeagueUser[] }) => void;
 setLeagueMatchups: (matchups: { [leagueId: string]: Matchup[][] }) => void;
 setLeagueBrackets: (brackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } }) => void;
+setDraftPicks: (picks: DraftPick[]) => void;
+
 }
 
 
@@ -61,7 +64,7 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
   leagueUsers: {},
   leagueMatchups: {},
   leagueBrackets: {},
-
+  draftPicks: [],
   setUserId: (userId: string) => {
     console.log('Setting userId:', userId);
     set({ userId });
@@ -106,6 +109,10 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
     console.log('Setting leagueBrackets:', brackets);
     set({ leagueBrackets: brackets });
   },
+  setDraftPicks: (picks) =>{
+    console.log('Setting draftPicks:', picks);
+    set({ draftPicks: picks })
+  } ,
 
   clearStore: () => {
     console.log('Clearing store');
@@ -119,6 +126,7 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
       leagueUsers: {},
       leagueMatchups: {},
       leagueBrackets: {},
+      draftPicks: [],
     });
   },
 }));

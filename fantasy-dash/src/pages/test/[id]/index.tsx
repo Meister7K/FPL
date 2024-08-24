@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import useLeagueStore from '../../../store/testStore';
+import Link from 'next/link';
 
 const LeagueDetailsPage: React.FC = () => {
   const router = useRouter();
@@ -12,6 +13,8 @@ const LeagueDetailsPage: React.FC = () => {
 
   return (
     <div className="p-4">
+        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/draft`}>Draft</Link>
+        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/live`}>Live Draft Board</Link>
       <h1 className="text-2xl font-bold mb-4">League Details for ID: {id}</h1>
 
       {selectedLeagueData ? (
