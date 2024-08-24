@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import useLeagueStore from '../../../store/testStore';
 import Link from 'next/link';
+import {getRosterOwnerName} from '@/utils/usernameUtil'
 
 const LeagueDetailsPage: React.FC = () => {
   const router = useRouter();
@@ -23,7 +24,7 @@ const LeagueDetailsPage: React.FC = () => {
           <ul className="list-disc list-inside">
             {currentRoster.map((roster) => (
               <li key={roster.roster_id}>
-                <span className="font-bold">Roster ID:</span> {roster.roster_id}
+                <span className="font-bold"> {getRosterOwnerName(roster.roster_id)}</span>
                 <br />
                 <span className="font-bold">Owner ID:</span> {roster.owner_id}
                 {/* Add more fields as necessary */}
@@ -38,7 +39,7 @@ const LeagueDetailsPage: React.FC = () => {
               <ul className="list-disc list-inside">
                 {rosters.rosters.map((roster) => (
                   <li key={roster.roster_id}>
-                    <span className="font-bold">Roster ID:</span> {roster.roster_id}
+                    <span className="font-bold">{getRosterOwnerName(roster.roster_id)}</span> 
                     <br />
                     <span className="font-bold">Owner ID:</span> {roster.owner_id}
                    
