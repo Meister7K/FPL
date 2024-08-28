@@ -1,4 +1,5 @@
-"use client";
+'use client';
+
 import { useState, useEffect } from 'react';
 import useFetchUserId from '../../hooks/useFetchID';
 import useFetchLeagues from '../../hooks/useFetchLeagues';
@@ -12,13 +13,16 @@ import useFetchLeagueUsers from '@/hooks/useFetchLeagueUsers';
 import useFetchLeagueMatchups from '@/hooks/useFetchLeagueMatchups';
 import useFetchLeagueBrackets from '@/hooks/useFetchLeagueBrackets';
 import useFetchDraftPicks from '../../hooks/useFetchDraftPicks';
+// import useFetchDraftInfo from '../../hooks/useFetchDraftInfo';
+import useFetchTransactions from '../../hooks/useFetchTransactions';
 
 const LeagueSelector: React.FC = () => {
     const [username, setUsername] = useState('');
+    const [savedUsernames, setSavedUsernames] = useState<string[]>([]);
     const [year, setYear] = useState('2024');
     const [isModalOpen, setModalOpen] = useState(false);
     const [isLoading, setLoading] = useState(false);
-  
+
     const { fetchUserId } = useFetchUserId();
     const { fetchLeagues } = useFetchLeagues();
     const { fetchLeagueData } = useFetchLeagueData();
@@ -27,11 +31,15 @@ const LeagueSelector: React.FC = () => {
     const { fetchLeagueMatchups } = useFetchLeagueMatchups();
     const { fetchLeagueBrackets } = useFetchLeagueBrackets();
     const { fetchDraftPicks } = useFetchDraftPicks();
-  
+    // const {fetchDraftInfo}= useFetchDraftInfo()
+    const { fetchTransactions } = useFetchTransactions();
+
     const leagues = useLeagueStore((state) => state.leagues);
     const selectLeague = useLeagueStore((state) => state.selectLeague);
     const selectedLeague = useLeagueStore((state) => state.selectedLeague);
     const router = useRouter();
+
+
 
     useEffect(() => {
         if (selectedLeague) {
@@ -39,20 +47,32 @@ const LeagueSelector: React.FC = () => {
             fetchRosterHistory();
         }
     }, [selectedLeague, fetchCurrentRoster, fetchRosterHistory]);
-  
+
+    useEffect(() => {
+        const storedUsernames = localStorage.getItem('usernames');
+        if (storedUsernames) {
+            setSavedUsernames(JSON.parse(storedUsernames));
+        }
+    }, []);
+
+    const saveUsernameToLocalStorage = (username: string) => {
+        let usernames = savedUsernames;
+        if (!usernames.includes(username)) {
+            usernames = [...usernames, username];
+            localStorage.setItem('usernames', JSON.stringify(usernames));
+            setSavedUsernames(usernames);
+        }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
-    
+
         try {
-            // Step 1: Fetch User ID
+            saveUsernameToLocalStorage(username);
             const userId = await fetchUserId(username);
-    
-            // Step 2: Fetch Leagues using the User ID and Year
             await fetchLeagues(userId, year);
-    
-            setModalOpen(true); // Open modal to select league
-    
+            setModalOpen(true);
         } catch (error) {
             console.error("An error occurred:", error);
         } finally {
@@ -64,48 +84,47 @@ const LeagueSelector: React.FC = () => {
         setLoading(true);
         setModalOpen(false);
         selectLeague(league);
-    
+
         try {
-            // Step 3: Fetch League Data using the selected league_id
             await fetchLeagueData(league.league_id);
-
-            // Step 4: Fetch League Users
             await fetchLeagueUsers(league.league_id);
-
-            // Step 5: Fetch League Matchups
             await fetchLeagueMatchups();
-
-            // Step 6: Fetch League Brackets
             await fetchLeagueBrackets();
-            
             await fetchCurrentRoster(league.league_id);
-
-            // Fetch Roster History
             await fetchRosterHistory();
 
-    //         const leagueData = useLeagueStore.getState().leagueData;
-    //   if (leagueData.length > 0 && leagueData[0].draft_id) {
-    //     await fetchDraftPicks(leagueData[0].draft_id);
-    //   } else {
-    //     console.warn('No draft_id available for fetching draft picks');
-    //   }
+            // Fetch Draft Info
+            
 
-            router.push(`/test/${league.league_id}`); // Navigate to the selected league page
+            // Fetch Current and Historical Transactions
+            const leagueData = useLeagueStore.getState().leagueData;
+            for (const leagueInfo of leagueData) {
+                await fetchTransactions(leagueInfo.league_id, leagueInfo.season);
+            }
+
+            const leagueDataState = useLeagueStore.getState().leagueData;
+            if (leagueDataState.length > 0 && leagueDataState[0].draft_id) {
+                await fetchDraftPicks(leagueDataState[0].draft_id);
+            } else {
+                console.warn('No draft_id available for fetching draft picks');
+            }
+
+            router.push(`/test/${league.league_id}`);
         } catch (error) {
             console.error("Failed to fetch league data:", error);
         } finally {
             setLoading(false);
         }
     };
-  
+
     const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setYear(e.target.value);
     };
-  
+
     const currentYear = new Date().getFullYear();
     const yearsArray = Array.from({ length: currentYear - 2018 + 1 }, (_, i) => 2018 + i);
     const yearOptions = yearsArray.reverse();
-  
+
     return (
         <div className='w-full items-center mx-auto text-center'>
             <h1 className='text-2xl'>League Selector</h1>
@@ -117,8 +136,14 @@ const LeagueSelector: React.FC = () => {
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
-                        className="mt-1 p-2 border  text-black border-gray-300 rounded w-full"
+                        className="mt-1 p-2 border text-black border-gray-300 rounded w-full"
+                        list="saved-usernames"
                     />
+                    <datalist id="saved-usernames">
+                        {savedUsernames.map((name) => (
+                            <option key={name} value={name} />
+                        ))}
+                    </datalist>
                 </div>
                 <div className="mb-4">
                     <label className="block text-gray-500">Year:</label>
@@ -126,10 +151,10 @@ const LeagueSelector: React.FC = () => {
                         value={year}
                         onChange={handleYearSelect}
                         required
-                        className="mt-1 p-2 border text-black border-gray-300 rounded max-w  w-full"
+                        className="mt-1 p-2 border text-black border-gray-300 rounded max-w w-full"
                     >
                         {yearOptions.map((year) => (
-                            <option key={year} value={year}>
+                            <option key={year} value={year.toString()}>
                                 {year}
                             </option>
                         ))}

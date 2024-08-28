@@ -11,6 +11,15 @@ interface LeagueData {
   bracket_id: number | null;
   loser_bracket_id: number | null;
   total_rosters: number;
+  draft_id: string;
+}
+
+interface DraftInfo {
+  draft_id: string;
+  draft_order: { [key: string]: number };
+  season: string;
+  start_time: number;
+  status: string;
 }
 
 interface League {
@@ -39,6 +48,8 @@ interface LeagueStoreState {
 leagueMatchups: { [leagueId: string]: Matchup[][] };
 leagueBrackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } };
 draftPicks: DraftPick[];
+draftInfo: DraftInfo | null;
+leagueTransactions: { [leagueId: string]: { [season: string]: any[] } };
   setUserId: (userId: string) => void;
   setLeagues: (leagues: League[]) => void;
   selectLeague: (league: League) => void;
@@ -50,7 +61,8 @@ draftPicks: DraftPick[];
 setLeagueMatchups: (matchups: { [leagueId: string]: Matchup[][] }) => void;
 setLeagueBrackets: (brackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } }) => void;
 setDraftPicks: (picks: DraftPick[]) => void;
-
+setDraftInfo: (draftInfo: DraftInfo) => void;
+setLeagueTransactions: (transactions: { [leagueId: string]: { [season: string]: any[] } }) => void;
 }
 
 
@@ -65,6 +77,8 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
   leagueMatchups: {},
   leagueBrackets: {},
   draftPicks: [],
+  draftInfo: null,
+  leagueTransactions: {},
   setUserId: (userId: string) => {
     console.log('Setting userId:', userId);
     set({ userId });
@@ -113,7 +127,16 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
     console.log('Setting draftPicks:', picks);
     set({ draftPicks: picks })
   } ,
-
+  setDraftInfo: (draftInfo: DraftInfo) => {
+    console.log('Setting draftInfo:', draftInfo);
+    set({ draftInfo });
+  },
+  setLeagueTransactions: (transactions) => {
+    console.log('Setting leagueTransactions:', transactions);
+    set((state) => ({
+      leagueTransactions: { ...state.leagueTransactions, ...transactions },
+    }));
+  },
   clearStore: () => {
     console.log('Clearing store');
     set({
@@ -127,6 +150,8 @@ const useLeagueStore = create<LeagueStoreState>((set) => ({
       leagueMatchups: {},
       leagueBrackets: {},
       draftPicks: [],
+      draftInfo: null,
+      leagueTransactions:{},
     });
   },
 }));

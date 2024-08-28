@@ -3,6 +3,7 @@ import useLeagueStore from '@/store/testStore';
 import { getPlayerName, getPlayerPosition, getPlayerTeam } from '@/utils/playerUtils';
 import DraftBoardCard from './DraftBoardCard'; // Adjust the path as necessary
 import Loader from '../loader/Loader';
+import CheckDraftStatus from './CheckDraftStatus';
 
 const DraftBoard: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -35,15 +36,15 @@ const DraftBoard: React.FC = () => {
   }, [leagueData, fetchDraftPicks]);
 
   // Polling every second
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (leagueData.length > 0 && leagueData[0].draft_id) {
-        fetchDraftPicks(leagueData[0].draft_id);
-      }
-    }, 1000);
+  //! useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     if (leagueData.length > 0 && leagueData[0].draft_id) {
+  //       fetchDraftPicks(leagueData[0].draft_id);
+  //     }
+  //   }, 1000);
 
-    return () => clearInterval(interval); // Cleanup interval on unmount
-  }, [leagueData, fetchDraftPicks]);
+  //   return () => clearInterval(interval);
+  // }, [leagueData, fetchDraftPicks]);
 
   const getBackgroundColor = (position: string) => {
     const colors: { [key: string]: string } = {
@@ -68,11 +69,10 @@ const DraftBoard: React.FC = () => {
 
   return (
     <div>
-      
-      {error && <p>Error: {error}</p>}
-      <div className='grid grid-flow-col auto-cols-auto gap-2 w-full overflow-scroll min-w-fit'>
-        {userOrder.map((userOrderEntry) => {
-          const user = leagueUsers.find(u => u.user_id === userOrderEntry.userId);
+    {leagueData.length > 0 && <CheckDraftStatus leagueId={leagueData[0].league_id} />}
+    <div className='grid grid-flow-col auto-cols-auto gap-2 w-full overflow-scroll min-w-fit'>
+      {userOrder.map((userOrderEntry) => {
+        const user = leagueUsers.find(u => u.user_id === userOrderEntry.userId);
           
           return (
             <div key={userOrderEntry.userId} className="flex flex-col min-w-fit whitespace-nowrap">
