@@ -13,9 +13,12 @@ interface Roster {
   // Add other relevant fields
 }
 
-export function getRosterOwnerName(rosterId: string): string {
+export function getRosterOwnerName(rosterId: string| number): string {
   const leagueUsers = useLeagueStore.getState().leagueUsers;
   const rosters = useLeagueStore.getState().currentRoster;
+
+
+
 
   // Find the roster
   const roster = rosters.find(r => r.roster_id === rosterId);

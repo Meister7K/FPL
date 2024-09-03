@@ -24,7 +24,7 @@ const useFetchLeagueMatchups = () => {
         const leagueId = league.league_id;
         allMatchups[leagueId] = [];
 
-        for (let week = 1; week <= 17; week++) {
+        for (let week = 1; week <= 18; week++) {
           const response = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`);
           const matchups: Matchup[] = await response.json();
           allMatchups[leagueId][week - 1] = matchups;

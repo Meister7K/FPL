@@ -1,4 +1,4 @@
-"use client";"use client";
+"use client";
 import { RosterData } from "@/types";
 import {
   Chart as ChartJS,
@@ -111,7 +111,7 @@ const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData, leagueId }) => {
   }
 
   return (
-    <div className="mx-auto max-w-full items-center my-10">
+    <div className="mx-auto max-w-full items-center my-10 max-w-screen-lg">
       <h2 className="w-full text-center">FPTS Chart</h2>
       <div className="mb-4 flex items-center pt-10 w-full justify-center">
         <label htmlFor="sort-select" >

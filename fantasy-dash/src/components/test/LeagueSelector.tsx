@@ -84,6 +84,7 @@ const LeagueSelector: React.FC = () => {
         setLoading(true);
         setModalOpen(false);
         selectLeague(league);
+        
 
         try {
             await fetchLeagueData(league.league_id);

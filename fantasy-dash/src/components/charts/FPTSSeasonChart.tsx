@@ -1,10 +1,8 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend, PointElement } from 'chart.js';
-import { useFPLStore } from '../../store/fplStore';
 import 'chart.js/auto';
+import { getRosterOwnerName } from '@/utils/usernameUtil';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -20,55 +18,102 @@ const generateColor = (str: string) => {
     };
 };
 
-const FPTSSeasonChart: React.FC = () => {
-    const { matchupData, managers } = useFPLStore(state => ({
-        matchupData: state.matchupData,
-        managers: state.managers,
-    }));
+interface FPTSSeasonChartProps {
+    matchupData: Record<string, any[]>;
+    currentRosterData: any;
+}
 
+const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentRosterData }) => {
     const [chartData, setChartData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [visibleWeeks, setVisibleWeeks] = useState<string[]>([]);
-    const [colorMap, setColorMap] = useState<Record<string, { borderColor: string; backgroundColor: string }>>({});
+    const [weeklyAverages, setWeeklyAverages] = useState<number[]>([]);
+    const [matchupPairs, setMatchupPairs] = useState<Record<string, string>>({});
+    const [rosterIdMap, setRosterIdMap] = useState<Record<string, number>>({});
 
     useEffect(() => {
-        if (matchupData && managers) {
+        if (matchupData && currentRosterData) {
             prepareChartData();
+            prepareMatchupPairs();
             setLoading(false);
         }
-    }, [matchupData, managers]);
+    }, [matchupData, currentRosterData]);
+
+    const prepareMatchupPairs = () => {
+        const pairData = Object.values(matchupData)[0] as any[][];
+        console.log(pairData)
+        const pairs: Record<string, string> = {};
+        const idMap: Record<string, number> = {};
+        pairData.forEach((week: any[], weekIndex) => {
+            week.forEach((rosterData: any) => {
+                const { roster_id, matchup_id } = rosterData;
+                pairs[roster_id] = matchup_id;
+                if (weekIndex === 0) {
+                    idMap[getRosterOwnerName(roster_id)] = roster_id;
+                }
+            });
+        });
+        setMatchupPairs(pairs);
+        setRosterIdMap(idMap);
+    };
 
     const prepareChartData = () => {
-        if (!matchupData || !managers) return;
+        if (!matchupData || !currentRosterData) return;
 
-        const labels: string[] = Object.keys(matchupData).map(week => `Week ${week}`);
+        const matchData = Object.values(matchupData)[0] as any[][];
+        const labels: string[] = matchData.map((_, index) => `Week ${index + 1}`);
         const datasets: any = {};
+        const weeklyPoints: number[] = Array(labels.length).fill(0);
+        const weeklyCounts: number[] = Array(labels.length).fill(0);
 
-        // Create color map for managers
-        const newColorMap = managers.reduce((map, manager) => {
-            map[manager.user_id] = generateColor(manager.username);
-            return map;
-        }, {} as Record<string, { borderColor: string; backgroundColor: string }>);
-        setColorMap(newColorMap);
+        matchData.forEach((week, weekIndex) => {
+            week.forEach((rosterData: any) => {
+                const { roster_id, points } = rosterData;
 
-        Object.entries(matchupData).forEach(([week, weekData]) => {
-            weekData.forEach((matchup: any) => {
-                const { roster_id, points } = matchup;
-                const manager = managers.find(m => m.roster.roster_id === roster_id);
-                const username = manager ? manager.username : `Unknown (${roster_id})`;
+                const currentRoster = currentRosterData.find(r => r.roster_id === roster_id);
+                
+                const isCurrentRoster = roster_id === currentRoster.roster_id;
+
+                const username = isCurrentRoster 
+                    ? `${getRosterOwnerName(currentRoster.roster_id)}`
+                    : `Roster ${roster_id}`;
 
                 if (!datasets[username]) {
+                    const color = generateColor(username);
                     datasets[username] = {
                         label: username,
                         data: Array(labels.length).fill(null),
-                        ...newColorMap[manager?.user_id || roster_id],
+                        borderColor: color.borderColor,
+                        backgroundColor: color.backgroundColor,
+                        borderWidth: 2,
+                        pointRadius: 3,
+                        pointHoverRadius: 5,
+                        fill: false,
                     };
                 }
 
-                const weekIndex = parseInt(week) - 1;
                 datasets[username].data[weekIndex] = points;
+
+                weeklyPoints[weekIndex] += points;
+                weeklyCounts[weekIndex]++;
             });
         });
+
+        // Compute weekly averages
+        const calculatedWeeklyAverages = weeklyPoints.map((total, index) => total / (weeklyCounts[index] || 1));
+        setWeeklyAverages(calculatedWeeklyAverages);
+
+        // Add weekly average dataset
+        datasets['Weekly Average'] = {
+            label: 'Weekly Average',
+            data: calculatedWeeklyAverages,
+            borderColor: 'rgba(255, 99, 132, 1)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderWidth: 2,
+            borderDash: [5, 5],
+            pointRadius: 0,
+            fill: false,
+        };
 
         setChartData({
             labels,
@@ -85,6 +130,14 @@ const FPTSSeasonChart: React.FC = () => {
         );
     };
 
+    // Dynamically calculate season average based on visible weeks
+    const dynamicSeasonAverage = useMemo(() => {
+        if (!chartData || visibleWeeks.length === 0) return 0;
+        const visibleWeekIndices = visibleWeeks.map(week => parseInt(week.split(' ')[1]) - 1);
+        const visibleAverages = weeklyAverages.filter((_, index) => visibleWeekIndices.includes(index));
+        return visibleAverages.reduce((sum, avg) => sum + avg, 0) / visibleAverages.length;
+    }, [chartData, visibleWeeks, weeklyAverages]);
+
     if (loading) {
         return <p>Loading chart data...</p>;
     }
@@ -96,14 +149,39 @@ const FPTSSeasonChart: React.FC = () => {
     // Filter data based on visible weeks
     const filteredData = {
         labels: chartData.labels.filter((label: string) => visibleWeeks.includes(label)),
-        datasets: chartData.datasets.map((dataset: any) => ({
-            ...dataset,
-            data: dataset.data.filter((_: any, index: number) => visibleWeeks.includes(chartData.labels[index])),
-        })),
+        datasets: chartData.datasets.map((dataset: any) => {
+            if (dataset.label === 'Season Average') {
+                return {
+                    ...dataset,
+                    data: Array(visibleWeeks.length).fill(dynamicSeasonAverage),
+                };
+            }
+            return {
+                ...dataset,
+                data: dataset.data.filter((_: any, index: number) => visibleWeeks.includes(chartData.labels[index])),
+            };
+        }),
     };
 
+    // Add or update the Season Average dataset
+    const seasonAverageDataset = filteredData.datasets.find((ds: any) => ds.label === 'Season Average');
+    if (seasonAverageDataset) {
+        seasonAverageDataset.data = Array(visibleWeeks.length).fill(dynamicSeasonAverage);
+    } else {
+        filteredData.datasets.push({
+            label: 'Season Average',
+            data: Array(visibleWeeks.length).fill(dynamicSeasonAverage),
+            borderColor: 'rgba(54, 162, 235, 1)',
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderWidth: 2,
+            borderDash: [10, 5],
+            pointRadius: 0,
+            fill: false,
+        });
+    }
+
     return (
-        <div className="mb-96 md:mb-40 min-h-fit h-3/4 md:h-4/5 max-h-screen w-full">
+        <div className="mb-96 md:mb-40 min-h-28 h-1/2 md:h-3/5 max-h-96 w-full">
             <h2 className="text-xl font-semibold text-center">FPTS by Week</h2>
             <div className="flex flex-wrap justify-center mb-4">
                 {chartData.labels.map((week: string) => (
@@ -131,16 +209,34 @@ const FPTSSeasonChart: React.FC = () => {
                         },
                         tooltip: {
                             callbacks: {
-                                label: (context) => `${context.dataset.label}: ${context.parsed.y} points`,
+                                label: (context) => {
+                                    const label = context.dataset.label || '';
+                                    const value = context.parsed.y;
+                                    const rosterId = rosterIdMap[label];
+                                    const matchupId = matchupPairs[rosterId];
+                                    const pairedRosterId = Object.keys(matchupPairs).find(
+                                        key => matchupPairs[key] === matchupId && key !== rosterId
+                                    );
+                                    const pairedLabel = Object.keys(rosterIdMap).find(
+                                        key => rosterIdMap[key] === pairedRosterId
+                                    );
+                                    const pairedValue = filteredData.datasets.find(
+                                        ds => ds.label === pairedLabel
+                                    )?.data[context.dataIndex];
+
+                                    return [
+                                        `${label}: ${value.toFixed(2)} points`,
+                                        `Matchup: ${pairedLabel}: ${pairedValue?.toFixed(2) || 'N/A'} points`
+                                    ];
+                                },
                             },
                         },
                     },
                     scales: {
-                       
                         x: {
                             grid: {
                                 color: '#222222'
-                              },
+                            },
                             title: {
                                 display: true,
                                 text: 'Week'
@@ -149,12 +245,37 @@ const FPTSSeasonChart: React.FC = () => {
                         y: {
                             grid: {
                                 color: '#222222'
-                              },
+                            },
                             title: {
                                 display: true,
                                 text: 'FPTS'
                             },
                         },
+                    },
+                    onHover: (event, activeElements) => {
+                        if (activeElements && activeElements.length > 0) {
+                            const hoveredElement = activeElements[0];
+                            const hoveredDatasetLabel = filteredData.datasets[hoveredElement.datasetIndex].label;
+                            const hoveredRosterId = rosterIdMap[hoveredDatasetLabel];
+                            const hoveredMatchupId = matchupPairs[hoveredRosterId];
+                            
+                            filteredData.datasets.forEach((dataset, index) => {
+                                const currentRosterId = rosterIdMap[dataset.label];
+                                if (matchupPairs[currentRosterId] === hoveredMatchupId) {
+                                    dataset.borderWidth = 4;
+                                    dataset.pointRadius = 6;
+                                } else {
+                                    dataset.borderWidth = 2;
+                                    dataset.pointRadius = 3;
+                                }
+                            });
+                        } else {
+                            filteredData.datasets.forEach(dataset => {
+                                dataset.borderWidth = 2;
+                                dataset.pointRadius = 3;
+                            });
+                        }
+                        (event.chart as ChartJS).update();
                     },
                 }}
             />
