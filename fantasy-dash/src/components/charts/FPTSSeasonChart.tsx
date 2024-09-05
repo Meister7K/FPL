@@ -28,7 +28,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
     const [loading, setLoading] = useState(true);
     const [visibleWeeks, setVisibleWeeks] = useState<string[]>([]);
     const [weeklyAverages, setWeeklyAverages] = useState<number[]>([]);
-    const [matchupPairs, setMatchupPairs] = useState<Record<string, string>>({});
+    const [matchupPairs, setMatchupPairs] = useState<Record<number, { matchup_id: number; roster_ids: { id: number; points: number }[] }[]>>({});
     const [rosterIdMap, setRosterIdMap] = useState<Record<string, number>>({});
 
     useEffect(() => {
@@ -40,19 +40,32 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
     }, [matchupData, currentRosterData]);
 
     const prepareMatchupPairs = () => {
-        const pairData = Object.values(matchupData)[0] as any[][];
-        console.log(pairData)
-        const pairs: Record<string, string> = {};
+        const pairs: Record<number, { matchup_id: number; roster_ids: { id: number; points: number }[] }[]> = {};
         const idMap: Record<string, number> = {};
-        pairData.forEach((week: any[], weekIndex) => {
+
+        const matchupWeeks = Object.values(matchupData)[0] as any[][];
+
+        matchupWeeks.forEach((week, weekIndex) => {
+            pairs[weekIndex] = [];
             week.forEach((rosterData: any) => {
-                const { roster_id, matchup_id } = rosterData;
-                pairs[roster_id] = matchup_id;
+                const { roster_id, points, matchup_id } = rosterData;
+                const existingPair = pairs[weekIndex].find(p => p.matchup_id === matchup_id);
+
+                if (existingPair) {
+                    existingPair.roster_ids.push({ id: roster_id, points });
+                } else {
+                    pairs[weekIndex].push({
+                        matchup_id,
+                        roster_ids: [{ id: roster_id, points }],
+                    });
+                }
+
                 if (weekIndex === 0) {
                     idMap[getRosterOwnerName(roster_id)] = roster_id;
                 }
             });
         });
+
         setMatchupPairs(pairs);
         setRosterIdMap(idMap);
     };
@@ -71,10 +84,9 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                 const { roster_id, points } = rosterData;
 
                 const currentRoster = currentRosterData.find(r => r.roster_id === roster_id);
-                
                 const isCurrentRoster = roster_id === currentRoster.roster_id;
 
-                const username = isCurrentRoster 
+                const username = isCurrentRoster
                     ? `${getRosterOwnerName(currentRoster.roster_id)}`
                     : `Roster ${roster_id}`;
 
@@ -89,6 +101,25 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                         pointRadius: 3,
                         pointHoverRadius: 5,
                         fill: false,
+                        tooltipCallback: (context: any) => {
+                            const label = context.dataset.label || '';
+                            const value = context.parsed.y;
+                            const rosterId = rosterIdMap[label];
+                            const matchupPair = matchupPairs[context.dataIndex]?.find((pair) =>
+                                pair.roster_ids.some((r) => r.id === rosterId)
+                            );
+                            const pairedRoster = matchupPair?.roster_ids.find((r) => r.id !== rosterId);
+                            const pairedRosterOwnerName = pairedRoster
+                                ? getRosterOwnerName(pairedRoster.id)
+                                : 'N/A';
+
+                            return [
+                                `${label}: ${value.toFixed(2)} points`,
+                                pairedRoster
+                                    ? `Matchup: ${pairedRosterOwnerName}: ${pairedRoster.points.toFixed(2)} points`
+                                    : 'Matchup: N/A'
+                            ];
+                        }
                     };
                 }
 
@@ -180,6 +211,22 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
         });
     }
 
+    const updateTooltipOnHover = (event: React.MouseEvent<HTMLCanvasElement>, active: any[]) => {
+        if (active && active.length > 0) {
+            filteredData.datasets.forEach((dataset) => {
+                dataset.borderWidth = 2;
+                dataset.pointRadius = 3;
+            });
+            (event.chart as ChartJS).update();
+        } else {
+            filteredData.datasets.forEach((dataset) => {
+                dataset.borderWidth = 2;
+                dataset.pointRadius = 3;
+            });
+            (event.chart as ChartJS).update();
+        }
+    };
+
     return (
         <div className="mb-96 md:mb-40 min-h-28 h-1/2 md:h-3/5 max-h-96 w-full">
             <h2 className="text-xl font-semibold text-center">FPTS by Week</h2>
@@ -199,6 +246,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                 options={{
                     responsive: true,
                     maintainAspectRatio: false,
+                    onHover: updateTooltipOnHover,
                     interaction: {
                         intersect: false,
                         mode: 'nearest'
@@ -213,20 +261,19 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                                     const label = context.dataset.label || '';
                                     const value = context.parsed.y;
                                     const rosterId = rosterIdMap[label];
-                                    const matchupId = matchupPairs[rosterId];
-                                    const pairedRosterId = Object.keys(matchupPairs).find(
-                                        key => matchupPairs[key] === matchupId && key !== rosterId
+                                    const matchupPair = matchupPairs[context.dataIndex]?.find((pair) =>
+                                        pair.roster_ids.some((r) => r.id === rosterId)
                                     );
-                                    const pairedLabel = Object.keys(rosterIdMap).find(
-                                        key => rosterIdMap[key] === pairedRosterId
-                                    );
-                                    const pairedValue = filteredData.datasets.find(
-                                        ds => ds.label === pairedLabel
-                                    )?.data[context.dataIndex];
+                                    const pairedRoster = matchupPair?.roster_ids.find((r) => r.id !== rosterId);
+                                    const pairedRosterOwnerName = pairedRoster
+                                        ? getRosterOwnerName(pairedRoster.id)
+                                        : 'N/A';
 
                                     return [
                                         `${label}: ${value.toFixed(2)} points`,
-                                        `Matchup: ${pairedLabel}: ${pairedValue?.toFixed(2) || 'N/A'} points`
+                                        pairedRoster
+                                            ? `Matchup: ${pairedRosterOwnerName}: ${pairedRoster.points.toFixed(2)} points`
+                                            : 'Matchup: N/A'
                                     ];
                                 },
                             },
@@ -251,31 +298,6 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                                 text: 'FPTS'
                             },
                         },
-                    },
-                    onHover: (event, activeElements) => {
-                        if (activeElements && activeElements.length > 0) {
-                            const hoveredElement = activeElements[0];
-                            const hoveredDatasetLabel = filteredData.datasets[hoveredElement.datasetIndex].label;
-                            const hoveredRosterId = rosterIdMap[hoveredDatasetLabel];
-                            const hoveredMatchupId = matchupPairs[hoveredRosterId];
-                            
-                            filteredData.datasets.forEach((dataset, index) => {
-                                const currentRosterId = rosterIdMap[dataset.label];
-                                if (matchupPairs[currentRosterId] === hoveredMatchupId) {
-                                    dataset.borderWidth = 4;
-                                    dataset.pointRadius = 6;
-                                } else {
-                                    dataset.borderWidth = 2;
-                                    dataset.pointRadius = 3;
-                                }
-                            });
-                        } else {
-                            filteredData.datasets.forEach(dataset => {
-                                dataset.borderWidth = 2;
-                                dataset.pointRadius = 3;
-                            });
-                        }
-                        (event.chart as ChartJS).update();
                     },
                 }}
             />

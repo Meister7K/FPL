@@ -7,7 +7,7 @@ import UserInfo from '../../components/users/userInfo';
 import LeagueInfo from '../../components/league/leagueInfo';
 import MatchupInfo from '../../components/league/matchupInfo';
 import LeagueChart from '../../components/charts/LeagueChart';
-import MatchupMatrix from '@/components/charts/MatchupMatrix';
+import MatchupMatrix from '@/components/tables/MatchupMatrix';
 import PlayoffBracket from '@/components/league/PlayoffBracket';
 import FPTSSeasonChart from '@/components/charts/FPTSSeasonChart';
 

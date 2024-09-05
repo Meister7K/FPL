@@ -11,7 +11,7 @@ const DraftPage: React.FC = () => {
   return (
     <div>
      
-        <DraftBoard draftPicks={draftPicks} leagueUsers={leagueUsers} />
+      
     
     </div>
   );
