@@ -84,7 +84,7 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
   return (
     <div className="w-full h-[600px] border border-gray-500 rounded-lg shadow-md overflow-hidden">
       <div className="p-4 bg-gray-500 border-b border-gray-500">
-        <h2 className="text-xl font-semibold text-gray-800">Power Rankings</h2>
+        <h2 className="text-xl font-semibold text-gray-200">Power Rankings</h2>
       </div>
       <div className="p-4 h-[calc(100%-60px)]">
         <ResponsiveBump
@@ -92,7 +92,9 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
           margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
           xOuterPadding={0.3}
           yOuterPadding={0.3}
-          colors={{ scheme: 'spectral' }}
+          startLabelPadding={16}
+          colors={{ scheme: 'dark2' }}
+          
           lineWidth={20}  // Increased base line thickness
           activeLineWidth={25}
           inactiveLineWidth={10}
@@ -108,14 +110,14 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
           activePointBorderWidth={3}
           pointBorderColor={{ from: 'serie.color' }}
           motionConfig="wobbly"
-          axisTop={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Week',
-            legendPosition: 'middle',
-            legendOffset: -36
-          }}
+        //   axisTop={{
+        //     tickSize: 5,
+        //     tickPadding: 5,
+        //     tickRotation: 0,
+        //     legend: 'Week',
+        //     legendPosition: 'middle',
+        //     legendOffset: -36
+        //   }}
           axisBottom={{
             tickSize: 5,
             tickPadding: 5,
@@ -126,20 +128,38 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
           }}
           axisLeft={{
             tickSize: 5,
-            tickPadding: 5,
+            tickPadding: 10,
             tickRotation: 0,
             legend: 'Rank',
             legendPosition: 'middle',
-            legendOffset: -40
+            legendOffset: -40,
+        
+
           }}
-          axisRight={{
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'Rank',
-            legendPosition: 'middle',
-            legendOffset: 40,
-            format: (value) => chartData.find(d => d.data[0].y === value)?.data[0].rosterId || ''
+        //   axisRight={{
+        //     tickSize: 5,
+        //     tickPadding: 5,
+        //     tickRotation: 0,
+        //     legend: 'Rank',
+        //     legendPosition: 'middle',
+        //     legendOffset: 40,
+        //     format: (value) => chartData.find(d => d.data[0].y === value)?.data[0].rosterId || ''
+        //   }}
+        theme={{
+            axis: {
+              ticks: {
+                text: {
+                  fill: '#cccaca',  // Color for the axis tick labels (red)
+                },
+              },
+              legend: {
+                text: {
+                  fill: '#cccaca',  // Color for the axis titles (blue)
+                  fontSize: 14,     // Font size for axis titles
+                  fontWeight: 'bold' // Font weight for axis titles
+                },
+              },
+            },
           }}
           startLabel={false}
           endLabel={(d) => `${getRosterOwnerName(d.data[d.data.length - 1].rosterId)}`}
