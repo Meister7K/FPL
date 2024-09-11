@@ -20,6 +20,7 @@ const ManagerPage = () => {
       if (roster && user) {
         setManagerData({
           username: getRosterOwnerName(roster.roster_id),
+          roster_id:roster.roster_id,
           teamName: user.metadata?.team_name || `Team ${roster.roster_id}`,
           wins: roster.settings.wins,
           losses: roster.settings.losses,

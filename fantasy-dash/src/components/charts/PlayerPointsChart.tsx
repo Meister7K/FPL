@@ -56,6 +56,7 @@ const PlayerPointsChart = ({ projections, stats }) => {
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
     interaction: {
         intersect: false,
         mode: 'nearest'
@@ -87,7 +88,7 @@ const PlayerPointsChart = ({ projections, stats }) => {
   };
 
   return (
-    <div className="mt-4">
+    <div className="mt-4 max-h-96 mb-12 w-full">
       <div className="mb-4 flex justify-between items-center">
         <select
           value={chartMetric}

@@ -24,11 +24,8 @@ const leagueMatchups = useLeagueStore((state)=>state.leagueMatchups)
 
   return (
     <div className="p-4">
-        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/draft`}>Draft</Link>
-        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/managers`}>managers</Link>
-        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/matchups`}>matchups</Link>
-        <Link className='border px-2 py-1 rounded-md' href={`/test/${id}/transactions`}>transactions</Link>
-      {leagueData ? <h1 className="text-2xl font-bold mb-4 text-center">Welcome the the {leagueData[0].season} {leagueData[0].name} </h1> : null}
+       
+      {leagueData ? <h1 className="text-2xl font-bold my-2 text-center">Welcome the the {leagueData[0].season} {leagueData[0].name} </h1> : null}
 
       
 
