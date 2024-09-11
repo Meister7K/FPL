@@ -50,17 +50,21 @@ const StandingsBoard: React.FC<StandingsBoardProps> = ({ data }) => {
     const dataWithRank = data.map((item, index) => {
       const totalGames = (item.settings.wins || 0) + (item.settings.losses || 0) + (item.settings.ties || 0);
       const teamName = getRosterOwnerName(item.roster_id);
+      const trueFpts = `${item.settings.fpts}.${item.settings.fpts_decimal}`
+      const trueFpts_against = `${item.settings.fpts_against}.${item.settings.fpts_against_decimal}`
+
+
       return {
         team: teamName === 'Unknown' ? `Team ${index + 1}` : teamName,
         owner_id: item.owner_id,
         wins: item.settings.wins || 0,
         losses: item.settings.losses || 0,
         ties: item.settings.ties || 0,
-        fpts: item.settings.fpts || 0,
+        fpts: trueFpts || 0,
         manager_score: (item.settings.fpts/item.settings.ppts).toFixed(2)*100,
-        fpts_against: item.settings.fpts_against || null,
+        fpts_against: trueFpts_against || null,
         win_percentage: totalGames > 0 ? decimalToPercentage(Number(((item.settings.wins || 0) / totalGames).toFixed(4))) : 0,
-        ppg: totalGames > 0 ? Number(((item.settings.fpts || 0) / totalGames).toFixed(2)) : 0,
+        ppg: totalGames > 0 ? Number(((trueFpts || 0) / totalGames).toFixed(2)) : 0,
       };
     });
 

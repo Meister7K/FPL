@@ -20,7 +20,7 @@ const leagueMatchups = useLeagueStore((state)=>state.leagueMatchups)
 
   const selectedLeagueData = leagueData.find((league) => league.league_id === id);
 
-  // console.log(leagueData)
+  console.log(selectedLeagueData)
 
   return (
     <div className="p-4">

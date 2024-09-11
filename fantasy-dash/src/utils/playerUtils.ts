@@ -28,5 +28,5 @@ interface PlayerData {
   
   export function getPlayerTeam(playerId: string): string {
     const player = getPlayerData(playerId);
-    return player ? player.team_abbr || 'FA' : 'N/A';
+    return player ? player.team || 'FA' : 'N/A';
   }

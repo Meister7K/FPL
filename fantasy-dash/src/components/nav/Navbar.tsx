@@ -1,53 +1,52 @@
 'use client'
 
-// components/Navbar.tsx
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter,usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { fetchLeagueManagers } from '../../utils/fetchManagers';
-import { useFPLStore } from '@/store/fplStore';
+import useLeagueStore from '@/store/testStore';
+import {getRosterOwnerName} from '@/utils/usernameUtil'
 
 const Navbar = () => {
     const router = useRouter();
-    const leagueId = useFPLStore((state) => state.leagueId);
+    const leagueId = useLeagueStore((state) => state.selectedLeague);
+    const rosters = useLeagueStore((state) => state.currentRoster);
+    const pathname = usePathname();
 
-    // Check if the current route is '/'
-    const isHomePage = router.pathname === '/';
+    const id = leagueId?.league_id;
+
+
+
+    // Check if the current route is '/test'
+    const isHomePage = pathname === '/test';
 
     // CSS class to hide the navbar when on the home page
     const navClass = isHomePage ? 'hidden' : 'bg-gray-800 p-4 w-full';
 
     const links = [
-        { name: 'Home', path: '/' },
-        { name: 'Dashboard', path: '/dashboard' },
-        { name: 'History', path: '/dashboard/history' },
-        { name: 'Records', path: '/dashboard/records' },
-        { name: 'Matchups', path: '/dashboard/matchups' }
+        { name: 'Home', path: '/test' },
+        { name: 'Dashboard', path: `/test/${id}` },
+        { name: 'History', path: `/test/${id}/history` },
+        { name: 'Records', path: `/test/${id}/records` },
+        { name: 'Matchups', path: `/test/${id}/matchups` }
     ];
 
     // State to hold managers data and dropdown visibility
-    const [managers, setManagers] = useState<{ name: string; path: string }[]>([]);
+    const [managers, setManagers] = useState([]);
     const [isDropdownOpen, setDropdownOpen] = useState(false);
 
     useEffect(() => {
-        if (leagueId) {
-            fetchLeagueManagers(leagueId)
-                .then((data) => {
-                    const formattedManagers = data.map((user: { user_id: string; username: string }) => ({
-                        name: user.username,
-                        path: `/dashboard/managers/${user.user_id}`
-                    }));
+        if (rosters && rosters.length > 0) {
+            const formattedManagers = rosters.map((roster) => ({
+                name: roster.metadata?.team_name ||  getRosterOwnerName(roster.roster_id),
+                path: `/test/${id}/managers/${roster.owner_id}`
+            }));
 
-                    // Sort the managers alphabetically by their name
-                    formattedManagers.sort((a, b) => a.name.localeCompare(b.name));
+            // Sort the managers alphabetically by their name
+            formattedManagers.sort((a, b) => a.name.localeCompare(b.name));
 
-                    setManagers(formattedManagers);
-                })
-                .catch((error) => {
-                    console.error('Error fetching league data:', error);
-                });
+            setManagers(formattedManagers);
         }
-    }, [leagueId]);
+    }, [rosters, id]);
 
     const toggleDropdown = () => {
         setDropdownOpen(!isDropdownOpen);
@@ -60,7 +59,7 @@ const Navbar = () => {
                     <li key={link.name}>
                         <Link href={link.path} 
                             className={`text-white ${
-                                router.pathname === link.path
+                                pathname === link.path
                                     ? 'font-bold border-b-2 border-white'
                                     : 'hover:text-gray-300'
                             }`}

@@ -27,7 +27,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
     const [chartData, setChartData] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [visibleWeeks, setVisibleWeeks] = useState<string[]>([]);
-    const [weeklyAverages, setWeeklyAverages] = useState<number[]>([]);
+    const [weeklyAverages, setWeeklyAverages] = useState<(number | null)[]>([]);
     const [matchupPairs, setMatchupPairs] = useState<Record<number, { matchup_id: number; roster_ids: { id: number; points: number }[] }[]>>({});
     const [rosterIdMap, setRosterIdMap] = useState<Record<string, number>>({});
 
@@ -80,8 +80,13 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
         const weeklyCounts: number[] = Array(labels.length).fill(0);
 
         matchData.forEach((week, weekIndex) => {
+            let weekHasNonZeroPoints = false;
             week.forEach((rosterData: any) => {
                 const { roster_id, points } = rosterData;
+
+                if (points > 0) {
+                    weekHasNonZeroPoints = true;
+                }
 
                 const currentRoster = currentRosterData.find(r => r.roster_id === roster_id);
                 const isCurrentRoster = roster_id === currentRoster.roster_id;
@@ -114,7 +119,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                                 : 'N/A';
 
                             return [
-                                `${label}: ${value.toFixed(2)} points`,
+                                `${label}: ${value?.toFixed(2) ?? 'N/A'} points`,
                                 pairedRoster
                                     ? `Matchup: ${pairedRosterOwnerName}: ${pairedRoster.points.toFixed(2)} points`
                                     : 'Matchup: N/A'
@@ -123,15 +128,25 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                     };
                 }
 
-                datasets[username].data[weekIndex] = points;
+                datasets[username].data[weekIndex] = points > 0 ? points : null;
 
-                weeklyPoints[weekIndex] += points;
-                weeklyCounts[weekIndex]++;
+                if (points > 0) {
+                    weeklyPoints[weekIndex] += points;
+                    weeklyCounts[weekIndex]++;
+                }
             });
+
+            if (!weekHasNonZeroPoints) {
+                Object.values(datasets).forEach((dataset: any) => {
+                    dataset.data[weekIndex] = null;
+                });
+            }
         });
 
-        // Compute weekly averages
-        const calculatedWeeklyAverages = weeklyPoints.map((total, index) => total / (weeklyCounts[index] || 1));
+        // Compute weekly averages (only for weeks with non-zero points)
+        const calculatedWeeklyAverages = weeklyPoints.map((total, index) => 
+            weeklyCounts[index] > 0 ? total / weeklyCounts[index] : null
+        );
         setWeeklyAverages(calculatedWeeklyAverages);
 
         // Add weekly average dataset
@@ -165,8 +180,12 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
     const dynamicSeasonAverage = useMemo(() => {
         if (!chartData || visibleWeeks.length === 0) return 0;
         const visibleWeekIndices = visibleWeeks.map(week => parseInt(week.split(' ')[1]) - 1);
-        const visibleAverages = weeklyAverages.filter((_, index) => visibleWeekIndices.includes(index));
-        return visibleAverages.reduce((sum, avg) => sum + avg, 0) / visibleAverages.length;
+        const visibleAverages = weeklyAverages.filter((avg, index) => 
+            visibleWeekIndices.includes(index) && avg !== null
+        );
+        return visibleAverages.length > 0
+            ? visibleAverages.reduce((sum, avg) => sum + (avg ?? 0), 0) / visibleAverages.length
+            : 0;
     }, [chartData, visibleWeeks, weeklyAverages]);
 
     if (loading) {
@@ -270,7 +289,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
                                         : 'N/A';
 
                                     return [
-                                        `${label}: ${value.toFixed(2)} points`,
+                                        `${label}: ${value?.toFixed(2) ?? 'N/A'} points`,
                                         pairedRoster
                                             ? `Matchup: ${pairedRosterOwnerName}: ${pairedRoster.points.toFixed(2)} points`
                                             : 'Matchup: N/A'
