@@ -142,11 +142,19 @@ const ManagerDash = ({
       <ManagerMatchups roster_id={roster_id} />
     </div>
   );
+  const TransactionsTab = () => (
+    <div className="mt-6">
+      <h2 className="text-xl font-semibold mb-3">Transactions</h2>
+      <p>This feature is coming soon.</p>
+    </div>
+  );
 
   const renderActiveTab = () => {
     switch (activeTab) {
       case 'roster':
         return <RosterTab />;
+    case 'transactions':
+        return <TransactionsTab />;
       case 'history':
         return <HistoryTab />;
       case 'matchups':
@@ -190,7 +198,7 @@ const ManagerDash = ({
         
         <div className="border-b border-stone-700 mb-4">
           <nav className="-mb-px flex">
-            {['roster', 'history', 'matchups'].map((tab) => (
+            {['roster', 'history','transactions', 'matchups'].map((tab) => (
               <button
                 key={tab}
                 className={`mr-8 py-2 px-1 border-b-2 font-medium text-sm leading-5 focus:outline-none transition duration-150 ease-in-out ${

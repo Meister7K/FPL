@@ -11,7 +11,7 @@ const PlayerPointsChart = ({ projections, stats }) => {
 
   const filterNullValues = (data) => {
     return Object.entries(data)
-      .filter(([_, value]) => value !== null && value.stats && value.stats[chartMetric] !== null)
+      .filter(([_, value]) => value !== null && value.stats)
       .sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
   };
 
@@ -19,34 +19,48 @@ const PlayerPointsChart = ({ projections, stats }) => {
   const filteredStats = filterNullValues(stats);
 
   const totalProjectedPoints = useMemo(() => {
-    return filteredProjections.reduce((sum, [_, week]) => sum + week.stats[chartMetric], 0);
+    return filteredProjections.reduce((sum, [_, week]) => sum + (week.stats[chartMetric] || 0), 0);
   }, [filteredProjections, chartMetric]);
 
   const totalActualPoints = useMemo(() => {
-    return filteredStats.reduce((sum, [_, week]) => sum + week.stats[chartMetric], 0);
+    return filteredStats.reduce((sum, [_, week]) => sum + (week.stats[chartMetric] || 0), 0);
   }, [filteredStats, chartMetric]);
 
+  const allWeeks = useMemo(() => {
+    const weeks = new Set();
+    [...Object.values(projections), ...Object.values(stats)].forEach(week => {
+      if (week && week.week) weeks.add(week.week);
+    });
+    return Array.from(weeks).sort((a, b) => a - b);
+  }, [projections, stats]);
+
   const chartData = {
-    labels: Object.values(projections).map(week => `Week ${week.week}`),
+    labels: allWeeks.map(week => `Week ${week}`),
     datasets: [
       {
-        label: `${chartMetric} (Projections)`,
-        data: filteredProjections.map(([_, week]) => ({
-          x: `Week ${week.week}`,
-          y: week.stats[chartMetric],
-          opponent: week.opponent
-        })),
+        label: `Projections`,
+        data: allWeeks.map(week => {
+          const weekData = filteredProjections.find(([_, data]) => data.week === week);
+          return {
+            x: `Week ${week}`,
+            y: weekData ? weekData[1].stats[chartMetric] || 0 : 0,
+            opponent: weekData ? weekData[1].opponent : 'N/A'
+          };
+        }),
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)',
         tension: 0.1
       },
       {
-        label: `${chartMetric} (Actual)`,
-        data: filteredStats.map(([_, week]) => ({
-          x: `Week ${week.week}`,
-          y: week.stats[chartMetric],
-          opponent: week.opponent
-        })),
+        label: `Actual`,
+        data: allWeeks.map(week => {
+          const weekData = filteredStats.find(([_, data]) => data.week === week);
+          return {
+            x: `Week ${week}`,
+            y: weekData ? weekData[1].stats[chartMetric] || null : null,
+            opponent: weekData ? weekData[1].opponent : 'N/A'
+          };
+        }),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         tension: 0.1
