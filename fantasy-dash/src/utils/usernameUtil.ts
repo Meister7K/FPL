@@ -13,21 +13,25 @@ interface Roster {
   // Add other relevant fields
 }
 
-export function getRosterOwnerName(rosterId: string| number): string {
+export function getRosterOwnerName(id: string | number): string {
   const leagueUsers = useLeagueStore.getState().leagueUsers;
   const rosters = useLeagueStore.getState().currentRoster;
 
+  // Check if the ID matches a user first
+  const userById = leagueUsers.find(u => u.user_id === id);
+  if (userById) {
+    return userById.display_name;
+  }
 
-
-
-  // Find the roster
-  const roster = rosters.find(r => r.roster_id === rosterId);
+  // If not found by user_id, assume it's a roster_id and find the roster
+  const roster = rosters.find(r => r.roster_id === id);
   if (!roster) return 'Unknown';
 
-  // Find the user
-  const user = leagueUsers.find(u => u.user_id === roster.owner_id);
-  return user ? user.display_name : 'Unknown';
+  // Find the user by roster's owner_id
+  const userByRoster = leagueUsers.find(u => u.user_id === roster.owner_id);
+  return userByRoster ? userByRoster.display_name : 'Unknown';
 }
+
 
 export function mapDraftPicksToUserNames(draftPicks: any[]): any[] {
   return draftPicks.map(pick => ({

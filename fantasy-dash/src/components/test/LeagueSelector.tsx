@@ -100,6 +100,9 @@ const LeagueSelector: React.FC = () => {
             // Fetch Current and Historical Transactions
             const leagueData = useLeagueStore.getState().leagueData;
             for (const leagueInfo of leagueData) {
+
+                console.log(leagueInfo)
+
                 await fetchTransactions(leagueInfo.league_id, leagueInfo.season);
             }
 

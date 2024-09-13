@@ -4,6 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 import PlayerPointsChart from '@/components/charts/PlayerPointsChart';
 import useLeagueStore from '../../../store/testStore';
 import ManagerMatchups from './ManagerMatchups';
+import ManagerTransactions from './ManagerTransactions';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -17,7 +18,8 @@ const ManagerDash = ({
   pointsAgainst,
   avatar,
   players,
-  starters
+  starters,
+  user_id
 }) => {
   const [starterPlayers, setStarterPlayers] = useState([]);
   const [benchPlayers, setBenchPlayers] = useState([]);
@@ -25,7 +27,21 @@ const ManagerDash = ({
   const [activeTab, setActiveTab] = useState('roster');
 
   const leagueData = useLeagueStore((state) => state.leagueData);
+  const leagueTransactions = useLeagueStore((state) => state.leagueTransactions);
+  console.log(leagueTransactions)
   const { data: playerData, loading: playerLoading, error: playerError } = usePlayerData(expandedPlayer, leagueData[0].season);
+
+  const leagueYears=leagueData.map(league => league.season)
+  const leagueIDs=leagueData.map(league => league.league_id)
+
+  const filteredTransactions = Object.keys(leagueTransactions)
+  .filter(leagueId => leagueIDs.includes(leagueId))
+  .reduce((obj, leagueId) => {
+    obj[leagueId] = leagueTransactions[leagueId]; // Add matching objects to the result
+    return obj;
+  }, {});
+
+
 
   useEffect(() => {
     const starterIds = new Set(starters);
@@ -145,7 +161,11 @@ const ManagerDash = ({
   const TransactionsTab = () => (
     <div className="mt-6">
       <h2 className="text-xl font-semibold mb-3">Transactions</h2>
-      <p>This feature is coming soon.</p>
+      <ManagerTransactions 
+        transactions={filteredTransactions}
+        currentUserId={user_id}
+        currentRosterId={roster_id}
+      />
     </div>
   );
 
