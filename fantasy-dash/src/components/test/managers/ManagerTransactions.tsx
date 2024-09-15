@@ -89,7 +89,7 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
         <span className={`mr-2 ${type === 'add' ? 'text-emerald-500' : 'text-rose-500'}`}>
           {type === 'add' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </span>
-        <span>{`${getPlayerName(playerId)}`}</span>
+        <span>{`${getPlayerName(playerId)} - ${getRosterOwnerName(rosterId)}`}</span>
       </div>
     ));
   };
