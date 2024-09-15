@@ -89,7 +89,7 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
         <span className={`mr-2 ${type === 'add' ? 'text-emerald-500' : 'text-rose-500'}`}>
           {type === 'add' ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </span>
-        <span>{`${getPlayerName(playerId)} (Roster: ${rosterId})`}</span>
+        <span>{`${getPlayerName(playerId)}`}</span>
       </div>
     ));
   };
@@ -128,9 +128,9 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
                   <p className="text-sm text-stone-500 mb-2">Created: {transaction.createdDate}</p>
                   <p className="text-sm text-stone-500 mb-2">Updated: {transaction.updatedDate}</p>
                   <p className="text-sm mb-2">Creator: {getRosterOwnerName(transaction.creator)}</p>
-                  <p className="text-sm mb-2">Transaction ID: {transaction.transaction_id}</p>
+                  {/* <p className="text-sm mb-2">Transaction ID: {transaction.transaction_id}</p> */}
                   {transaction.settings?.waiver_bid && (
-                    <p className="text-sm mb-2">Waiver Bid: {transaction.settings.waiver_bid}</p>
+                    <p className="text-sm mb-2">Waiver Bid: {`$${transaction.settings.waiver_bid}`}</p>
                   )}
                   <div className="space-y-2">
                     {renderPlayerChanges(transaction.adds, 'add')}
@@ -139,9 +139,9 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
                   {transaction.metadata?.notes && (
                     <p className="mt-2 text-sm italic">{transaction.metadata.notes}</p>
                   )}
-                  <p className="text-sm mt-2">Affected Rosters: {transaction.roster_ids.join(', ')}</p>
+                  <p className="text-sm mt-2">Affected Rosters: {transaction.roster_ids.map(id=>getRosterOwnerName(id))}</p>
                   {transaction.consenter_ids && (
-                    <p className="text-sm mt-2">Consenter IDs: {transaction.consenter_ids.join(', ')}</p>
+                    <p className="text-sm mt-2">Consenter IDs: {transaction.roster_ids.map(id=>getRosterOwnerName(id))}</p>
                   )}
                 </div>
               ))
