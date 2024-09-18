@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import fplHistory from '@/db/history.json'
 
 // Define the interfaces for the store's state and data
 interface LeagueData {

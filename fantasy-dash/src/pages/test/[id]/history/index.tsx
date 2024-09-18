@@ -1,16 +1,17 @@
 import React from 'react';
 import useLeagueStore from '../../../../store/testStore';
-import DraftBoard from '../../../../components/draft/DraftBoard';
-import useFetchDraftPicks from '@/hooks/useFetchDraftPicks';
+import HistoryRecord from '@/components/test/history/HistoryRecord';
+
 
 const DraftPage: React.FC = () => {
 //   const { loading, error } = useFetchDraftPicks();
-  const draftPicks = useLeagueStore((state) => state.draftPicks) || [];
+  
   const leagueUsers = useLeagueStore((state) => state.leagueUsers) || [];
+  const rosterHistory = useLeagueStore((state) => state.rosterHistory) || [];
 
   return (
     <div>
-     
+     <HistoryRecord data={rosterHistory}/>
       
     
     </div>
