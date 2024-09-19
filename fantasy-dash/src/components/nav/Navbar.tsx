@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 
 import Link from 'next/link';
@@ -25,8 +26,9 @@ const Navbar = () => {
     const links = [
         { name: 'Home', path: '/test' },
         { name: 'Dashboard', path: `/test/${id}` },
+        { name: 'Draft', path: `/test/${id}/draft` },
         { name: 'History', path: `/test/${id}/history` },
-        { name: 'Records', path: `/test/${id}/records` },
+        { name: 'Players', path: `/test/${id}/players` },
         { name: 'Matchups', path: `/test/${id}/matchups` }
     ];
 

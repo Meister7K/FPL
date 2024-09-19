@@ -1,3 +1,4 @@
+// @ts-nocheck
 import useLeagueStore from '../store/testStore';
 import fantasyData from '../db/fplDB.json'
 

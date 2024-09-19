@@ -26,6 +26,14 @@ const PlayerPointsChart = ({ projections, stats }) => {
     return filteredStats.reduce((sum, [_, week]) => sum + (week.stats[chartMetric] || 0), 0);
   }, [filteredStats, chartMetric]);
 
+  const projectedAveragePoints = useMemo(() => {
+    return filteredProjections.length > 0 ? totalProjectedPoints / filteredProjections.length : 0;
+  }, [totalProjectedPoints, filteredProjections]);
+
+  const actualAveragePoints = useMemo(() => {
+    return filteredStats.length > 0 ? totalActualPoints / filteredStats.length : 0;
+  }, [totalActualPoints, filteredStats]);
+
   const allWeeks = useMemo(() => {
     const weeks = new Set();
     [...Object.values(projections), ...Object.values(stats)].forEach(week => {
@@ -116,6 +124,8 @@ const PlayerPointsChart = ({ projections, stats }) => {
         <div className="text-sm">
           <p>Total Projected Points: <span className="font-bold">{totalProjectedPoints.toFixed(2)}</span></p>
           <p>Total Actual Points: <span className="font-bold">{totalActualPoints.toFixed(2)}</span></p>
+          <p>Projected PPG: <span className="font-bold">{projectedAveragePoints.toFixed(2)}</span></p>
+          <p>Avg PPG: <span className="font-bold">{actualAveragePoints.toFixed(2)}</span></p>
         </div>
       </div>
       <Line data={chartData} options={chartOptions} />

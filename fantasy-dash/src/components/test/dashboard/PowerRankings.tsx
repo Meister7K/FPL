@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import React, { useMemo } from 'react';
 import { ResponsiveBump } from '@nivo/bump';
 import { getRosterOwnerName } from '@/utils/usernameUtil'

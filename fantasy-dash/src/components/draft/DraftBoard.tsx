@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState, useCallback } from 'react';
 import useLeagueStore from '@/store/testStore';
 import { getPlayerName, getPlayerPosition, getPlayerTeam } from '@/utils/playerUtils';

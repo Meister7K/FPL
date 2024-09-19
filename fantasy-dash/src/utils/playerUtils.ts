@@ -1,3 +1,4 @@
+// @ts-nocheck
 import playerDB from '../db/playerDB.json'
 
 

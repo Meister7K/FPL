@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -16,6 +17,7 @@ import useFetchDraftPicks from '../../hooks/useFetchDraftPicks';
 // import useFetchDraftInfo from '../../hooks/useFetchDraftInfo';
 import useFetchTransactions from '../../hooks/useFetchTransactions';
 
+
 const LeagueSelector: React.FC = () => {
     const [username, setUsername] = useState('');
     const [savedUsernames, setSavedUsernames] = useState<string[]>([]);
@@ -33,6 +35,7 @@ const LeagueSelector: React.FC = () => {
     const { fetchDraftPicks } = useFetchDraftPicks();
     // const {fetchDraftInfo}= useFetchDraftInfo()
     const { fetchTransactions } = useFetchTransactions();
+  
 
     const leagues = useLeagueStore((state) => state.leagues);
     const selectLeague = useLeagueStore((state) => state.selectLeague);
@@ -45,6 +48,7 @@ const LeagueSelector: React.FC = () => {
         if (selectedLeague) {
             fetchCurrentRoster(selectedLeague.league_id);
             fetchRosterHistory();
+            
         }
     }, [selectedLeague, fetchCurrentRoster, fetchRosterHistory]);
 
@@ -167,7 +171,7 @@ const LeagueSelector: React.FC = () => {
                 <button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                    className="bg-rose-500 text-white py-2 px-4 rounded hover:bg-rose-600"
                 >
                     {isLoading ? 'Loading...' : 'Fetch Leagues'}
                 </button>

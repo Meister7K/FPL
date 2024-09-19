@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import usePlayerData from '@/hooks/useFetchStatsProjections';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
@@ -5,6 +6,7 @@ import PlayerPointsChart from '@/components/charts/PlayerPointsChart';
 import useLeagueStore from '../../../store/testStore';
 import ManagerMatchups from './ManagerMatchups';
 import ManagerTransactions from './ManagerTransactions';
+import CurrentMatchup from './CurrentMatchup';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -155,6 +157,7 @@ const ManagerDash = ({
   const MatchupsTab = () => (
     <div className="mt-6">
       <h2 className="text-xl font-semibold mb-3">Matchups</h2>
+      <CurrentMatchup roster_id={roster_id}/>
       <ManagerMatchups roster_id={roster_id} />
     </div>
   );

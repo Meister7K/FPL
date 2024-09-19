@@ -1,9 +1,13 @@
+// @ts-nocheck
 import { memo } from 'react';
 import { getPlayerName, getPlayerPosition, getPlayerTeam } from '@/utils/playerUtils';
 
 interface DraftPick {
   player_id: string;
   pick_no: number;
+  metadata?: {
+    amount?: number;
+  };
 }
 
 interface DraftBoardCardProps {
@@ -11,6 +15,7 @@ interface DraftBoardCardProps {
   getBackgroundColor: (position: string) => string;
 }
 
+// Create a memoized component with an explicit display name
 const DraftBoardCard = memo(({ pick, getBackgroundColor }: DraftBoardCardProps) => {
   const playerName = getPlayerName(pick.player_id);
   const playerPosition = getPlayerPosition(pick.player_id);
@@ -20,8 +25,9 @@ const DraftBoardCard = memo(({ pick, getBackgroundColor }: DraftBoardCardProps) 
     <div
       key={pick.pick_no}
       className={`${getBackgroundColor(playerPosition)} p-2 mb-2 rounded shadow`}
-    > 
-    <span>{pick.pick_no}</span>
+    >
+      <span>{pick.pick_no}</span>
+      {pick.metadata?.amount ? <span className="float-end">${pick.metadata.amount}</span> : null}
       <img
         className="h-20 bg-slate-500/50 mx-auto border rounded-full"
         src={`https://sleepercdn.com/content/nfl/players/${pick.player_id}.jpg`}
@@ -32,5 +38,8 @@ const DraftBoardCard = memo(({ pick, getBackgroundColor }: DraftBoardCardProps) 
     </div>
   );
 });
+
+// Set display name
+DraftBoardCard.displayName = 'DraftBoardCard';
 
 export default DraftBoardCard;

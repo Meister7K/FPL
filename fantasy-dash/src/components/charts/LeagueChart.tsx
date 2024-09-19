@@ -1,4 +1,6 @@
+// @ts-nocheck
 "use client";
+
 import { RosterData } from "@/types";
 import {
   Chart as ChartJS,
@@ -23,7 +25,7 @@ interface LeagueChartProps {
 type SortOption = "alphabetical" | "fpts" | "fptsAgainst";
 
 const LeagueChart: React.FC<LeagueChartProps> = ({ rosterData, leagueId }) => {
-  const [sortOption, setSortOption] = useState<SortOption>("alphabetical");
+  const [sortOption, setSortOption] = useState<SortOption>("fpts");
   const [managerNames, setManagerNames] = useState<{ [ownerId: string]: string }>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

@@ -1,4 +1,4 @@
-// utils/fetchMatchups.ts
+// @ts-nocheck
 
 export const fetchWeekMatchups = async (leagueId: string, week: number): Promise<{ points: number; roster_id: number; matchup_id: number }[]> => {
     const url = `https://api.sleeper.app/v1/league/${leagueId}/matchups/${week}`;

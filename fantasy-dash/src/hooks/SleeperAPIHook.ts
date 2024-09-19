@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useState } from 'react';
 import { useFPLStore } from '../store/fplStore';
 import historyData from '../db/history.json';

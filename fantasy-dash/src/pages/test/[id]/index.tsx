@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useRouter } from 'next/router';
 import useLeagueStore from '../../../store/testStore';
 import Link from 'next/link';

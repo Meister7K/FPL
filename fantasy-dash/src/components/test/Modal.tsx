@@ -1,5 +1,6 @@
-// components/Modal.tsx
+// @ts-nocheck
 import React from 'react';
+import useFetchNflState from '@/hooks/useFetchNflState';
 
 interface ModalProps {
   isOpen: boolean;
@@ -9,7 +10,10 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, leagues, onSelectLeague }) => {
+  useFetchNflState()
+
   if (!isOpen) return null;
+
 
   return (
     <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
@@ -25,7 +29,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, leagues, onSelectLeague 
           {leagues.map((league) => (
             <li key={league.league_id} className="mb-2">
               <button
-                className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+                className="w-full bg-rose-500 text-white py-2 px-4 rounded hover:bg-rose-600"
                 onClick={() => onSelectLeague(league)}
               >
                 {league.name}

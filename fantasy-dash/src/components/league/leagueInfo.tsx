@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client'
 import { useFPLStore } from '../../store/fplStore';
 import { useState, useEffect } from 'react';

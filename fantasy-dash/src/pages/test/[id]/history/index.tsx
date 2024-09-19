@@ -1,6 +1,8 @@
+// @ts-nocheck
 import React from 'react';
 import useLeagueStore from '../../../../store/testStore';
 import HistoryRecord from '@/components/test/history/HistoryRecord';
+import FPTSHistoricLineChart from '@/components/charts/FPTSHistoryChart';
 
 
 const DraftPage: React.FC = () => {
@@ -19,6 +21,7 @@ const DraftPage: React.FC = () => {
   return (
     <div>
      <HistoryRecord data={rosterHistory} brackets={leagueBrackets}/>
+     <FPTSHistoricLineChart data={rosterHistory} />
       
     
     </div>

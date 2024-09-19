@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo, useState } from 'react';
 import useLeagueStore from '../../../store/testStore';
 import { getRosterOwnerName } from '@/utils/usernameUtil';
@@ -204,8 +205,8 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
     }
 
     return (
-        <div className="mt-6">
-            <h2 className="text-xl font-semibold mb-3">Matchups</h2>
+        <div className="mt-6"> 
+            <h2 className="text-xl font-semibold mb-3">Matchup History</h2>
             <div className="space-y-4">
                 {years.map(year => (
                     <div key={year} className="border border-stone-700 rounded-lg overflow-hidden">

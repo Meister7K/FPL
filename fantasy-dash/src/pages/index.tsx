@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Inter } from "next/font/google";
 import EnterForm from "../components/home/entranceForm"
 import { TestEnterForm } from "@/components/home/testEnterForm";

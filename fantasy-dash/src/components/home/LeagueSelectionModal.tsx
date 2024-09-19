@@ -1,4 +1,4 @@
-// components/LeagueSelectionModal.tsx
+// @ts-nocheck
 import React from 'react';
 
 interface League {

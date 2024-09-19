@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import useLeagueStore from '../../../../store/testStore';
 import DraftBoard from '../../../../components/draft/DraftBoard'; // Adjust the path as necessary

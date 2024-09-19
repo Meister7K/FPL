@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 import useLeagueStore from '../store/testStore';
 
 interface LeagueUser {

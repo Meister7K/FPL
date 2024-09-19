@@ -70,6 +70,7 @@ interface LeagueStoreState {
   draftPicks: DraftPick[];
   draftInfo: DraftInfo | null;
   leagueTransactions: { [leagueId: string]: { [season: string]: any[] } };
+  nflState: any;
   setUserId: (userId: string) => void;
   setLeagues: (leagues: League[]) => void;
   selectLeague: (league: League) => void;
@@ -83,6 +84,7 @@ interface LeagueStoreState {
   setDraftPicks: (picks: DraftPick[]) => void;
   setDraftInfo: (draftInfo: DraftInfo) => void;
   setLeagueTransactions: (transactions: { [leagueId: string]: { [season: string]: any[] } }) => void;
+  setNflState: (data: any) => void;
 }
 
 // Create the Zustand store with persistence enabled
@@ -101,7 +103,7 @@ const useLeagueStore = create<LeagueStoreState>()(
       draftPicks: [],
       draftInfo: null,
       leagueTransactions: {},
-      
+      nflState: null,
       // Action implementations
       setUserId: (userId: string) => {
         console.log('Setting userId:', userId);
@@ -164,6 +166,10 @@ const useLeagueStore = create<LeagueStoreState>()(
           leagueTransactions: { ...state.leagueTransactions, ...transactions },
         }));
       },
+      setNflState: (data) =>{
+        console.log('Setting NFL State:', data);
+        set({ nflState: data });
+      },
 
       clearStore: () => {
         console.log('Clearing store');
@@ -180,6 +186,7 @@ const useLeagueStore = create<LeagueStoreState>()(
           draftPicks: [],
           draftInfo: null,
           leagueTransactions: {},
+          nflState:{},
         });
       },
     }),
