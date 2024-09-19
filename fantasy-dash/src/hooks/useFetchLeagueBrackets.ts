@@ -1,50 +1,108 @@
 import { useState } from 'react';
 import useLeagueStore from '../store/testStore';
 
+interface LeagueData {
+  league_id: string;
+  season: string;
+  total_rosters: number;
+}
+
 interface BracketMatch {
   r: number;
   m: number;
-  t1: number;
-  t2: number;
-  w: number;
-  l: number;
-  t1_from: { w: number; l: number } | null;
-  t2_from: { w: number; l: number } | null;
-  p: number;
+  t1: number | null;
+  t2: number | null;
+  w: number | null;
+  l: number | null;
+  t1_from?: { w?: number; l?: number };
+  t2_from?: { w?: number; l?: number };
+  p?: number;
 }
 
 interface Bracket {
-  [key: string]: BracketMatch;
+  winners: BracketMatch[];
+  losers: BracketMatch[];
+}
+
+interface ProcessedBracketEntry {
+  roster_id: number;
+  place: number;
+  season: string;
 }
 
 const useFetchLeagueBrackets = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const processBracketData = (bracket: Bracket, leagueData: LeagueData): ProcessedBracketEntry[] => {
+    const processedData: ProcessedBracketEntry[] = [];
+    const totalTeams = leagueData.total_rosters;
+
+    // Process winners bracket
+    bracket.winners.forEach((match) => {
+      if (match.p !== undefined) {
+        if (match.w !== null) {
+          processedData.push({ roster_id: match.w, place: match.p, season: leagueData.season });
+        }
+        if (match.l !== null) {
+          processedData.push({ roster_id: match.l, place: match.p + 1, season: leagueData.season });
+        }
+      }
+    });
+
+    // Process losers bracket
+    bracket.losers.forEach((match) => {
+      if (match.p !== undefined) {
+        if (match.w !== null) {
+          processedData.push({ 
+            roster_id: match.w, 
+            place: totalTeams - match.p + 1, 
+            season: leagueData.season 
+          });
+        }
+        if (match.l !== null) {
+          processedData.push({ 
+            roster_id: match.l, 
+            place: totalTeams - match.p, 
+            season: leagueData.season 
+          });
+        }
+      }
+    });
+
+    return processedData;
+  };
+
   const fetchLeagueBrackets = async (): Promise<void> => {
     setLoading(true);
     setError(null);
-    const allBrackets: { [leagueId: string]: { winners: Bracket, losers: Bracket } } = {};
+    const allBrackets: { [leagueId: string]: ProcessedBracketEntry[] } = {};
 
     try {
       const leagueData = useLeagueStore.getState().leagueData;
 
       for (const league of leagueData) {
         const leagueId = league.league_id;
+        const season= league.season
         
         const winnersResponse = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/winners_bracket`);
-        const winnersBracket: Bracket = await winnersResponse.json();
+        const winnersBracket: BracketMatch[] = await winnersResponse.json();
 
         const losersResponse = await fetch(`https://api.sleeper.app/v1/league/${leagueId}/losers_bracket`);
-        const losersBracket: Bracket = await losersResponse.json();
+        const losersBracket: BracketMatch[] = await losersResponse.json();
 
-        allBrackets[leagueId] = {
-          winners: winnersBracket,
-          losers: losersBracket
-        };
+        const processedBracket = processBracketData(
+          { winners: winnersBracket, losers: losersBracket },
+          { 
+            league_id: leagueId, 
+            season: season, 
+            total_rosters: league.total_rosters 
+          }
+        );
+        allBrackets[season] = processedBracket;
       }
 
-      // Update the store with the fetched brackets
+      // Update the store with the processed brackets
       useLeagueStore.getState().setLeagueBrackets(allBrackets);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

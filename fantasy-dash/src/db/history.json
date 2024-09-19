@@ -13,7 +13,7 @@
         "ties": 0,
         "fpts": 2085,
         "fpts_against": 1877.25,
-        "rank": 4
+        "place": 4
       },
       {
         "roster_id": 6,
@@ -25,7 +25,7 @@
         "ties": 0,
         "fpts": 2000,
         "fpts_against": 1877.25,
-        "rank": 2
+        "place": 2
       },
       {
         "roster_id": 2,
@@ -37,7 +37,7 @@
         "ties": 0,
         "fpts": 1906,
         "fpts_against": 1877.25,
-        "rank": 3
+        "place": 3
       },
       {
         "roster_id": 5,
@@ -49,7 +49,7 @@
         "ties": 0,
         "fpts": 1894,
         "fpts_against": 1877.25,
-        "rank": 1
+        "place": 1
       },
       {
         "roster_id": 8,
@@ -61,7 +61,7 @@
         "ties": 0,
         "fpts": 1811,
         "fpts_against": 1877.25,
-        "rank": 5
+        "place": 5
       },
       {
         "roster_id": 4,
@@ -73,7 +73,7 @@
         "ties": 0,
         "fpts": 1897,
         "fpts_against": 1877.25,
-        "rank": 6
+        "place": 6
       },
       {
         "roster_id": 3,
@@ -85,7 +85,7 @@
         "ties": 0,
         "fpts": 1685,
         "fpts_against": 1877.25,
-        "rank": 8
+        "place": 8
       },
       {
         "roster_id": 1,
@@ -97,7 +97,7 @@
         "ties": 0,
         "fpts": 1740,
         "fpts_against": 1877.25,
-        "rank": 7
+        "place": 7
       }
     ],
     "podium": [
@@ -151,7 +151,7 @@
         "ties": 0,
         "fpts": 1652,
         "fpts_against": 1583.88,
-        "rank": 1
+        "place": 1
       },
       {
         "roster_id": 6,
@@ -163,7 +163,7 @@
         "ties": 0,
         "fpts": 1736,
         "fpts_against": 1583.88,
-        "rank": 3
+        "place": 3
       },
       {
         "roster_id": 1,
@@ -175,7 +175,7 @@
         "ties": 0,
         "fpts": 1708,
         "fpts_against": 1583.88,
-        "rank": 4
+        "place": 4
       },
       {
         "roster_id": 3,
@@ -187,7 +187,7 @@
         "ties": 0,
         "fpts": 1555,
         "fpts_against": 1583.88,
-        "rank": 2
+        "place": 2
       },
       {
         "roster_id": 4,
@@ -199,7 +199,7 @@
         "ties": 0,
         "fpts": 1650,
         "fpts_against": 1583.88,
-        "rank": 6
+        "place": 6
       },
       {
         "roster_id": 5,
@@ -211,7 +211,7 @@
         "ties": 0,
         "fpts": 1527,
         "fpts_against": 1583.88,
-        "rank": 5
+        "place": 5
       },
       {
         "roster_id": 7,
@@ -223,7 +223,7 @@
         "ties": 0,
         "fpts": 1394,
         "fpts_against": 1583.88,
-        "rank": 7
+        "place": 7
       },
       {
         "roster_id": 8,
@@ -235,7 +235,7 @@
         "ties": 0,
         "fpts": 1449,
         "fpts_against": 1583.88,
-        "rank": 8
+        "place": 8
       }
     ],
     "podium": [
@@ -289,7 +289,7 @@
         "ties": 0,
         "fpts": 1923,
         "fpts_against": 1629.75,
-        "rank": 4
+        "place": 4
       },
       {
         "roster_id": 8,
@@ -301,7 +301,7 @@
         "ties": 0,
         "fpts": 1648,
         "fpts_against": 1629.75,
-        "rank": 1
+        "place": 1
       },
       {
         "roster_id": 2,
@@ -313,7 +313,7 @@
         "ties": 0,
         "fpts": 1608,
         "fpts_against": 1629.75,
-        "rank": 2
+        "place": 2
       },
       {
         "roster_id": 7,
@@ -325,7 +325,7 @@
         "ties": 0,
         "fpts": 1642,
         "fpts_against": 1629.75,
-        "rank": 3
+        "place": 3
       },
       {
         "roster_id": 4,
@@ -337,7 +337,7 @@
         "ties": 0,
         "fpts": 1688,
         "fpts_against": 1629.75,
-        "rank": 5
+        "place": 5
       },
       {
         "roster_id": 1,
@@ -349,7 +349,7 @@
         "ties": 0,
         "fpts": 1570,
         "fpts_against": 1629.75,
-        "rank": 6
+        "place": 6
       },
       {
         "roster_id": 6,
@@ -361,7 +361,7 @@
         "ties": 0,
         "fpts": 1508,
         "fpts_against": 1629.75,
-        "rank": 7
+        "place": 7
       },
       {
         "roster_id": 3,
@@ -373,7 +373,7 @@
         "ties": 0,
         "fpts": 1451,
         "fpts_against": 1629.75,
-        "rank": 8
+        "place": 8
       }
     ],
     "podium": [
@@ -427,7 +427,7 @@
         "ties": 0,
         "fpts": 1915,
         "fpts_against": 1540.38,
-        "rank": 4
+        "place": 4
       },
       {
         "roster_id": 7,
@@ -439,7 +439,7 @@
         "ties": 0,
         "fpts": 1843,
         "fpts_against": 1540.38,
-        "rank": 3
+        "place": 3
       },
       {
         "roster_id": 6,
@@ -451,7 +451,7 @@
         "ties": 0,
         "fpts": 1777,
         "fpts_against": 1540.38,
-        "rank": 5
+        "place": 5
       },
       {
         "roster_id": 4,
@@ -463,7 +463,7 @@
         "ties": 0,
         "fpts": 1759,
         "fpts_against": 1540.38,
-        "rank": 6
+        "place": 6
       },
       {
         "roster_id": 5,
@@ -475,7 +475,7 @@
         "ties": 0,
         "fpts": 1851,
         "fpts_against": 1540.38,
-        "rank": 1
+        "place": 1
       },
       {
         "roster_id": 1,
@@ -487,7 +487,7 @@
         "ties": 0,
         "fpts": 1684,
         "fpts_against": 1540.38,
-        "rank": 2
+        "place": 2
       },
       {
         "roster_id": 2,
@@ -499,7 +499,7 @@
         "ties": 0,
         "fpts": 1781,
         "fpts_against": 1540.38,
-        "rank": 8
+        "place": 8
       },
       {
         "roster_id": 3,
@@ -511,7 +511,7 @@
         "ties": 0,
         "fpts": 1676,
         "fpts_against": 1540.38,
-        "rank": 7
+        "place": 7
       }
     ],
     "podium": [
@@ -565,7 +565,7 @@
         "ties": 0,
         "fpts": 1887,
         "fpts_against": 1724.75,
-        "rank": 4
+        "place": 4
       },
       {
         "roster_id": 3,
@@ -577,7 +577,7 @@
         "ties": 0,
         "fpts": 1917,
         "fpts_against": 1724.75,
-        "rank": 1
+        "place": 1
       },
       {
         "roster_id": 6,
@@ -589,7 +589,7 @@
         "ties": 0,
         "fpts": 1657,
         "fpts_against": 1724.75,
-        "rank": 2
+        "place": 2
       },
       {
         "roster_id": 1,
@@ -601,7 +601,7 @@
         "ties": 0,
         "fpts": 1734,
         "fpts_against": 1724.75,
-        "rank": 5
+        "place": 5
       },
       {
         "roster_id": 5,
@@ -613,7 +613,7 @@
         "ties": 0,
         "fpts": 1669,
         "fpts_against": 1724.75,
-        "rank": 6
+        "place": 6
       },
       {
         "roster_id": 8,
@@ -625,7 +625,7 @@
         "ties": 0,
         "fpts": 1600,
         "fpts_against": 1724.75,
-        "rank": 3
+        "place": 3
       },
       {
         "roster_id": 7,
@@ -637,7 +637,7 @@
         "ties": 0,
         "fpts": 1740,
         "fpts_against": 1724.75,
-        "rank": 7
+        "place": 7
       },
       {
         "roster_id": 4,
@@ -649,7 +649,7 @@
         "ties": 0,
         "fpts": 1594,
         "fpts_against": 1724.75,
-        "rank": 8
+        "place": 8
       }
     ],
     "podium": [

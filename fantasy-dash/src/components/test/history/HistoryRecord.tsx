@@ -3,7 +3,7 @@ import { getRosterOwnerName } from '@/utils/usernameUtil';
 import { ChevronUp, ChevronDown } from 'lucide-react';
 import { decimalToPercentage } from '@/utils/toPercent';
 import useLeagueStore from '@/store/testStore';
-import historic from'@/db/history.json'
+import historic from '@/db/history.json';
 
 interface RosterSettings {
   wins: number;
@@ -21,6 +21,10 @@ interface RosterData {
   roster_id: number | string;
   owner_id: string;
   settings: RosterSettings;
+  standings?: {
+    place: number;
+    season: string;
+  };
 }
 
 interface SeasonData {
@@ -30,6 +34,7 @@ interface SeasonData {
 
 interface HistoryRecordProps {
   data: SeasonData[];
+  brackets: Record<string, any[]>;
 }
 
 interface Column {
@@ -39,11 +44,12 @@ interface Column {
 
 type SortDirection = 'asc' | 'desc' | null;
 
-const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
+const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
   const [filters, setFilters] = useState<Record<string, string>>({});
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<SortDirection>(null);
   const [selectedYear, setSelectedYear] = useState<string>('All');
+  const [isCumulative, setIsCumulative] = useState<boolean>(false);
 
   const selectedLeague = useLeagueStore(state => state.selectedLeague);
   const [historyData, setHistoryData] = useState<any[]>([]);
@@ -52,13 +58,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
     const fetchHistoryData = async () => {
       if (selectedLeague?.name === "Fantasy Premier League") {
         try {
-            setHistoryData(historic)
-        //   const response = await fetch('/history.json');
-        //   const jsonData = await response.json();
-        //   setHistoryData(jsonData);
-        //   if(jsonData.length === 0){
-        //     setHistoryData(historic)
-        //   }
+          setHistoryData(historic);
         } catch (error) {
           console.error("Failed to fetch history data:", error);
         }
@@ -79,27 +79,45 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
     { key: 'fpts_against', label: 'FPTS Against' },
     { key: 'win_percentage', label: 'Win %' },
     { key: 'ppg', label: 'Avg. PPG' },
+    { key: 'avg_placement', label: 'Avg. Placement' },
+    { key: 'championships', label: 'Championships' },
+    { key: 'toilet_bowls', label: 'Toilet Bowls' },
   ];
 
+  const mergeData = (standings, rosters) => {
+    for (const roster of rosters) {
+      const seasonStandings = standings[roster.season];
+      if (seasonStandings) {
+        for (const r of roster.rosters) {
+          const matchingStanding = seasonStandings.find(standing => standing.roster_id === r.roster_id);
+          if (matchingStanding) {
+            r.standings = matchingStanding;
+          }
+        }
+      }
+    }
+    return rosters;
+  };
+
+  const mergedResults = mergeData(brackets, data);
+
   const years = useMemo(() => {
-    const allYears = new Set([...data.map(d => d.season)]);
+    const allYears = new Set([...mergedResults.map(d => d.season)]);
     if (selectedLeague?.name === "Fantasy Premier League" && historyData.length > 0) {
       historyData.forEach(d => allYears.add(d.year.toString()));
     }
     return ['All', ...Array.from(allYears).sort()];
-  }, [data, historyData, selectedLeague]);
+  }, [mergedResults, historyData, selectedLeague]);
 
   const processedData = useMemo(() => {
-    let combinedData = [...data];
+    let combinedData = [...mergedResults];
 
     if (selectedLeague?.name === "Fantasy Premier League" && historyData.length > 0) {
       historyData.forEach(yearData => {
         const existingSeasonIndex = combinedData.findIndex(d => d.season === yearData.year.toString());
-        
         if (existingSeasonIndex !== -1) {
-          // Merge historical data with existing season data
           combinedData[existingSeasonIndex].rosters = combinedData[existingSeasonIndex].rosters.map(roster => {
-            const historicalStanding = yearData.season_standings.find(s => s.roster_id.toString() === roster.roster_id.toString());
+            const historicalStanding = yearData.season_data.find(s => s.roster_id.toString() === roster.roster_id.toString());
             if (historicalStanding) {
               return {
                 ...roster,
@@ -110,13 +128,16 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
                   ties: historicalStanding.ties || 0,
                   fpts: historicalStanding.fpts,
                   fpts_against: historicalStanding.fpts_against || roster.settings.fpts_against,
+                },
+                standings: {
+                  place: historicalStanding.place,
+                  season: yearData.year.toString()
                 }
               };
             }
             return roster;
           });
         } else {
-          // Add new season data from historical data
           combinedData.push({
             season: yearData.year.toString(),
             rosters: yearData.season_standings.map(standing => ({
@@ -132,6 +153,10 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
                 fpts_against_decimal: 0,
                 ppts: 0,
                 ppts_decimal: 0
+              },
+              standings: {
+                place: standing.place,
+                season: yearData.year.toString()
               }
             }))
           });
@@ -139,7 +164,13 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
       });
     }
 
-    const filteredData = selectedYear === 'All' ? combinedData : combinedData.filter(d => d.season === selectedYear);
+    combinedData.sort((a, b) => Number(a.season) - Number(b.season));
+
+    const filteredData = isCumulative
+      ? combinedData.filter(d => Number(d.season) <= Number(selectedYear))
+      : selectedYear === 'All'
+      ? combinedData
+      : combinedData.filter(d => d.season === selectedYear);
 
     const cumulativeStats = filteredData.flatMap(seasonData => 
       seasonData.rosters.map(roster => ({
@@ -157,6 +188,14 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
           (curr.settings.fpts_against ? curr.settings.fpts_against + curr.settings.fpts_against_decimal / 100 : 0);
         existingTeam.settings.ppts += curr.settings.ppts + curr.settings.ppts_decimal / 100;
         existingTeam.seasons.push(curr.season);
+        existingTeam.placements.push(curr.standings?.place || 0);
+        
+        if (curr.standings && curr.standings.place === 1) {
+          existingTeam.championships = (existingTeam.championships || 0) + 1;
+        }
+        if (curr.standings && curr.standings.place === filteredData[0].rosters.length) {
+          existingTeam.toilet_bowls = (existingTeam.toilet_bowls || 0) + 1;
+        }
       } else {
         acc.push({
           ...curr,
@@ -166,7 +205,10 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
             fpts_against: curr.settings.fpts_against ? curr.settings.fpts_against + curr.settings.fpts_against_decimal / 100 : 0,
             ppts: curr.settings.ppts + curr.settings.ppts_decimal / 100,
           },
-          seasons: [curr.season]
+          seasons: [curr.season],
+          placements: [curr.standings?.place || 0],
+          championships: curr.standings && curr.standings.place === 1 ? 1 : 0,
+          toilet_bowls: curr.standings && curr.standings.place === filteredData[0].rosters.length ? 1 : 0
         });
       }
       return acc;
@@ -176,18 +218,31 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
       const totalGames = item.settings.wins + item.settings.losses + (item.settings.ties || 0);
       const teamName = getRosterOwnerName(item.owner_id);
       
+      const sortedSeasons = item.seasons.sort((a, b) => Number(a) - Number(b));
+      let seasonsDisplay = sortedSeasons.join(', ');
+      if (sortedSeasons.length > 2) {
+        seasonsDisplay = `${sortedSeasons[0]}-${sortedSeasons[sortedSeasons.length - 1]}`;
+      }
+
+      const avgPlacement = item.placements.filter(p => p !== 0).length > 0
+        ? (item.placements.filter(p => p !== 0).reduce((a, b) => a + b, 0) / item.placements.filter(p => p !== 0).length).toFixed(1)
+        : 'N/A';
+     
       return {
         team: teamName === 'Unknown' ? `ID: ${item.owner_id}` : teamName,
         owner_id: item.owner_id,
         wins: item.settings.wins.toFixed(0),
         losses: item.settings.losses.toFixed(0),
         ties: item.settings.ties.toFixed(0) || 0,
-        fpts: item.settings.fpts,
-        manager_score: item.settings.ppts> 0 ?((item.settings.fpts / item.settings.ppts) * 100).toFixed(2) :null,
-        fpts_against: item.settings.fpts_against,
+        fpts: item.settings.fpts.toFixed(2),
+        manager_score: item.settings.ppts > 0 ? ((item.settings.fpts / item.settings.ppts) * 100).toFixed(2) : null,
+        fpts_against: item.settings.fpts_against.toFixed(2),
         win_percentage: totalGames > 0 ? decimalToPercentage(Number((item.settings.wins / totalGames).toFixed(4))) : 0,
         ppg: totalGames > 0 ? Number((item.settings.fpts / totalGames).toFixed(2)) : 0,
-        seasons: item.seasons.join(', ')
+        avg_placement: avgPlacement,
+        championships: item.championships || 0,
+        toilet_bowls: item.toilet_bowls || 0,
+        seasons: seasonsDisplay
       };
     }).sort((a, b) => {
       if (b.wins === a.wins) {
@@ -195,7 +250,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
       }
       return b.wins - a.wins;
     }).map((item, index) => ({ ...item, rank: (index + 1).toFixed(0) }));
-  }, [data, selectedYear, historyData, selectedLeague]);
+  }, [data, selectedYear, historyData, selectedLeague, isCumulative]);
 
   const sortedAndFilteredData = useMemo(() => {
     let result = processedData.filter(row =>
@@ -236,7 +291,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
 
   return (
     <div className="w-full overflow-x-auto">
-      <div className="mb-4">
+      <div className="mb-4 flex items-center space-x-4">
         <select 
           value={selectedYear} 
           onChange={(e) => setSelectedYear(e.target.value)}
@@ -246,10 +301,20 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
             <option key={year} value={year}>{year}</option>
           ))}
         </select>
+        <label className="flex items-center space-x-2 text-stone-200">
+          <input
+            type="checkbox"
+            checked={isCumulative}
+            onChange={(e) => setIsCumulative(e.target.checked)}
+            className="form-checkbox h-5 w-5 text-rose-600"
+          />
+          <span>Cumulative up to selected year</span>
+        </label>
       </div>
       <table className="min-w-full bg-stone-900 border border-stone-700 rounded-md">
         <caption className='text-center w-full mx-auto text-xl p-5'>
-          Cumulative Standings {selectedYear !== 'All' ? `for ${selectedYear}` : ''}
+          {isCumulative ? 'Cumulative' : ''} Standings 
+          {selectedYear !== 'All' ? ` ${isCumulative ? 'up to' : 'for'} ${selectedYear}` : ''}
         </caption>
         <thead>
           <tr className="bg-stone-900">
@@ -287,8 +352,8 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data }) => {
                   ) : (
                     row[column.key] !== null ? 
                       typeof row[column.key] === 'number' ? 
-                        Number(row[column.key]).toFixed(2) : 
-                        row[column.key] 
+                        Number(row[column.key]) : 
+                        row[column.key]
                       : 'N/A'
                   )}
                 </td>
