@@ -1,13 +1,16 @@
 import React, { useState, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { getPlayerName } from '@/utils/playerUtils';
 
 import 'chart.js/auto';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const PlayerPointsChart = ({ projections, stats }) => {
+const PlayerPointsChart = ({ projections, stats, player_id }) => {
   const [chartMetric, setChartMetric] = useState('pts_half_ppr');
+
+
 
   const filterNullValues = (data) => {
     return Object.entries(data)
@@ -89,7 +92,7 @@ const PlayerPointsChart = ({ projections, stats }) => {
       },
       title: {
         display: true,
-        text: 'Player Stats and Projections',
+        text: `${getPlayerName(player_id.player_id)} Stats & projections`,
       },
       tooltip: {
         callbacks: {

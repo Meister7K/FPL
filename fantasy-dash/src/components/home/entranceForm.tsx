@@ -189,7 +189,7 @@ const EnterForm = () => {
     
                 currentLeagueId = leagueInfo.previous_league_id;
                 currentYear--;
-                console.log(currentYear+':'+yearData.managers[1].fpts)
+                // console.log(currentYear+':'+yearData.managers[1].fpts)
             }
             setWinnerLoserData(winnerLoserData);
 
