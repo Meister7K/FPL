@@ -23,15 +23,19 @@ const leagueMatchups = useLeagueStore((state)=>state.leagueMatchups)
 
   console.log(selectedLeagueData)
 
+  if(!leagueData){
+    return {
+      notfound: true
+    }
+  }
+
+
   return (
     <div className="p-4">
-       
-      {leagueData ? <h1 className="text-2xl font-bold my-2 text-center">Welcome the the {leagueData[0].season} {leagueData[0].name} </h1> : null}
-
-      
 
       {selectedLeagueData ? (
         <div>
+          <h1 className="text-2xl font-bold my-2 text-center">Welcome the the {selectedLeagueData.season} {selectedLeagueData.name} </h1>
         
           <StandingsBoard data={currentRoster}/>
           <FPTSSeasonChart currentRosterData={currentRoster} matchupData={leagueMatchups}/>

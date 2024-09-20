@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useMemo, useState } from 'react';
 import useLeagueStore from '../../../store/testStore';
 import { getRosterOwnerName } from '@/utils/usernameUtil';

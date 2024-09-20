@@ -17,6 +17,10 @@ export function getRosterOwnerName(id: string | number): string {
   const leagueUsers = useLeagueStore.getState().leagueUsers;
   const rosters = useLeagueStore.getState().currentRoster;
 
+  if (!leagueUsers || !Array.isArray(leagueUsers)) {
+    return `Owner ${id}`;  // Return a default value if leagueUsers is not available
+  }
+
   // Check if the ID matches a user first
   const userById = leagueUsers.find(u => u.user_id === id);
   if (userById) {

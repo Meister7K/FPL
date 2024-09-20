@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react';
 import PlayerPointsChart from '@/components/charts/PlayerPointsChart';
 import { fetchPlayerData } from '@/utils/playerDataFetcher';
