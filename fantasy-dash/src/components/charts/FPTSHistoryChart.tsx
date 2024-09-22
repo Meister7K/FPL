@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Tooltip, Legend } from 'chart.js';
@@ -45,7 +44,8 @@ const generateColor = (str: string) => {
 };
 
 const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) => {
-  const [visibleYears, setVisibleYears] = useState<string[]>([]);
+  const [allYears, setAllYears] = useState<string[]>([]);
+  const [activeYears, setActiveYears] = useState<string[]>([]);
   const [colorMap, setColorMap] = useState<Record<string, { borderColor: string; backgroundColor: string }>>({});
   const selectedLeague = useLeagueStore(state => state.selectedLeague);
 
@@ -124,7 +124,7 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
     let totalEntries = 0;
     const seasonAverages: Record<string, number> = {};
 
-    visibleYears.forEach(year => {
+    activeYears.forEach(year => {
       const yearData = processedData.flatMap(manager => 
         manager.data.filter(d => d.season === year).map(d => d.fpts)
       );
@@ -137,12 +137,13 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
     const leagueAverage = totalEntries > 0 ? totalPoints / totalEntries : 0;
 
     return { leagueAverage, seasonAverages };
-  }, [processedData, visibleYears]);
+  }, [processedData, activeYears]);
 
   useEffect(() => {
     if (processedData.length > 0) {
-      const allYears = Array.from(new Set(processedData.flatMap(manager => manager.data.map(d => d.season)))).sort();
-      setVisibleYears(allYears);
+      const years = Array.from(new Set(processedData.flatMap(manager => manager.data.map(d => d.season)))).sort();
+      setAllYears(years);
+      setActiveYears(years);
 
       const colorMap = processedData.reduce((map, manager) => {
         map[manager.owner_id] = generateColor(manager.name);
@@ -154,19 +155,17 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
   }, [processedData]);
 
   const toggleYear = (year: string) => {
-    setVisibleYears(prev =>
-      prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year]
+    setActiveYears(prev =>
+      prev.includes(year) ? prev.filter(y => y !== year) : [...prev, year].sort()
     );
   };
 
-
-
   const chartData = {
-    labels: visibleYears,
+    labels: activeYears,
     datasets: [
       ...processedData.map(manager => ({
         label: manager.name,
-        data: visibleYears.map(year => {
+        data: activeYears.map(year => {
           const yearData = manager.data.find(d => d.season === year);
           return yearData ? yearData.fpts : null;
         }),
@@ -174,7 +173,7 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
       })),
       {
         label: 'League Average',
-        data: visibleYears.map(() => leagueAverage),
+        data: activeYears.map(() => leagueAverage),
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 99, 132, 0.2)',
         borderWidth: 2,
@@ -182,7 +181,7 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
       },
       {
         label: 'Season Average',
-        data: visibleYears.map(year => seasonAverages[year]),
+        data: activeYears.map(year => seasonAverages[year]),
         borderColor: 'rgba(54, 162, 235, 1)',
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
         borderWidth: 2,
@@ -208,7 +207,7 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
             if (context.dataset.label === 'League Average') {
               return `League Average: ${leagueAverage.toFixed(2)}`;
             }
-            return `${context.dataset.label}: ${context.raw.toFixed(2)}`;
+            return `${context.dataset.label}: ${context.raw?.toFixed(2) || 'N/A'}`;
           },
         },
       },
@@ -244,21 +243,23 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
   };
 
   return (
-    <div className="my-10 md:mb-40 min-h-fit h-3/4 md:h-2/5 max-h-screen w-full">
+    <div className="my-10 h-[calc(100vh-200px)] w-full">
       <h2 className="text-xl font-semibold text-center">FPTS Over the Years</h2>
       <div className="flex flex-wrap justify-center mb-4">
-        {visibleYears.map(year => (
+        {allYears.map(year => (
           <button
             key={year}
             onClick={() => toggleYear(year)}
-            className={`px-4 py-2 m-2 border rounded ${visibleYears.includes(year) ? 'bg-stone-800 hover:bg-stone-500 text-white' : 'bg-gray-200 text-black'}`}
+            className={`px-4 py-2 m-2 border rounded ${activeYears.includes(year) ? 'bg-stone-800 hover:bg-stone-500 text-white' : 'bg-gray-200 text-black'}`}
           >
             {year}
           </button>
         ))}
       </div>
       
-      <Line data={chartData} options={options} />
+      <div className="h-full">
+        <Line data={chartData} options={options} />
+      </div>
     </div>
   );
 };

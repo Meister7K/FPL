@@ -4,8 +4,9 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react'; // Import Menu and X icons from lucide-react
 import useLeagueStore from '@/store/testStore';
-import { getRosterOwnerName } from '@/utils/usernameUtil'
+import { getRosterOwnerName } from '@/utils/usernameUtil';
 
 const Navbar = () => {
     const router = useRouter();
@@ -18,7 +19,8 @@ const Navbar = () => {
 
     const [isLoading, setIsLoading] = useState(true);
     const [managers, setManagers] = useState([]);
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const [isNavOpen, setNavOpen] = useState(false);
+    const [isManagerModalOpen, setManagerModalOpen] = useState(false);
 
     useEffect(() => {
         const loadData = async () => {
@@ -39,6 +41,10 @@ const Navbar = () => {
 
     const isHomePage = pathname === '/';
 
+    // Function to close nav modals on link click
+    const closeNav = () => setNavOpen(false);
+    const closeManagerModal = () => setManagerModalOpen(false);
+
     if (isLoading || isHomePage) {
         return null; // Don't render anything while loading or on the home page
     }
@@ -52,49 +58,102 @@ const Navbar = () => {
         { name: 'Matchups', path: `/test/${id}/matchups` }
     ];
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
-    };
-
     return (
         <nav className="bg-gray-800 p-4 w-full">
-            <ul className="flex space-x-4 w-full justify-end items-center">
-                {links.map((link) => (
-                    <li key={link.name}>
-                        <Link href={link.path} 
-                            className={`text-white ${
-                                pathname === link.path
-                                    ? 'font-bold border-b-2 border-white'
-                                    : 'hover:text-gray-300'
-                            }`}
+            <div className="flex justify-between items-center">
+                <h1 className="text-white text-lg">League Navbar</h1>
+                {/* Mobile Hamburger Icon */}
+                <button 
+                    onClick={() => setNavOpen(true)}
+                    className="text-white block lg:hidden"
+                >
+                    <Menu size={28} />
+                </button>
+                {/* Desktop Menu */}
+                <ul className="hidden lg:flex space-x-4 items-center">
+                    {links.map((link) => (
+                        <li key={link.name}>
+                            <Link href={link.path} 
+                                className={`text-white ${
+                                    pathname === link.path
+                                        ? 'font-bold border-b-2 border-white'
+                                        : 'hover:text-gray-300'
+                                }`}
+                                onClick={closeNav} // Close nav on link click
+                            >
+                                {link.name}
+                            </Link>
+                        </li>
+                    ))}
+                    <li>
+                        <button 
+                            onClick={() => setManagerModalOpen(true)}
+                            className="text-white hover:text-gray-300"
                         >
-                            {link.name}
-                        </Link>
+                            Managers
+                        </button>
                     </li>
-                ))}
-                <li className="relative">
+                </ul>
+            </div>
+
+            {/* Full-screen mobile nav modal */}
+            {isNavOpen && (
+                <div className="fixed inset-0 bg-gray-800 bg-opacity-95 z-50 flex flex-col items-center justify-center">
                     <button 
-                        onClick={toggleDropdown}
-                        className="text-white hover:text-gray-300"
+                        onClick={() => setNavOpen(false)}
+                        className="absolute top-4 right-4 text-white"
                     >
-                        Managers
+                        <X size={28} />
                     </button>
-                    {isDropdownOpen && (
-                        <ul className="absolute right-0 mt-2 w-48 bg-gray-700 text-white border border-gray-600 rounded-md shadow-lg">
-                            {managers.map((manager) => (
-                                <li key={manager.name}>
-                                    <Link 
-                                        href={manager.path} 
-                                        className="block px-4 py-2 hover:bg-gray-600 text-white hover:text-black"
-                                    >
-                                        {manager.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </li>
-            </ul>
+                    <ul className="space-y-6">
+                        {links.map((link) => (
+                            <li key={link.name}>
+                                <Link href={link.path} 
+                                    className="text-white text-2xl"
+                                    onClick={closeNav}
+                                >
+                                    {link.name}
+                                </Link>
+                            </li>
+                        ))}
+                        <li>
+                            <button 
+                                onClick={() => {
+                                    setNavOpen(false);
+                                    setManagerModalOpen(true);
+                                }}
+                                className="text-white text-2xl"
+                            >
+                                Managers
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            )}
+
+            {/* Manager selection modal */}
+            {isManagerModalOpen && (
+                <div className="fixed inset-0 bg-gray-800 bg-opacity-95 z-50 flex flex-col items-center justify-center">
+                    <button 
+                        onClick={closeManagerModal}
+                        className="absolute top-4 right-4 text-white"
+                    >
+                        <X size={28} />
+                    </button>
+                    <ul className="space-y-6">
+                        {managers.map((manager) => (
+                            <li key={manager.name}>
+                                <Link href={manager.path} 
+                                    className="text-white text-2xl"
+                                    onClick={closeManagerModal}
+                                >
+                                    {manager.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </nav>
     );
 };

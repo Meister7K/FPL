@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import { getRosterOwnerName } from '@/utils/usernameUtil';
 import { ChevronUp, ChevronDown } from 'lucide-react';
@@ -110,6 +109,15 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
     return ['All', ...Array.from(allYears).sort()];
   }, [mergedResults, historyData, selectedLeague]);
 
+  const getRankEmoji = (rank: number, totalTeams: number) => {
+    if (rank === 1) return '🏆';
+    if (rank === 2) return '🥈';
+    if (rank === 3) return '🥉';
+    if (rank === totalTeams - 1) return '🤡';
+    if (rank === totalTeams) return '💩';
+    return '';
+  };
+
   const processedData = useMemo(() => {
     let combinedData = [...mergedResults];
 
@@ -197,6 +205,12 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
         if (curr.standings && curr.standings.place === filteredData[0].rosters.length) {
           existingTeam.toilet_bowls = (existingTeam.toilet_bowls || 0) + 1;
         }
+        existingTeam.rankHistory = existingTeam.rankHistory || [];
+        existingTeam.rankHistory.push({
+          season: curr.season,
+          rank: curr.standings?.place || 0,
+          totalTeams: filteredData.find(d => d.season === curr.season)?.rosters.length || 0
+        });
       } else {
         acc.push({
           ...curr,
@@ -209,7 +223,12 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
           seasons: [curr.season],
           placements: [curr.standings?.place || 0],
           championships: curr.standings && curr.standings.place === 1 ? 1 : 0,
-          toilet_bowls: curr.standings && curr.standings.place === filteredData[0].rosters.length ? 1 : 0
+          toilet_bowls: curr.standings && curr.standings.place === filteredData[0].rosters.length ? 1 : 0,
+          rankHistory: [{
+            season: curr.season,
+            rank: curr.standings?.place || 0,
+            totalTeams: filteredData.find(d => d.season === curr.season)?.rosters.length || 0
+          }]
         });
       }
       return acc;
@@ -228,9 +247,14 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
       const avgPlacement = item.placements.filter(p => p !== 0).length > 0
         ? (item.placements.filter(p => p !== 0).reduce((a, b) => a + b, 0) / item.placements.filter(p => p !== 0).length).toFixed(1)
         : 'N/A';
+
+      const teamNameWithEmojis = item.rankHistory.reduce((name, rankInfo) => {
+        const emoji = getRankEmoji(rankInfo.rank, rankInfo.totalTeams);
+        return `${name}${emoji}`;
+      }, teamName === 'Unknown' ? `ID: ${item.owner_id}` : teamName);
      
       return {
-        team: teamName === 'Unknown' ? `ID: ${item.owner_id}` : teamName,
+        team: teamNameWithEmojis,
         owner_id: item.owner_id,
         wins: item.settings.wins.toFixed(0),
         losses: item.settings.losses.toFixed(0),
@@ -262,9 +286,33 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
 
     if (sortColumn) {
       result.sort((a, b) => {
-        if (a[sortColumn] < b[sortColumn]) return sortDirection === 'asc' ? -1 : 1;
-        if (a[sortColumn] > b[sortColumn]) return sortDirection === 'asc' ? 1 : -1;
-        return 0;
+        const aValue = a[sortColumn];
+        const bValue = b[sortColumn];
+
+        // Handle 'team' column separately for alphabetical sorting
+        if (sortColumn === 'team') {
+          return sortDirection === 'asc' 
+            ? aValue.localeCompare(bValue)
+            : bValue.localeCompare(aValue);
+        }
+
+        // Handle numerical and percentage columns
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+          return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
+        }
+
+        // Handle string representations of numbers and percentages
+        const aNum = parseFloat(aValue);
+        const bNum = parseFloat(bValue);
+
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+          return sortDirection === 'asc' ? aNum - bNum : bNum - aNum;
+        }
+
+        // Fallback to string comparison
+        return sortDirection === 'asc' 
+          ? aValue.toString().localeCompare(bValue.toString())
+          : bValue.toString().localeCompare(aValue.toString());
       });
     }
 
