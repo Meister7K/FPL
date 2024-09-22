@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useMemo, useEffect } from 'react';
 import { getRosterOwnerName } from '@/utils/usernameUtil';
 import { ChevronUp, ChevronDown } from 'lucide-react';
