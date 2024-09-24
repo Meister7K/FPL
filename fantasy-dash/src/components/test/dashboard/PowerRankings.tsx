@@ -98,11 +98,11 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
         rosterId: Number(rosterId),
       })),
       borderColor: getColor(index, array.length), // Unique color for each line
-      borderWidth: 20, // Thicker lines
+      borderWidth: 10, // Thicker lines
       fill: false,
       tension: 0, // Smooth lines
-      hoverBorderWidth:30,
-      pointBorderWidth:21,
+      hoverBorderWidth:15,
+      pointBorderWidth:11,
       stepped:false,
       borderJoinStyle:'round',
       borderCapStyle: 'round'
