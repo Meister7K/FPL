@@ -11,7 +11,7 @@ const ProjectionsTab = ({ players, starters, leagueData }) => {
 
 //  const test =[]
 
- console.log(starters)
+//  console.log(starters)
 
 
 

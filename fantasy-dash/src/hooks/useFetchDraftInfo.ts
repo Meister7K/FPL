@@ -14,7 +14,7 @@ const useFetchDraftInfo = () => {
       return;
     }
 
-    console.log("Starting to fetch draft info for draftId:", draftId);
+    // console.log("Starting to fetch draft info for draftId:", draftId);
     setLoading(true);
     setError(null);
 
@@ -23,7 +23,7 @@ const useFetchDraftInfo = () => {
       if (!response.ok) throw new Error('Network response was not ok');
       
       const draftData = await response.json();
-      console.log("Draft Data Fetched:", draftData);
+      // console.log("Draft Data Fetched:", draftData);
 
       setDraftInfo({
         draft_id: draftData.draft_id,
@@ -37,7 +37,7 @@ const useFetchDraftInfo = () => {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');
     } finally {
       setLoading(false);
-      console.log("Finished fetching draft info.");
+      // console.log("Finished fetching draft info.");
     }
   }, [draftId, setDraftInfo]);
 

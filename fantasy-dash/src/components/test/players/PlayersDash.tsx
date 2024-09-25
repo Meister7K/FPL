@@ -15,7 +15,7 @@ const PlayersDash: React.FC = () => {
   const [filteredPlayers1, setFilteredPlayers1] = useState<[string, any][]>([]);
   const [filteredPlayers2, setFilteredPlayers2] = useState<[string, any][]>([]);
 
- console.log(Object.entries(playerDB))
+//  console.log(Object.entries(playerDB))
 
  useEffect(() => {
   // Function to filter players based on the search term

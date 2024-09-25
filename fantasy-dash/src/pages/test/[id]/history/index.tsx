@@ -12,7 +12,7 @@ const DraftPage: React.FC = () => {
   const rosterHistory = useLeagueStore((state) => state.rosterHistory) || [];
   const leagueBrackets = useLeagueStore(state => state.leagueBrackets);
 
-  console.log(leagueBrackets)
+  // console.log(leagueBrackets)
 
   const pairedData = (rosterHistory,leagueBrackets)=>{
     

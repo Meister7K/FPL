@@ -106,68 +106,68 @@ const useLeagueStore = create<LeagueStoreState>()(
       nflState: null,
       // Action implementations
       setUserId: (userId: string) => {
-        console.log('Setting userId:', userId);
+        // console.log('Setting userId:', userId);
         set({ userId });
       },
 
       setLeagues: (leagues: League[]) => {
-        console.log('Setting leagues:', leagues);
+        // console.log('Setting leagues:', leagues);
         set({ leagues });
       },
 
       selectLeague: (league: League) => {
-        console.log('Selecting league:', league);
+        // console.log('Selecting league:', league);
         set({ selectedLeague: league });
       },
 
       setLeagueData: (leagueData: LeagueData[]) => {
-        console.log('Setting leagueData:', leagueData);
+        // console.log('Setting leagueData:', leagueData);
         set({ leagueData });
       },
 
       setCurrentRoster: (roster: Roster[]) => {
-        console.log('Setting currentRoster:', roster);
+        // console.log('Setting currentRoster:', roster);
         set({ currentRoster: roster });
       },
 
       setRosterHistory: (rosters: Roster[][]) => {
-        console.log('Setting rosterHistory:', rosters);
+        // console.log('Setting rosterHistory:', rosters);
         set({ rosterHistory: rosters });
       },
 
       setLeagueUsers: (users) => {
-        console.log('Setting leagueUsers:', users);
+        // console.log('Setting leagueUsers:', users);
         set({ leagueUsers: users });
       },
 
       setLeagueMatchups: (matchups) => {
-        console.log('Setting leagueMatchups:', matchups);
+        // console.log('Setting leagueMatchups:', matchups);
         set({ leagueMatchups: matchups });
       },
 
       setLeagueBrackets: (brackets) => {
-        console.log('Setting leagueBrackets:', brackets);
+        // console.log('Setting leagueBrackets:', brackets);
         set({ leagueBrackets: brackets });
       },
 
       setDraftPicks: (picks) => {
-        console.log('Setting draftPicks:', picks);
+        // console.log('Setting draftPicks:', picks);
         set({ draftPicks: picks });
       },
 
       setDraftInfo: (draftInfo: DraftInfo) => {
-        console.log('Setting draftInfo:', draftInfo);
+        // console.log('Setting draftInfo:', draftInfo);
         set({ draftInfo });
       },
 
       setLeagueTransactions: (transactions) => {
-        console.log('Setting leagueTransactions:', transactions);
+        // console.log('Setting leagueTransactions:', transactions);
         set((state) => ({
           leagueTransactions: { ...state.leagueTransactions, ...transactions },
         }));
       },
       setNflState: (data) =>{
-        console.log('Setting NFL State:', data);
+        // console.log('Setting NFL State:', data);
         set({ nflState: data });
       },
 

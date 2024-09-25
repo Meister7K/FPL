@@ -38,7 +38,7 @@ const RosterTab = ({ players, starters, leagueData }) => {
           .filter(entry => entry !== null && entry.stats) // Filter out nulls and undefined projections
           .map(({ stats }) => stats);
 
-console.log(data.projections)
+// console.log(data.projections)
           // Calculate actual PPG
           if (statsArray) {
             const totalPoints = statsArray.reduce((sum, week) => sum + (week.pts_half_ppr || 0), 0);

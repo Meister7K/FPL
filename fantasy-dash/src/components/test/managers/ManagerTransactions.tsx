@@ -40,8 +40,8 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
   const [processedTransactions, setProcessedTransactions] = useState<YearTransactions>({});
   const [selectedYear, setSelectedYear] = useState<string>('');
 
-  console.log(currentRosterId)
-  console.log(currentUserId)
+  // console.log(currentRosterId)
+  // console.log(currentUserId)
   
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const ManagerTransactions: React.FC<ManagerTransactionsProps> = ({ transactions,
     processTransactions();
   }, [transactions, currentUserId, currentRosterId]);
 
-  console.log()
+  // console.log()
 
   const renderPlayerChanges = (changes: { [key: string]: number } | null, type: 'add' | 'drop') => {
     if (!changes) return null;

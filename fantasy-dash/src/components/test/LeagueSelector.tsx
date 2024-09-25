@@ -14,9 +14,7 @@ import useFetchLeagueUsers from '@/hooks/useFetchLeagueUsers';
 import useFetchLeagueMatchups from '@/hooks/useFetchLeagueMatchups';
 import useFetchLeagueBrackets from '@/hooks/useFetchLeagueBrackets';
 import useFetchDraftPicks from '../../hooks/useFetchDraftPicks';
-// import useFetchDraftInfo from '../../hooks/useFetchDraftInfo';
 import useFetchTransactions from '../../hooks/useFetchTransactions';
-
 
 const LeagueSelector: React.FC = () => {
     const [username, setUsername] = useState('');
@@ -33,22 +31,17 @@ const LeagueSelector: React.FC = () => {
     const { fetchLeagueMatchups } = useFetchLeagueMatchups();
     const { fetchLeagueBrackets } = useFetchLeagueBrackets();
     const { fetchDraftPicks } = useFetchDraftPicks();
-    // const {fetchDraftInfo}= useFetchDraftInfo()
     const { fetchTransactions } = useFetchTransactions();
   
-
     const leagues = useLeagueStore((state) => state.leagues);
     const selectLeague = useLeagueStore((state) => state.selectLeague);
     const selectedLeague = useLeagueStore((state) => state.selectedLeague);
     const router = useRouter();
 
-
-
     useEffect(() => {
         if (selectedLeague) {
             fetchCurrentRoster(selectedLeague.league_id);
             fetchRosterHistory();
-            
         }
     }, [selectedLeague, fetchCurrentRoster, fetchRosterHistory]);
 
@@ -70,8 +63,11 @@ const LeagueSelector: React.FC = () => {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        setLoading(true);
+        await fetchLeaguesForUser(username, year);
+    };
 
+    const fetchLeaguesForUser = async (username: string, year: string) => {
+        setLoading(true);
         try {
             saveUsernameToLocalStorage(username);
             const userId = await fetchUserId(username);
@@ -89,7 +85,6 @@ const LeagueSelector: React.FC = () => {
         setModalOpen(false);
         selectLeague(league);
         
-
         try {
             await fetchLeagueData(league.league_id);
             await fetchLeagueUsers(league.league_id);
@@ -98,15 +93,8 @@ const LeagueSelector: React.FC = () => {
             await fetchCurrentRoster(league.league_id);
             await fetchRosterHistory();
 
-            // Fetch Draft Info
-            
-
-            // Fetch Current and Historical Transactions
             const leagueData = useLeagueStore.getState().leagueData;
             for (const leagueInfo of leagueData) {
-
-                console.log(leagueInfo)
-
                 await fetchTransactions(leagueInfo.league_id, leagueInfo.season);
             }
 
@@ -127,6 +115,12 @@ const LeagueSelector: React.FC = () => {
 
     const handleYearSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setYear(e.target.value);
+    };
+
+    const handleExampleClick = () => {
+        setUsername('Meister7K');
+        setYear('2024');
+        fetchLeaguesForUser('Meister7K', '2024');
     };
 
     const currentYear = new Date().getFullYear();
@@ -168,13 +162,23 @@ const LeagueSelector: React.FC = () => {
                         ))}
                     </select>
                 </div>
-                <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="bg-rose-500 text-white py-2 px-4 rounded hover:bg-rose-600"
-                >
-                    {isLoading ? 'Loading...' : 'Fetch Leagues'}
-                </button>
+                <div className="flex flex-col space-y-2 ">
+                    <button
+                        type="submit"
+                        disabled={isLoading}
+                        className="bg-rose-600 text-white py-2 px-4 rounded hover:bg-rose-500 flex-1"
+                    >
+                        {isLoading ? 'Loading...' : 'Fetch Leagues'}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={handleExampleClick}
+                        disabled={isLoading}
+                        className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 flex-1"
+                    >
+                        Explore Example
+                    </button>
+                </div>
             </form>
 
             {isLoading && <Loader />}
