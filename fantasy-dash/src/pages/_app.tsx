@@ -33,6 +33,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <div className="flex flex-row justify-between fixed w-full z-20 top-0 start-0 ">
         <Navbar />
       </div>
+      <div className="h-16"/>
         <Component {...pageProps} />
       </motion.div>
     </AnimatePresence>

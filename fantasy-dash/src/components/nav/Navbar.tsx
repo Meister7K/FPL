@@ -70,7 +70,7 @@ const Navbar = () => {
                     <Menu size={28} />
                 </button>
                 {/* Desktop Menu */}
-                <ul className="hidden lg:flex space-x-4 items-center">
+                <ul className="hidden lg:flex space-x-4 items-center ">
                     {links.map((link) => (
                         <li key={link.name}>
                             <Link href={link.path} 
@@ -105,7 +105,7 @@ const Navbar = () => {
                     >
                         <X size={28} />
                     </button>
-                    <ul className="space-y-6">
+                    <ul className="space-y-8 flex flex-col justify-center h-svh">
                         {links.map((link) => (
                             <li key={link.name}>
                                 <Link href={link.path} 
