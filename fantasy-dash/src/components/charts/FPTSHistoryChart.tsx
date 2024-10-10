@@ -244,7 +244,7 @@ const FPTSHistoricLineChart: React.FC<FPTSHistoricLineChartProps> = ({ data }) =
   };
 
   return (
-    <div className="my-10 h-[calc(100vh-200px)] w-full">
+    <div className="my-10 h-[calc(100vh-200px)] w-full pb-20">
       <h2 className="text-xl font-semibold text-center">FPTS Over the Years</h2>
       <div className="flex flex-wrap justify-center mb-4">
         {allYears.map(year => (

@@ -3,7 +3,7 @@ import React from 'react';
 import useLeagueStore from '../../../../store/testStore';
 import HistoryRecord from '@/components/test/history/HistoryRecord';
 import FPTSHistoricLineChart from '@/components/charts/FPTSHistoryChart';
-
+import HistoricalRankingsChart from '@/components/test/history/HistoricalRankingsChart';
 
 const DraftPage: React.FC = () => {
 //   const { loading, error } = useFetchDraftPicks();
@@ -22,7 +22,7 @@ const DraftPage: React.FC = () => {
     <div>
      <HistoryRecord data={rosterHistory} brackets={leagueBrackets}/>
      <FPTSHistoricLineChart data={rosterHistory} />
-      
+     <HistoricalRankingsChart data={rosterHistory} brackets={leagueBrackets} />
     
     </div>
   );

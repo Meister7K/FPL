@@ -34,33 +34,49 @@ type PowerRankingsChartProps = {
   data: PowerRankingsData;
 };
 
-// Utility function to generate unique colors
 const getColor = (index: number, total: number) => {
   const hue = (index / total) * 360;
-  return `hsl(${hue}, 100%, 50%)`; // Generates distinct colors using HSL
+  return `hsl(${hue}, 100%, 50%)`;
 };
 
-// Calculate cumulative scores (same as previous)
-const calculateCumulativeScores = (data: PowerRankingsData): { [key: number]: number[] } => {
+// Calculate cumulative scores with week filtering for non-zero points
+const calculateCumulativeScores = (data: PowerRankingsData): { 
+  scores: { [key: number]: number[] },
+  validWeeks: number[] 
+} => {
   const cumulativeScores: { [key: number]: number } = {};
+  const validWeeks: number[] = [];
+  const filteredScores: { [key: number]: number[] } = {};
 
-  return data.reduce((acc, weekData, weekIndex) => {
-    weekData.forEach(roster => {
-      const pointsEarned = weekData.filter(r => r.points < roster.points).length;
-      cumulativeScores[roster.roster_id] = (cumulativeScores[roster.roster_id] || 0) + pointsEarned;
+  data.forEach((weekData, weekIndex) => {
+    // Check if any roster in this week has points > 0
+    const hasNonZeroPoints = weekData.some(roster => roster.points > 0);
+    
+    if (hasNonZeroPoints) {
+      validWeeks.push(weekIndex + 1); // Store the actual week number
+      
+      weekData.forEach(roster => {
+        const pointsEarned = weekData.filter(r => r.points < roster.points).length;
+        cumulativeScores[roster.roster_id] = (cumulativeScores[roster.roster_id] || 0) + pointsEarned;
 
-      if (!acc[roster.roster_id]) {
-        acc[roster.roster_id] = [];
-      }
-      acc[roster.roster_id][weekIndex] = cumulativeScores[roster.roster_id];
-    });
+        if (!filteredScores[roster.roster_id]) {
+          filteredScores[roster.roster_id] = [];
+        }
+        filteredScores[roster.roster_id].push(cumulativeScores[roster.roster_id]);
+      });
+    }
+  });
 
-    return acc;
-  }, {} as { [key: number]: number[] });
+  return {
+    scores: filteredScores,
+    validWeeks
+  };
 };
 
-// Calculate rankings (same as previous)
-const calculateRankings = (cumulativeScores: { [key: number]: number[] }): { [key: number]: number[] } => {
+// Calculate rankings with filtered weeks
+const calculateRankings = (
+  cumulativeScores: { [key: number]: number[] }
+): { [key: number]: number[] } => {
   const weekCount = Math.max(...Object.values(cumulativeScores).map(scores => scores.length));
   const rankings: { [key: number]: number[] } = {};
 
@@ -76,7 +92,7 @@ const calculateRankings = (cumulativeScores: { [key: number]: number[] }): { [ke
       if (!rankings[roster.rosterId]) {
         rankings[roster.rosterId] = [];
       }
-      rankings[roster.rosterId][week] = index + 1; // Ranks start at 1
+      rankings[roster.rosterId][week] = index + 1;
     });
   }
 
@@ -86,43 +102,42 @@ const calculateRankings = (cumulativeScores: { [key: number]: number[] }): { [ke
 const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
   const chartData = useMemo(() => {
     const newData = Object.values(data)[0];
-    const cumulativeScores = calculateCumulativeScores(newData);
+    const { scores: cumulativeScores, validWeeks } = calculateCumulativeScores(newData);
     const rankings = calculateRankings(cumulativeScores);
 
     const datasets = Object.entries(rankings).map(([rosterId, ranks], index, array) => ({
       label: getRosterOwnerName(Number(rosterId)),
       data: ranks.map((rank, weekIndex) => ({
-        x: weekIndex + 1,
+        x: validWeeks[weekIndex],
         y: rank,
         score: cumulativeScores[Number(rosterId)][weekIndex],
         rosterId: Number(rosterId),
       })),
-      borderColor: getColor(index, array.length), // Unique color for each line
-      borderWidth: 10, // Thicker lines
+      borderColor: getColor(index, array.length),
+      borderWidth: 10,
       fill: false,
-      tension: 0, // Smooth lines
-      hoverBorderWidth:15,
-      pointBorderWidth:11,
-      stepped:false,
-      borderJoinStyle:'round',
+      tension: 0,
+      hoverBorderWidth: 15,
+      pointBorderWidth: 11,
+      stepped: false,
+      borderJoinStyle: 'round',
       borderCapStyle: 'round'
     }));
 
     return {
-      labels: rankings[Object.keys(rankings)[0]].map((_, index) => `Week ${index + 1}`),
+      labels: validWeeks.map(week => `Week ${week}`),
       datasets,
     };
   }, [data]);
 
   const options = {
     responsive: true,
-    maintainAspectRatio:false,
+    maintainAspectRatio: false,
     interaction: {
       mode: 'nearest',
-      intersect: false, // Allow interaction when hovering near points
+      intersect: false,
     },
     plugins: {
-      
       legend: {
         position: 'bottom',
         title: { display: true, padding: -20 },
@@ -130,10 +145,8 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
           color: 'white',
           padding: 50,
           boxWidth: 10,
-          
-          fullSize:true, // Change legend text color to white
-      }
-      
+          fullSize: true,
+        }
       },
       tooltip: {
         callbacks: {
@@ -144,7 +157,6 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
         },
       },
     },
-   
     scales: {
       x: {
         title: {
@@ -152,33 +164,30 @@ const PowerRankingsChart: React.FC<PowerRankingsChartProps> = ({ data }) => {
           text: 'Week',
         },
         ticks: {
-          color:'white',
-          padding:20,
+          color: 'white',
+          padding: 20,
         },
         grid: {
-          color: 'rgba(128, 128, 128, 0.5)', // Gray grid line color
-      },
+          color: 'rgba(128, 128, 128, 0.5)',
+        },
       },
       y: {
         title: {
           display: true,
           text: 'Rank',
         },
-        reverse: true, // Invert the Y-axis so rank 1 is at the top
+        reverse: true,
         ticks: {
           stepSize: 1,
-          padding:20,
-          color:'white',
+          padding: 20,
+          color: 'white',
         },
         grid: {
-          color: 'rgba(128, 128, 128, 0.5)', // Gray grid line color
+          color: 'rgba(128, 128, 128, 0.5)',
+        },
       },
-      },
-      
     },
   };
-
- 
 
   return (
     <div className="w-full h-[600px] border border-stone-800 rounded-lg shadow-md overflow-hidden">
