@@ -234,7 +234,6 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
       }
       return acc;
     }, []);
-
     return cumulativeStats.map(item => {
       const totalGames = item.settings.wins + item.settings.losses + (item.settings.ties || 0);
       const teamName = getRosterOwnerName(item.owner_id);
@@ -244,6 +243,26 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
       if (sortedSeasons.length > 2) {
         seasonsDisplay = `${sortedSeasons[0]}-${sortedSeasons[sortedSeasons.length - 1]}`;
       }
+
+      // Calculate manager score only for seasons where ppts > 0
+      let validSeasons = 0;
+      let totalManagerScore = 0;
+
+      item.seasons.forEach(season => {
+        const seasonData = combinedData.find(d => d.season === season);
+        if (seasonData) {
+          const rosterData = seasonData.rosters.find(r => r.owner_id === item.owner_id);
+          if (rosterData && rosterData.settings.ppts > 0) {
+            const seasonManagerScore = (rosterData.settings.fpts / rosterData.settings.ppts) * 100;
+            if (!isNaN(seasonManagerScore)) {
+              totalManagerScore += seasonManagerScore;
+              validSeasons++;
+            }
+          }
+        }
+      });
+
+      const avgManagerScore = validSeasons > 0 ? (totalManagerScore / validSeasons).toFixed(2) : null;
 
       const avgPlacement = item.placements.filter(p => p !== 0).length > 0
         ? (item.placements.filter(p => p !== 0).reduce((a, b) => a + b, 0) / item.placements.filter(p => p !== 0).length).toFixed(1)
@@ -261,7 +280,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
         losses: item.settings.losses.toFixed(0),
         ties: item.settings.ties.toFixed(0) || 0,
         fpts: item.settings.fpts.toFixed(2),
-        manager_score: item.settings.ppts > 0 ? ((item.settings.fpts / item.settings.ppts) * 100).toFixed(2) : null,
+        manager_score: avgManagerScore,
         fpts_against: item.settings.fpts_against.toFixed(2),
         win_percentage: totalGames > 0 ? decimalToPercentage(Number((item.settings.wins / totalGames).toFixed(4))) : 0,
         ppg: totalGames > 0 ? Number((item.settings.fpts / totalGames).toFixed(2)) : 0,
