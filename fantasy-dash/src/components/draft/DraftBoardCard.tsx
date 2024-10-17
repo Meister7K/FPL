@@ -15,7 +15,7 @@ interface DraftBoardCardProps {
   getBackgroundColor: (position: string) => string;
 }
 
-// Create a memoized component with an explicit display name
+
 const DraftBoardCard = memo(({ pick, getBackgroundColor }: DraftBoardCardProps) => {
   const playerName = getPlayerName(pick.player_id);
   const playerPosition = getPlayerPosition(pick.player_id);
@@ -39,7 +39,6 @@ const DraftBoardCard = memo(({ pick, getBackgroundColor }: DraftBoardCardProps) 
   );
 });
 
-// Set display name
 DraftBoardCard.displayName = 'DraftBoardCard';
 
 export default DraftBoardCard;

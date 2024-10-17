@@ -32,11 +32,11 @@ export default async function handler(
         return res.status(404).json({ error: 'User not found' });
       }
 
-      // Fetch additional user data from Sleeper API if needed
+
       const sleeperResponse = await fetch(`https://api.sleeper.app/v1/user/${id}`);
       const sleeperData = await sleeperResponse.json();
 
-      // Combine local data with Sleeper API data
+
       const combinedUserData = { ...user, ...sleeperData };
 
       res.status(200).json(combinedUserData);

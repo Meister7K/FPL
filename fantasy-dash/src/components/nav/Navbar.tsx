@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react'; // Import Menu and X icons from lucide-react
+import { Menu, X } from 'lucide-react';
 import useLeagueStore from '@/store/testStore';
 import { getRosterOwnerName } from '@/utils/usernameUtil';
 
@@ -41,12 +41,12 @@ const Navbar = () => {
 
     const isHomePage = pathname === '/';
 
-    // Function to close nav modals on link click
+   
     const closeNav = () => setNavOpen(false);
     const closeManagerModal = () => setManagerModalOpen(false);
 
     if (isLoading || isHomePage) {
-        return null; // Don't render anything while loading or on the home page
+        return null; 
     }
 
     const links = [
@@ -62,14 +62,14 @@ const Navbar = () => {
         <nav className="bg-gray-800 p-4 w-full">
             <div className="flex justify-between items-center">
                 <h1 className="text-white text-lg">League Navbar</h1>
-                {/* Mobile Hamburger Icon */}
+                
                 <button 
                     onClick={() => setNavOpen(true)}
                     className="text-white block lg:hidden"
                 >
                     <Menu size={28} />
                 </button>
-                {/* Desktop Menu */}
+                
                 <ul className="hidden lg:flex space-x-4 items-center ">
                     {links.map((link) => (
                         <li key={link.name}>
@@ -79,7 +79,7 @@ const Navbar = () => {
                                         ? 'font-bold border-b-2 border-white'
                                         : 'hover:text-gray-300'
                                 }`}
-                                onClick={closeNav} // Close nav on link click
+                                onClick={closeNav} 
                             >
                                 {link.name}
                             </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
                 </ul>
             </div>
 
-            {/* Full-screen mobile nav modal */}
+           
             {isNavOpen && (
                 <div className="fixed inset-0 bg-gray-800 bg-opacity-95 z-50 flex flex-col items-center justify-center">
                     <button 
@@ -131,7 +131,7 @@ const Navbar = () => {
                 </div>
             )}
 
-            {/* Manager selection modal */}
+          
             {isManagerModalOpen && (
                 <div className="fixed inset-0 bg-gray-800 bg-opacity-95 z-50 flex flex-col items-center justify-center">
                     <button 

@@ -7,7 +7,7 @@ interface PlayerData {
     fantasy_data_id: number;
     weight: string;
     team: string | null;
-    // ... add other fields as needed
+ 
     full_name: string;
     position: string;
     team_abbr: string | null;

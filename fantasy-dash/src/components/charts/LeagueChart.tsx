@@ -19,7 +19,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 interface LeagueChartProps {
   rosterData: RosterData[];
-  leagueId: string; // Add leagueId as a prop
+  leagueId: string; 
 }
 
 type SortOption = "alphabetical" | "fpts" | "fptsAgainst";

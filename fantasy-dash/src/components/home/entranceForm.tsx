@@ -119,14 +119,14 @@ const EnterForm = () => {
                 let losers = [];
                 let winners = [];
     
-                // Process the winnersResponse array
+              
                 for (const obj of winnersResponse) {
                     if (obj.hasOwnProperty('p')) {
                         const pValue = obj.p;
                         const wValue = obj.w;
                         const lValue = obj.l;
     
-                        // Add winner and loser to the winners array
+                        
                         winners.push({
                             rank: pValue,
                             roster_id: wValue
@@ -138,14 +138,14 @@ const EnterForm = () => {
                     }
                 }
     
-                // Process the losersResponse array
+           
                 for (const obj of losersResponse) {
                     if (obj.hasOwnProperty('p')) {
-                        const pValue = leagueData.total_rosters; // Using total_rosters for "p"
+                        const pValue = leagueData.total_rosters; 
                         const wValue = obj.w;
                         const lValue = obj.l;
     
-                        // Add loser and winner to the losers array
+                        
                         losers.push({
                             rank: pValue,
                             roster_id: wValue
@@ -157,16 +157,16 @@ const EnterForm = () => {
                     }
                 }
     
-                // Combine winners and losers into one array
+              
                 let combined = [...winners, ...losers];
     
-                // Filter out any non-object values (e.g., numbers or nulls)
+                
                 combined = combined.filter(item => typeof item === 'object' && item !== null);
     
-                // Sort combined array by rank
+             
                 combined.sort((a, b) => a.rank - b.rank);
     
-                // Add the sorted and filtered data to winnerLoserData
+              
                 winnerLoserData.push({ year: currentYear, data: combined });
     
                 const yearData: HistoricalData = {
@@ -206,7 +206,7 @@ const EnterForm = () => {
               } else {
                 setWinnerLoserData(winnerLoserData);
               }
-            // Merge with historical data from history.json if applicable
+      
             if (leagueData.name === "Fantasy Premier League") {
                 const jsonHistoricalData = historyData.map(yearData => ({
                     year: yearData.year,
@@ -227,7 +227,7 @@ const EnterForm = () => {
                 
             }
 
-            // Calculate total data across all years
+       
             const totalData: TotalData[] = historicalData.reduce((acc, yearData) => {
                 yearData.managers.forEach(manager => {
                     const existingManager = acc.find(m => m.username === manager.username);
@@ -255,7 +255,7 @@ const EnterForm = () => {
                 return acc;
             }, [] as TotalData[]);
 
-            // Calculate average FPTS/year, average wins/year, average losses/year, and win percentage
+        
             totalData.forEach(manager => {
                 manager.averageFptsPerYear = manager.totalFpts / manager.yearsPlayed;
                 manager.avgWinPerYear = manager.totalWins / manager.yearsPlayed;
@@ -269,7 +269,7 @@ const EnterForm = () => {
 
  
             const currentWeek = leagueData?.settings?.current_week;
-            const effectiveCurrentWeek = currentWeek || 18;  // Assuming a full NFL season
+            const effectiveCurrentWeek = currentWeek || 18;  
 
             const matchupData: Record<number, any[]> = {};
             for (let week = 1; week <= effectiveCurrentWeek; week++) {

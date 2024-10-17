@@ -14,17 +14,17 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <AnimatePresence mode="wait" initial={false}>
-      {/* AnimatePresence will ensure only one component is visible during the transition */}
+  
       <motion.div
         key={router.route} 
         initial="initialState"
         animate="animateState"
         exit="exitState"
         transition={{
-          duration: 0.75, // adjust to your desired timing
+          duration: 0.75, 
         }}
         variants={{
-          // Define the different states of the animation
+          
           initialState: { opacity: 0, x: 0, y: 0 },
           animateState: { opacity: 1, x: 0, y: 0 },
           exitState: { opacity: 0, x: 0, y: 0 },

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import useTestStore from '@/store/testStore';  // Import Zustand store
+import useTestStore from '@/store/testStore';  
 
 const useFetchNflState = () => {
-  const { setNflState } = useTestStore();  // Get the setter from Zustand store
+  const { setNflState } = useTestStore();  
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -18,7 +18,7 @@ const useFetchNflState = () => {
         }
 
         const data = await response.json();
-        setNflState(data);  // Save data to the Zustand store
+        setNflState(data);  
       } catch (err: any) {
         setError(err.message);
       } finally {
@@ -29,7 +29,7 @@ const useFetchNflState = () => {
     fetchData();
   }, [setNflState]);
 
-  return { loading, error };  // Return loading and error states for UI handling
+  return { loading, error };  
 };
 
 export default useFetchNflState;

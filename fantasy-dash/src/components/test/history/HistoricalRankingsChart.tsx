@@ -77,7 +77,7 @@ const HistoricalRankingsChart: React.FC<HistoricalRankingsChartProps> = ({ data,
   const chartData = useMemo(() => {
     let combinedData = [...data];
 
-    // Merge historical data
+
     if (selectedLeague?.name === "Fantasy Premier League" && historyData.length > 0) {
       historyData.forEach(yearData => {
         const existingSeasonIndex = combinedData.findIndex(d => d.season === yearData.year.toString());
@@ -122,10 +122,10 @@ const HistoricalRankingsChart: React.FC<HistoricalRankingsChartProps> = ({ data,
       });
     }
 
-    // Sort seasons chronologically
+
     combinedData.sort((a, b) => Number(a.season) - Number(b.season));
 
-    // Create datasets for each owner
+
     const ownerData: { [key: string]: { seasons: string[], ranks: number[] } } = {};
 
     combinedData.forEach(seasonData => {

@@ -5,8 +5,8 @@ import useFetchNflState from '@/hooks/useFetchNflState';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  leagues: any[]; // Replace `any` with a more specific type if available
-  onSelectLeague: (league: any) => void; // Replace `any` with a more specific type if available
+  leagues: any[]; 
+  onSelectLeague: (league: any) => void; 
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, leagues, onSelectLeague }) => {

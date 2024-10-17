@@ -28,7 +28,7 @@ const useFetchRosters = () => {
         leagueData.map(async (league) => {
           const rosters = await fetchRoster(league.league_id);
           return {
-            season: league.season, // Include the season from leagueData
+            season: league.season, 
             rosters,
           };
         })

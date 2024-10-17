@@ -244,7 +244,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
         seasonsDisplay = `${sortedSeasons[0]}-${sortedSeasons[sortedSeasons.length - 1]}`;
       }
 
-      // Calculate manager score only for seasons where ppts > 0
+
       let validSeasons = 0;
       let totalManagerScore = 0;
 
@@ -309,19 +309,19 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
         const aValue = a[sortColumn];
         const bValue = b[sortColumn];
 
-        // Handle 'team' column separately for alphabetical sorting
+  
         if (sortColumn === 'team') {
           return sortDirection === 'asc' 
             ? aValue.localeCompare(bValue)
             : bValue.localeCompare(aValue);
         }
 
-        // Handle numerical and percentage columns
+  
         if (typeof aValue === 'number' && typeof bValue === 'number') {
           return sortDirection === 'asc' ? aValue - bValue : bValue - aValue;
         }
 
-        // Handle string representations of numbers and percentages
+ 
         const aNum = parseFloat(aValue);
         const bNum = parseFloat(bValue);
 
@@ -329,7 +329,7 @@ const HistoryRecord: React.FC<HistoryRecordProps> = ({ data, brackets }) => {
           return sortDirection === 'asc' ? aNum - bNum : bNum - aNum;
         }
 
-        // Fallback to string comparison
+    
         return sortDirection === 'asc' 
           ? aValue.toString().localeCompare(bValue.toString())
           : bValue.toString().localeCompare(aValue.toString());

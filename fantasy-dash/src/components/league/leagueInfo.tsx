@@ -84,13 +84,13 @@ const LeagueInfo = () => {
   const getRowStyle = (rank: number, totalTeams: number) => {
     switch (rank) {
       case 1:
-        return 'bg-yellow-700 font-bold'; // 1st place
+        return 'bg-yellow-700 font-bold'; 
       case 2:
-        return 'bg-gray-700 font-bold'; // 2nd place
+        return 'bg-gray-700 font-bold'; 
       case 3:
-        return 'bg-amber-900 font-bold'; // 3rd place
+        return 'bg-amber-900 font-bold'; 
       case totalTeams:
-        return 'bg-yellow-950 font-bold'; // Last place
+        return 'bg-yellow-950 font-bold'; 
       default:
         return '';
     }

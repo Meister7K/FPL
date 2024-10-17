@@ -36,7 +36,7 @@ const DraftBoard: React.FC = () => {
     }
   }, [leagueData, fetchDraftPicks]);
 
-  // Polling every second
+
   //! useEffect(() => {
   //   const interval = setInterval(() => {
   //     if (leagueData.length > 0 && leagueData[0].draft_id) {
@@ -53,15 +53,17 @@ const DraftBoard: React.FC = () => {
       'RB': 'bg-green-600',
       'WR': 'bg-blue-600',
       'TE': 'bg-yellow-700',
-      // Add more positions and colors as needed
+      'K': 'bg-slate-500',
+      'DEF': 'bg-orange-500',
+
     };
     return colors[position] || 'bg-gray-300';
   };
 
-  // Ensure draftPicks is an array before sorting
+
   const sortedDraftPicks = draftPicks?.sort((a, b) => a.pick_no - b.pick_no) || [];
 
-  // Determine the order of user_ids based on pick_no
+
   const userOrder = Array.from(new Set(sortedDraftPicks.map(pick => pick.picked_by)))
     .map(userId => ({
       userId,

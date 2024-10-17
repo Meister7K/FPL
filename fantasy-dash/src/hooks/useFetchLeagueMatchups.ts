@@ -6,7 +6,7 @@ interface Matchup {
   matchup_id: number;
   roster_id: number;
   points: number;
-  // Add other relevant matchup fields here
+
 }
 
 const useFetchLeagueMatchups = () => {
@@ -32,7 +32,7 @@ const useFetchLeagueMatchups = () => {
         }
       }
 
-      // Update the store with the fetched matchups
+ 
       useLeagueStore.getState().setLeagueMatchups(allMatchups);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

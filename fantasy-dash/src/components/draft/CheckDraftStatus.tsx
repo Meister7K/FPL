@@ -37,7 +37,7 @@ const CheckDraftStatus: React.FC<CheckDraftStatusProps> = ({ leagueId }) => {
         } else if (draftInfo.status === 'paused' || draftInfo.status === 'drafting') {
           if (draftInfo.draft_id) {
             await fetchDraftPicks(draftInfo.draft_id);
-          }  // Schedule next check
+          }  
           setTimeout(checkDraftStatus, 1000);
         } else if (draftInfo.status === 'complete') {
           const completionDate = new Date(draftInfo.start_time * 1000).toLocaleDateString();
@@ -54,7 +54,7 @@ const CheckDraftStatus: React.FC<CheckDraftStatusProps> = ({ leagueId }) => {
     };
   }, [draftInfo, fetchDraftInfo, fetchDraftPicks, leagueId]);
 
-  // Stop further checks if modal is shown
+
   useEffect(() => {
     if (showModal) {
       isMountedRef.current = false;

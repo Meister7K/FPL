@@ -19,27 +19,27 @@ const MatchupsDash: React.FC = () => {
   const nflState = useLeagueStore((state) => state.nflState);
   const rosterHistory = useLeagueStore((state) => state.rosterHistory);
 
-  // Ensure nflState and rosterHistory are available before accessing properties
+  
   const [selectedWeek, setSelectedWeek] = useState(
-    nflState?.week ? nflState.week - 1 : 0 // fallback to week 0 if nflState is null
+    nflState?.week ? nflState.week - 1 : 0 
   );
   const [selectedYear, setSelectedYear] = useState(
-    rosterHistory && rosterHistory[0]?.season ? rosterHistory[0].season : new Date().getFullYear() // fallback to current year
+    rosterHistory && rosterHistory[0]?.season ? rosterHistory[0].season : new Date().getFullYear() 
   );
   const [league, setLeague] = useState(selectedLeague?.league_id || '');
 
   const yearToLeagueMap = useMemo(() => {
-    // Check if rosterHistory is available
+    
     return rosterHistory
       ? rosterHistory.reduce((acc, roster) => {
           acc[roster.season] = roster.rosters[0].league_id;
           return acc;
         }, {})
-      : {}; // return empty object if rosterHistory is not available
+      : {}; 
   }, [rosterHistory]);
 
   const matchupData = useMemo(() => {
-    // Check if leagueMatchups, league, and selectedWeek are available
+    
     if (!leagueMatchups?.[league] || !leagueMatchups[league][selectedWeek]) return [];
 
     const currMatches = leagueMatchups[league][selectedWeek];
@@ -56,7 +56,7 @@ const MatchupsDash: React.FC = () => {
   }, [leagueMatchups, league, selectedWeek]);
 
   const years = useMemo(() => {
-    // Ensure yearToLeagueMap is not empty
+
     return Object.keys(yearToLeagueMap).map(Number).sort((a, b) => b - a);
   }, [yearToLeagueMap]);
 

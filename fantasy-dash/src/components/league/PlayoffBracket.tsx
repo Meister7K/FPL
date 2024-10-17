@@ -14,7 +14,7 @@ interface Matchup {
     l: number | null;
     t1_from?: { w?: number; l?: number };
     t2_from?: { w?: number; l?: number };
-    p?: number; // Optional placement in the bracket
+    p?: number;
 }
 
 const PlayoffBracket = ({ leagueId }: { leagueId: string }) => {

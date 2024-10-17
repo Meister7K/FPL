@@ -4,7 +4,7 @@ import React from 'react';
 interface League {
   league_id: string;
   name: string;
-  // Add other relevant fields
+
 }
 
 interface LeagueSelectionModalProps {

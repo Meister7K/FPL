@@ -13,17 +13,17 @@ const usePlayerData = (playerId: string| number, year:string|number) => {
         setLoading(true);
         setError(null);
 
-        // Construct URLs
+    
         const projectionsUrl = `https://api.sleeper.com/projections/nfl/player/${playerId}?season_type=regular&season=${year}&grouping=week`;
         const statsUrl = `https://api.sleeper.com/stats/nfl/player/${playerId}?season_type=regular&season=${year}&grouping=week`;
 
-        // Make API calls
+       
         const [projectionsResponse, statsResponse] = await Promise.all([
           axios.get(projectionsUrl),
           axios.get(statsUrl),
         ]);
 
-        // Update state with fetched data
+     
         setData({
           projections: projectionsResponse.data,
           stats: statsResponse.data,

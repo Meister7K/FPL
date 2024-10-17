@@ -39,7 +39,7 @@ const useFetchLeagueBrackets = () => {
     const processedData: ProcessedBracketEntry[] = [];
     const totalTeams = leagueData.total_rosters;
 
-    // Process winners bracket
+
     bracket.winners.forEach((match) => {
       if (match.p !== undefined) {
         if (match.w !== null) {
@@ -51,7 +51,7 @@ const useFetchLeagueBrackets = () => {
       }
     });
 
-    // Process losers bracket
+  
     bracket.losers.forEach((match) => {
       if (match.p !== undefined) {
         if (match.w !== null) {
@@ -103,7 +103,7 @@ const useFetchLeagueBrackets = () => {
         allBrackets[season] = processedBracket;
       }
 
-      // Update the store with the processed brackets
+
       useLeagueStore.getState().setLeagueBrackets(allBrackets);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

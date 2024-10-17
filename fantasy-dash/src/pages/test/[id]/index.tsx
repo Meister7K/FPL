@@ -10,7 +10,7 @@ import PowerRankingsChart from '@/components/test/dashboard/PowerRankings';
 
 const LeagueDetailsPage: React.FC = () => {
   const router = useRouter();
-  const { id } = router.query; // Get the league ID from the URL
+  const { id } = router.query; 
   const leagueData = useLeagueStore((state) => state.leagueData);
   const currentRoster = useLeagueStore((state) => state.currentRoster);
   const rosterHistory = useLeagueStore((state) => state.rosterHistory);

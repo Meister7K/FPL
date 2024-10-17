@@ -28,7 +28,7 @@ export interface User {
     points: number;
     matchup_id: number;
     opponent_id: number;
-    // Add any other relevant fields
+
   }
 
   export interface RosterData{

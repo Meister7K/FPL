@@ -18,17 +18,17 @@ const useFetchLeagueData = () => {
         const response = await fetch(`https://api.sleeper.app/v1/league/${currentLeagueId}`);
         const leagueData = await response.json();
 
-        // Add the leagueData to the array with its season (year)
+      
         leagueDataArray.push({
           ...leagueData,
-          season: leagueData.season, // Extract the season from the response
+          season: leagueData.season, 
         });
 
-        // Move to the previous league in the history
+     
         currentLeagueId = leagueData.previous_league_id;
       }
 
-      // Update the store with the fetched league data
+   
       useLeagueStore.getState().setLeagueData(leagueDataArray);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred');

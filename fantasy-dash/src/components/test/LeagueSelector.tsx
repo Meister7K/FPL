@@ -32,19 +32,25 @@ const LeagueSelector: React.FC = () => {
     const { fetchLeagueBrackets } = useFetchLeagueBrackets();
     const { fetchDraftPicks } = useFetchDraftPicks();
     const { fetchTransactions } = useFetchTransactions();
-  
+
     const leagues = useLeagueStore((state) => state.leagues);
     const selectLeague = useLeagueStore((state) => state.selectLeague);
     const selectedLeague = useLeagueStore((state) => state.selectedLeague);
     const router = useRouter();
 
+    
     useEffect(() => {
         if (selectedLeague) {
-            fetchCurrentRoster(selectedLeague.league_id);
-            fetchRosterHistory();
+            Promise.all([
+                fetchCurrentRoster(selectedLeague.league_id),
+                fetchRosterHistory()
+            ]).catch(error => {
+                console.error("Error fetching roster data:", error);
+            });
         }
     }, [selectedLeague, fetchCurrentRoster, fetchRosterHistory]);
 
+    
     useEffect(() => {
         const storedUsernames = localStorage.getItem('usernames');
         if (storedUsernames) {
@@ -61,11 +67,6 @@ const LeagueSelector: React.FC = () => {
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        await fetchLeaguesForUser(username, year);
-    };
-
     const fetchLeaguesForUser = async (username: string, year: string) => {
         setLoading(true);
         try {
@@ -80,31 +81,56 @@ const LeagueSelector: React.FC = () => {
         }
     };
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        await fetchLeaguesForUser(username, year);
+    };
+
     const handleSelectLeague = async (league: any) => {
         setLoading(true);
         setModalOpen(false);
         selectLeague(league);
-        
+
         try {
-            await fetchLeagueData(league.league_id);
-            await fetchLeagueUsers(league.league_id);
-            await fetchLeagueMatchups();
-            await fetchLeagueBrackets();
-            await fetchCurrentRoster(league.league_id);
-            await fetchRosterHistory();
+            
+            await Promise.all([
+                fetchLeagueData(league.league_id),
+                fetchLeagueUsers(league.league_id)
+            ]);
 
+         
+            await Promise.all([
+                fetchLeagueMatchups(),
+                fetchLeagueBrackets(),
+                fetchCurrentRoster(league.league_id),
+                fetchRosterHistory()
+            ]);
+
+           
             const leagueData = useLeagueStore.getState().leagueData;
-            for (const leagueInfo of leagueData) {
-                await fetchTransactions(leagueInfo.league_id, leagueInfo.season);
+
+            
+            const fetchPromises = [];
+
+            
+            if (leagueData && leagueData.length > 0) {
+                const transactionPromises = leagueData.map(leagueInfo => 
+                    fetchTransactions(league.league_id, leagueInfo.season)
+                );
+                fetchPromises.push(...transactionPromises);
             }
 
-            const leagueDataState = useLeagueStore.getState().leagueData;
-            if (leagueDataState.length > 0 && leagueDataState[0].draft_id) {
-                await fetchDraftPicks(leagueDataState[0].draft_id);
-            } else {
-                console.warn('No draft_id available for fetching draft picks');
+            
+            if (leagueData && leagueData.length > 0 && leagueData[0].draft_id) {
+                fetchPromises.push(
+                    fetchDraftPicks(leagueData[0].draft_id)
+                );
             }
 
+            
+            await Promise.all(fetchPromises);
+
+            
             router.push(`/test/${league.league_id}`);
         } catch (error) {
             console.error("Failed to fetch league data:", error);
@@ -162,7 +188,7 @@ const LeagueSelector: React.FC = () => {
                         ))}
                     </select>
                 </div>
-                <div className="flex flex-col space-y-2 ">
+                <div className="flex flex-col space-y-2">
                     <button
                         type="submit"
                         disabled={isLoading}

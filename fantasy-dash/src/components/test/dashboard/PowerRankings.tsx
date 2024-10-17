@@ -39,7 +39,7 @@ const getColor = (index: number, total: number) => {
   return `hsl(${hue}, 100%, 50%)`;
 };
 
-// Calculate cumulative scores with week filtering for non-zero points
+
 const calculateCumulativeScores = (data: PowerRankingsData): { 
   scores: { [key: number]: number[] },
   validWeeks: number[] 
@@ -49,11 +49,11 @@ const calculateCumulativeScores = (data: PowerRankingsData): {
   const filteredScores: { [key: number]: number[] } = {};
 
   data.forEach((weekData, weekIndex) => {
-    // Check if any roster in this week has points > 0
+  
     const hasNonZeroPoints = weekData.some(roster => roster.points > 0);
     
     if (hasNonZeroPoints) {
-      validWeeks.push(weekIndex + 1); // Store the actual week number
+      validWeeks.push(weekIndex + 1); 
       
       weekData.forEach(roster => {
         const pointsEarned = weekData.filter(r => r.points < roster.points).length;
@@ -73,7 +73,7 @@ const calculateCumulativeScores = (data: PowerRankingsData): {
   };
 };
 
-// Calculate rankings with filtered weeks
+
 const calculateRankings = (
   cumulativeScores: { [key: number]: number[] }
 ): { [key: number]: number[] } => {

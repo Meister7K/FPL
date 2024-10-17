@@ -31,15 +31,15 @@ const RosterTab = ({ players, starters, leagueData }) => {
           allPlayerData[player.player_id] = data;
 
           const statsArray = Object.values(data.stats)
-          .filter(entry => entry !== null && entry.stats) // Filter out nulls and undefined stats
+          .filter(entry => entry !== null && entry.stats) 
           .map(({ stats }) => stats);
 
           const projectionsArray = Object.values(data.projections)
-          .filter(entry => entry !== null && entry.stats) // Filter out nulls and undefined projections
+          .filter(entry => entry !== null && entry.stats) 
           .map(({ stats }) => stats);
 
 // console.log(data.projections)
-          // Calculate actual PPG
+  
           if (statsArray) {
             const totalPoints = statsArray.reduce((sum, week) => sum + (week.pts_half_ppr || 0), 0);
             
@@ -49,7 +49,7 @@ const RosterTab = ({ players, starters, leagueData }) => {
             ppgData[player.player_id] = 0;
           }
 
-          // Calculate projected PPG
+       
           if (projectionsArray) {
             const totalProjectedPoints = projectionsArray.reduce((sum, week) => sum + (week.pts_half_ppr || 0), 0);
 

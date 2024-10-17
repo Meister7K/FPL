@@ -38,7 +38,7 @@ const CurrentMatchup: React.FC<{ roster_id: number }> = ({ roster_id }) => {
   const handleWeekChange = (increment: number) => {
     setSelectedWeek((prevWeek) => {
       const newWeek = prevWeek + increment;
-      return newWeek >= 0 && newWeek <= 18 ? newWeek : prevWeek; // Assuming a maximum of 18 weeks
+      return newWeek >= 0 && newWeek <= 18 ? newWeek : prevWeek; 
     });
   };
 

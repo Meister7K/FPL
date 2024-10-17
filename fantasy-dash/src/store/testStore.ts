@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import fplHistory from '@/db/history.json'
 
-// Define the interfaces for the store's state and data
+
 interface LeagueData {
   season: string | number;
   league_id: string;
@@ -87,7 +87,7 @@ interface LeagueStoreState {
   setNflState: (data: any) => void;
 }
 
-// Create the Zustand store with persistence enabled
+
 const useLeagueStore = create<LeagueStoreState>()(
   persist(
     (set) => ({
@@ -104,7 +104,7 @@ const useLeagueStore = create<LeagueStoreState>()(
       draftInfo: null,
       leagueTransactions: {},
       nflState: null,
-      // Action implementations
+     
       setUserId: (userId: string) => {
         // console.log('Setting userId:', userId);
         set({ userId });
@@ -191,8 +191,8 @@ const useLeagueStore = create<LeagueStoreState>()(
       },
     }),
     {
-      name: 'league-store', // The key to store the data in local storage
-      getStorage: () => localStorage, // Default storage is localStorage
+      name: 'league-store', 
+      getStorage: () => localStorage,
     }
   )
 );

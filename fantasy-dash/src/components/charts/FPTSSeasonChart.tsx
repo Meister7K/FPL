@@ -7,7 +7,7 @@ import { getRosterOwnerName } from '@/utils/usernameUtil';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-// Function to generate a color based on a unique string
+
 const generateColor = (str: string) => {
     const hash = Array.from(str).reduce((acc, char) => char.charCodeAt(0) + ((acc << 5) - acc), 0);
     const r = (hash & 0xFF0000) >> 16;
@@ -144,13 +144,13 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
             }
         });
 
-        // Compute weekly averages (only for weeks with non-zero points)
+
         const calculatedWeeklyAverages = weeklyPoints.map((total, index) => 
             weeklyCounts[index] > 0 ? total / weeklyCounts[index] : null
         );
         setWeeklyAverages(calculatedWeeklyAverages);
 
-        // Add weekly average dataset
+
         datasets['Weekly Average'] = {
             label: 'Weekly Average',
             data: calculatedWeeklyAverages,
@@ -167,7 +167,6 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
             datasets: Object.values(datasets),
         });
 
-        // Initialize visible weeks
         setVisibleWeeks(labels);
     };
 
@@ -177,7 +176,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
         );
     };
 
-    // Dynamically calculate season average based on visible weeks
+
     const dynamicSeasonAverage = useMemo(() => {
         if (!chartData || visibleWeeks.length === 0) return 0;
         const visibleWeekIndices = visibleWeeks.map(week => parseInt(week.split(' ')[1]) - 1);
@@ -197,7 +196,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
         return <p>No data available for the chart</p>;
     }
 
-    // Filter data based on visible weeks
+
     const filteredData = {
         labels: chartData.labels.filter((label: string) => visibleWeeks.includes(label)),
         datasets: chartData.datasets.map((dataset: any) => {
@@ -214,7 +213,7 @@ const FPTSSeasonChart: React.FC<FPTSSeasonChartProps> = ({ matchupData, currentR
         }),
     };
 
-    // Add or update the Season Average dataset
+
     const seasonAverageDataset = filteredData.datasets.find((ds: any) => ds.label === 'Season Average');
     if (seasonAverageDataset) {
         seasonAverageDataset.data = Array(visibleWeeks.length).fill(dynamicSeasonAverage);

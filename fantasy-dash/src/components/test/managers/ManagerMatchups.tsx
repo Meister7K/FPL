@@ -5,29 +5,29 @@ import { getRosterOwnerName } from '@/utils/usernameUtil';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 interface ManagerMatchupsProps {
-  roster_id: string;
+    roster_id: string;
 }
 
 interface Matchup {
-  points: number;
-  roster_id: number;
-  matchup_id: number;
-  year: number;
-  week: number;
-  opponent_points?: number;
-  opponent_roster_id?: number;
-  result?: 'Win' | 'Loss' | 'Tie';
-  record?: string;
+    points: number;
+    roster_id: number;
+    matchup_id: number;
+    year: number;
+    week: number;
+    opponent_points?: number;
+    opponent_roster_id?: number;
+    result?: 'Win' | 'Loss' | 'Tie';
+    record?: string;
 }
 
 interface OpponentStats {
-  roster_id: number;
-  wins: number;
-  losses: number;
-  totalMatchups: number;
-  winPercentage: number;
-  userTotalPoints: number;
-  opponentTotalPoints: number;
+    roster_id: number;
+    wins: number;
+    losses: number;
+    totalMatchups: number;
+    winPercentage: number;
+    userTotalPoints: number;
+    opponentTotalPoints: number;
 }
 
 const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
@@ -41,14 +41,14 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
     function extractData(nestedArray: any[]): Matchup[] {
         const extractedData: Matchup[] = [];
         let year = thisYear;
-        
+
         nestedArray.forEach(outerArray => {
             let week = 1;
-            
+
             outerArray.forEach(innerArray => {
                 innerArray.forEach(match => {
                     const { points, roster_id, matchup_id } = match;
-                    
+
                     extractedData.push({
                         points,
                         roster_id,
@@ -57,30 +57,30 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
                         week
                     });
                 });
-                
+
                 week++;
             });
-            
+
             year--;
         });
-        
+
         return extractedData;
     }
 
     const userMatchups = useMemo(() => {
         const test = Object.keys(leagueMatchups).map(key => leagueMatchups[key]);
         const allMatchups = extractData(test);
-        
+
         const userMatchups: Matchup[] = allMatchups.filter(m => m.roster_id === parseInt(roster_id));
-        
+
         userMatchups.forEach(userMatch => {
-            const opponentMatch = allMatchups.find(m => 
-                m.year === userMatch.year && 
-                m.week === userMatch.week && 
-                m.matchup_id === userMatch.matchup_id && 
+            const opponentMatch = allMatchups.find(m =>
+                m.year === userMatch.year &&
+                m.week === userMatch.week &&
+                m.matchup_id === userMatch.matchup_id &&
                 m.roster_id !== userMatch.roster_id
             );
-            
+
             if (opponentMatch) {
                 userMatch.opponent_points = opponentMatch.points;
                 userMatch.opponent_roster_id = opponentMatch.roster_id;
@@ -101,7 +101,7 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
             if (!groupedMatchups[matchup.year]) {
                 groupedMatchups[matchup.year] = [];
             }
-            // Calculate result
+         
             if (matchup.points > (matchup.opponent_points || 0)) {
                 matchup.result = 'Win';
             } else if (matchup.points < (matchup.opponent_points || 0)) {
@@ -112,7 +112,7 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
             groupedMatchups[matchup.year].push(matchup);
         });
 
-        // Calculate cumulative record for each year
+
         Object.values(groupedMatchups).forEach(yearMatchups => {
             let wins = 0;
             let losses = 0;
@@ -132,21 +132,21 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
     }, [matchupsByYear]);
 
     const toggleYear = (year: number) => {
-        setOpenYears(prev => 
-            prev.includes(year) 
-                ? prev.filter(y => y !== year) 
+        setOpenYears(prev =>
+            prev.includes(year)
+                ? prev.filter(y => y !== year)
                 : [...prev, year]
         );
     };
 
     const opponentStats = useMemo(() => {
         const stats: { [key: number]: OpponentStats } = {};
-        
+
         if (!userMatchups) return [];
-        
+
         userMatchups.forEach((matchup) => {
             if (!matchup.opponent_roster_id) return;
-            
+
             if (!stats[matchup.opponent_roster_id]) {
                 stats[matchup.opponent_roster_id] = {
                     roster_id: matchup.opponent_roster_id,
@@ -158,21 +158,21 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
                     opponentTotalPoints: 0
                 };
             }
-            
+
             const opponentStat = stats[matchup.opponent_roster_id];
             opponentStat.totalMatchups++;
             opponentStat.userTotalPoints += matchup.points;
             opponentStat.opponentTotalPoints += matchup.opponent_points || 0;
-            
+
             if (matchup.points > (matchup.opponent_points || 0)) {
                 opponentStat.wins++;
             } else if (matchup.points < (matchup.opponent_points || 0)) {
                 opponentStat.losses++;
             }
-            
+
             opponentStat.winPercentage = (opponentStat.wins / opponentStat.totalMatchups) * 100;
         });
-        
+
         return Object.values(stats);
     }, [userMatchups]);
 
@@ -205,12 +205,12 @@ const ManagerMatchups: React.FC<ManagerMatchupsProps> = ({ roster_id }) => {
     }
 
     return (
-        <div className="mt-6"> 
+        <div className="mt-6">
             <h2 className="text-xl font-semibold mb-3">Matchup History</h2>
             <div className="space-y-4">
                 {years.map(year => (
                     <div key={year} className="border border-stone-700 rounded-lg overflow-hidden">
-                        <button 
+                        <button
                             className="w-full p-4 bg-stone-800 text-left flex justify-between items-center"
                             onClick={() => toggleYear(year)}
                         >

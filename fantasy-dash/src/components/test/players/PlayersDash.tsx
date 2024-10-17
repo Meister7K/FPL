@@ -18,23 +18,23 @@ const PlayersDash: React.FC = () => {
 //  console.log(Object.entries(playerDB))
 
  useEffect(() => {
-  // Function to filter players based on the search term
+
   const filterPlayers = (searchTerm: string) => {
     if (searchTerm.length > 2) {
       return Object.entries(playerDB)
         .filter(([_, player]) => {
-          // Ensure the player object exists and check the full_name property
+   
           return player.full_name?.toLowerCase().includes(searchTerm.toLowerCase());
         })
-        .slice(0, 10); // Limit to 10 results for performance
+        .slice(0, 10); 
     }
     return [];
   };
 
-  // Set filtered players based on search terms
+
   setFilteredPlayers1(filterPlayers(searchTerm1));
   setFilteredPlayers2(filterPlayers(searchTerm2));
-}, [searchTerm1, searchTerm2, playerDB]); // Ensure playerDB is included as a dependency
+}, [searchTerm1, searchTerm2, playerDB]); 
 
 
   useEffect(() => {
