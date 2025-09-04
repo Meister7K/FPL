@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Stats Dashboard</title>
+   
+        
+         <link rel="stylesheet" href="styles.css"> 
+    
+</head>
+<body>
+    <h1>Player Stats Dashboard</h1>
+
+    <label for="positionFilter">Filter by Position:</label>
+    <select id="positionFilter">
+        <option value="all">All Positions</option>
+        <option value="QB">QB</option>
+        <option value="RB">RB</option>
+        <option value="WR">WR</option>
+        <option value="FB">FB</option>
+        <option value="TE">TE</option>
+    </select>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Position</th>
+                <th>Average Stats</th>
+                <th>Latest Year Avg</th>
+                <th>View Details</th>
+            </tr>
+        </thead>
+        <tbody id="playerTable"></tbody>
+    </table>
+
+    <h2>Player Details</h2>
+    <div id="playerDetails"></div>
+
+    <script src="index.js"></script>
+</body>
+</html>

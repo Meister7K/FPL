@@ -1,0 +1,3794 @@
+[
+  {
+    "player_id": "421",
+    "full_name": "Matthew Stafford",
+    "team": "LAR",
+    "position": "QB",
+    "years_exp": 16,
+    "rookie_year": "2009"
+  },
+  {
+    "player_id": "827",
+    "full_name": "Tyrod Taylor",
+    "team": "NYJ",
+    "position": "QB",
+    "years_exp": 14,
+    "rookie_year": "2011"
+  },
+  {
+    "player_id": "829",
+    "full_name": "Andy Dalton",
+    "team": "CAR",
+    "position": "QB",
+    "years_exp": 14,
+    "rookie_year": "2011"
+  },
+  {
+    "player_id": "1166",
+    "full_name": "Kirk Cousins",
+    "team": "ATL",
+    "position": "QB",
+    "years_exp": 13,
+    "rookie_year": "2012"
+  },
+  {
+    "player_id": "1339",
+    "full_name": "Zach Ertz",
+    "team": "WAS",
+    "position": "TE",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1373",
+    "full_name": "Geno Smith",
+    "team": "LV",
+    "position": "QB",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1379",
+    "full_name": "Kyle Juszczyk",
+    "team": "SF",
+    "position": "FB",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1426",
+    "full_name": "DeAndre Hopkins",
+    "team": "BAL",
+    "position": "WR",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1466",
+    "full_name": "Travis Kelce",
+    "team": "KC",
+    "position": "TE",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1535",
+    "full_name": "Cordarrelle Patterson",
+    "team": "PIT",
+    "position": "RB",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1652",
+    "full_name": "Terrell Sinkfield",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 9,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "1689",
+    "full_name": "Adam Thielen",
+    "team": "CAR",
+    "position": "WR",
+    "years_exp": 12,
+    "rookie_year": "2013"
+  },
+  {
+    "player_id": "1800",
+    "full_name": "Jordan Matthews",
+    "team": "CAR",
+    "position": "TE",
+    "years_exp": 11,
+    "rookie_year": "2014"
+  },
+  {
+    "player_id": "1837",
+    "full_name": "Jimmy Garoppolo",
+    "team": "LAR",
+    "position": "QB",
+    "years_exp": 11,
+    "rookie_year": "2014"
+  },
+  {
+    "player_id": "2028",
+    "full_name": "Derek Carr",
+    "team": "NO",
+    "position": "QB",
+    "years_exp": 11,
+    "rookie_year": "2014"
+  },
+  {
+    "player_id": "2133",
+    "full_name": "Davante Adams",
+    "team": "LAR",
+    "position": "WR",
+    "years_exp": 11,
+    "rookie_year": "2014"
+  },
+  {
+    "player_id": "2216",
+    "full_name": "Mike Evans",
+    "team": "TB",
+    "position": "WR",
+    "years_exp": 11,
+    "rookie_year": "2014"
+  },
+  {
+    "player_id": "2307",
+    "full_name": "Marcus Mariota",
+    "team": "WAS",
+    "position": "QB",
+    "years_exp": 10,
+    "rookie_year": "2015"
+  },
+  {
+    "player_id": "2711",
+    "full_name": "Taylor Heinicke",
+    "team": "LAC",
+    "position": "QB",
+    "years_exp": 10,
+    "rookie_year": "2015"
+  },
+  {
+    "player_id": "2749",
+    "full_name": "Raheem Mostert",
+    "team": "LV",
+    "position": "RB",
+    "years_exp": 10,
+    "rookie_year": "2015"
+  },
+  {
+    "player_id": "3050",
+    "full_name": "Myles White",
+    "team": "NYJ",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "3163",
+    "full_name": "Jared Goff",
+    "team": "DET",
+    "position": "QB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3198",
+    "full_name": "Derrick Henry",
+    "team": "BAL",
+    "position": "RB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3202",
+    "full_name": "Austin Hooper",
+    "team": "NE",
+    "position": "TE",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3214",
+    "full_name": "Hunter Henry",
+    "team": "NE",
+    "position": "TE",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3257",
+    "full_name": "Jacoby Brissett",
+    "team": "ARI",
+    "position": "QB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3271",
+    "full_name": "Tyler Higbee",
+    "team": "LAR",
+    "position": "TE",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3286",
+    "full_name": "Demarcus Robinson",
+    "team": "SF",
+    "position": "WR",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3294",
+    "full_name": "Dak Prescott",
+    "team": "DAL",
+    "position": "QB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3321",
+    "full_name": "Tyreek Hill",
+    "team": "MIA",
+    "position": "WR",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3357",
+    "full_name": "Brandon Allen",
+    "team": "TEN",
+    "position": "QB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3634",
+    "full_name": "Kalif Raymond",
+    "team": "DET",
+    "position": "WR",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3832",
+    "full_name": "C.J. Ham",
+    "team": "MIN",
+    "position": "FB",
+    "years_exp": 9,
+    "rookie_year": "2016"
+  },
+  {
+    "player_id": "3873",
+    "full_name": "Ben Roberts",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 0,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "3911",
+    "full_name": "Rashaun Simonise",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 0,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "3918",
+    "full_name": "TJ Thorpe",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 0,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "3976",
+    "full_name": "Mitchell Trubisky",
+    "team": "BUF",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4017",
+    "full_name": "Deshaun Watson",
+    "team": "CLE",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4018",
+    "full_name": "Joe Mixon",
+    "team": "HOU",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4033",
+    "full_name": "David Njoku",
+    "team": "CLE",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4034",
+    "full_name": "Christian McCaffrey",
+    "team": "SF",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4035",
+    "full_name": "Alvin Kamara",
+    "team": "NO",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4037",
+    "full_name": "Chris Godwin",
+    "team": "TB",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4039",
+    "full_name": "Cooper Kupp",
+    "team": "SEA",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4040",
+    "full_name": "JuJu Smith-Schuster",
+    "team": "KC",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4046",
+    "full_name": "Patrick Mahomes",
+    "team": "KC",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4066",
+    "full_name": "Evan Engram",
+    "team": "DEN",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4068",
+    "full_name": "Mike Williams",
+    "team": "LAC",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4080",
+    "full_name": "Zay Jones",
+    "team": "ARI",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4082",
+    "full_name": "Curtis Samuel",
+    "team": "BUF",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4137",
+    "full_name": "James Conner",
+    "team": "ARI",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4144",
+    "full_name": "Jonnu Smith",
+    "team": "MIA",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4147",
+    "full_name": "Samaje Perine",
+    "team": "CIN",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4179",
+    "full_name": "Joshua Dobbs",
+    "team": "NE",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4199",
+    "full_name": "Aaron Jones",
+    "team": "MIN",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4217",
+    "full_name": "George Kittle",
+    "team": "SF",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4219",
+    "full_name": "Jeremy McNichols",
+    "team": "WAS",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4234",
+    "full_name": "Noah Brown",
+    "team": "WAS",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4274",
+    "full_name": "David Moore",
+    "team": "CAR",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4314",
+    "full_name": "Johnny Mundt",
+    "team": "JAX",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4351",
+    "full_name": "Tim Patrick",
+    "team": "DET",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4381",
+    "full_name": "Taysom Hill",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4443",
+    "full_name": "Pharaoh Brown",
+    "team": "MIA",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4454",
+    "full_name": "Kendrick Bourne",
+    "team": "NE",
+    "position": "WR",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4464",
+    "full_name": "Nick Mullens",
+    "team": "JAX",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4574",
+    "full_name": "Cooper Rush",
+    "team": "BAL",
+    "position": "QB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4602",
+    "full_name": "Robert Tonyan",
+    "team": "KC",
+    "position": "TE",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4663",
+    "full_name": "Austin Ekeler",
+    "team": "WAS",
+    "position": "RB",
+    "years_exp": 8,
+    "rookie_year": "2017"
+  },
+  {
+    "player_id": "4681",
+    "full_name": "Reggie Davis",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "4683",
+    "full_name": "Aaron Bailey",
+    "team": "BAL",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "4866",
+    "full_name": "Saquon Barkley",
+    "team": "PHI",
+    "position": "RB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4879",
+    "full_name": "Francis Owusu",
+    "team": "FA",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "4881",
+    "full_name": "Lamar Jackson",
+    "team": "BAL",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4892",
+    "full_name": "Baker Mayfield",
+    "team": "TB",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4943",
+    "full_name": "Sam Darnold",
+    "team": "SEA",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4950",
+    "full_name": "Christian Kirk",
+    "team": "HOU",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4972",
+    "full_name": "Mason Rudolph",
+    "team": "PIT",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4981",
+    "full_name": "Calvin Ridley",
+    "team": "TEN",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4983",
+    "full_name": "DJ Moore",
+    "team": "CHI",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4984",
+    "full_name": "Josh Allen",
+    "team": "BUF",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "4993",
+    "full_name": "Mike Gesicki",
+    "team": "CIN",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5001",
+    "full_name": "Dalton Schultz",
+    "team": "HOU",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5008",
+    "full_name": "Durham Smythe",
+    "team": "CHI",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5010",
+    "full_name": "Will Dissly",
+    "team": "LAC",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5012",
+    "full_name": "Mark Andrews",
+    "team": "BAL",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5022",
+    "full_name": "Dallas Goedert",
+    "team": "PHI",
+    "position": "TE",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5045",
+    "full_name": "Courtland Sutton",
+    "team": "DEN",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5086",
+    "full_name": "Marquez Valdes-Scantling",
+    "team": "SEA",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5089",
+    "full_name": "Mike White",
+    "team": "BUF",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5096",
+    "full_name": "Ray-Ray McCloud",
+    "team": "ATL",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5113",
+    "full_name": "Cedrick Wilson",
+    "team": "NO",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5127",
+    "full_name": "Kyle Allen",
+    "team": "DET",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5185",
+    "full_name": "Allen Lazard",
+    "team": "NYJ",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5745",
+    "full_name": "Nick Stevens",
+    "team": "FA",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "5773",
+    "full_name": "KhaDarel Hodge",
+    "team": "ATL",
+    "position": "WR",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5806",
+    "full_name": "John Wolford",
+    "team": "JAX",
+    "position": "QB",
+    "years_exp": 7,
+    "rookie_year": "2018"
+  },
+  {
+    "player_id": "5844",
+    "full_name": "T.J. Hockenson",
+    "team": "MIN",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5846",
+    "full_name": "DK Metcalf",
+    "team": "PIT",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5848",
+    "full_name": "Hollywood Brown",
+    "team": "KC",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5849",
+    "full_name": "Kyler Murray",
+    "team": "ARI",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5850",
+    "full_name": "Josh Jacobs",
+    "team": "GB",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5857",
+    "full_name": "Noah Fant",
+    "team": "SEA",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5859",
+    "full_name": "A.J. Brown",
+    "team": "PHI",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5870",
+    "full_name": "Daniel Jones",
+    "team": "IND",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5872",
+    "full_name": "Deebo Samuel",
+    "team": "WAS",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5892",
+    "full_name": "David Montgomery",
+    "team": "DET",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5903",
+    "full_name": "Will Grier",
+    "team": "DAL",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5906",
+    "full_name": "Dawson Knox",
+    "team": "BUF",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5927",
+    "full_name": "Terry McLaurin",
+    "team": "WAS",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5947",
+    "full_name": "Jakobi Meyers",
+    "team": "LV",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5967",
+    "full_name": "Tony Pollard",
+    "team": "TEN",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5970",
+    "full_name": "Greg Dortch",
+    "team": "ARI",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5973",
+    "full_name": "Josh Oliver",
+    "team": "MIN",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5985",
+    "full_name": "Foster Moreau",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5987",
+    "full_name": "Alexander Mattison",
+    "team": "MIA",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "5995",
+    "full_name": "Justice Hill",
+    "team": "BAL",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6001",
+    "full_name": "Drew Sample",
+    "team": "CIN",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6011",
+    "full_name": "Gardner Minshew",
+    "team": "KC",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6012",
+    "full_name": "Travis Homer",
+    "team": "CHI",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6037",
+    "full_name": "Brett Rypien",
+    "team": "FA",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6039",
+    "full_name": "Ty Johnson",
+    "team": "BUF",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6074",
+    "full_name": "Donald Parham",
+    "team": "PIT",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6109",
+    "full_name": "Alec Ingold",
+    "team": "MIA",
+    "position": "FB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6111",
+    "full_name": "Jake Browning",
+    "team": "CIN",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6130",
+    "full_name": "Devin Singletary",
+    "team": "NYG",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6136",
+    "full_name": "Jarrett Stidham",
+    "team": "DEN",
+    "position": "QB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6149",
+    "full_name": "Darius Slayton",
+    "team": "NYG",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6151",
+    "full_name": "Miles Sanders",
+    "team": "DAL",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6202",
+    "full_name": "Jakob Johnson",
+    "team": "HOU",
+    "position": "FB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6271",
+    "full_name": "Olamide Zaccheaus",
+    "team": "CHI",
+    "position": "WR",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6451",
+    "full_name": "Stephen Carlson",
+    "team": "CHI",
+    "position": "TE",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6659",
+    "full_name": "Craig Reynolds",
+    "team": "DET",
+    "position": "RB",
+    "years_exp": 6,
+    "rookie_year": "2019"
+  },
+  {
+    "player_id": "6677",
+    "full_name": "Joe Forson",
+    "team": "KC",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "Unknown"
+  },
+  {
+    "player_id": "6768",
+    "full_name": "Tua Tagovailoa",
+    "team": "MIA",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6770",
+    "full_name": "Joe Burrow",
+    "team": "CIN",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6783",
+    "full_name": "Jerry Jeudy",
+    "team": "CLE",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6786",
+    "full_name": "CeeDee Lamb",
+    "team": "DAL",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6790",
+    "full_name": "D'Andre Swift",
+    "team": "CHI",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6794",
+    "full_name": "Justin Jefferson",
+    "team": "MIN",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6797",
+    "full_name": "Justin Herbert",
+    "team": "LAC",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6801",
+    "full_name": "Tee Higgins",
+    "team": "CIN",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6803",
+    "full_name": "Brandon Aiyuk",
+    "team": "SF",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6804",
+    "full_name": "Jordan Love",
+    "team": "GB",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6813",
+    "full_name": "Jonathan Taylor",
+    "team": "IND",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6819",
+    "full_name": "Michael Pittman",
+    "team": "IND",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6820",
+    "full_name": "Clyde Edwards-Helaire",
+    "team": "NO",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6822",
+    "full_name": "Jake Fromm",
+    "team": "DET",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6826",
+    "full_name": "Cole Kmet",
+    "team": "CHI",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6843",
+    "full_name": "Albert Okwuegbunam",
+    "team": "IND",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6845",
+    "full_name": "Zack Moss",
+    "team": "CIN",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6853",
+    "full_name": "Van Jefferson",
+    "team": "TEN",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6865",
+    "full_name": "Colby Parkinson",
+    "team": "LAR",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6869",
+    "full_name": "Adam Trautman",
+    "team": "DEN",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6904",
+    "full_name": "Jalen Hurts",
+    "team": "PHI",
+    "position": "QB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6918",
+    "full_name": "Salvon Ahmed",
+    "team": "IND",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6943",
+    "full_name": "Gabe Davis",
+    "team": "JAX",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6945",
+    "full_name": "Antonio Gibson",
+    "team": "NE",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6964",
+    "full_name": "Sean McKeon",
+    "team": "IND",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "6973",
+    "full_name": "J.J. Taylor",
+    "team": "HOU",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7002",
+    "full_name": "Juwan Johnson",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7021",
+    "full_name": "Rico Dowdle",
+    "team": "CAR",
+    "position": "RB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7049",
+    "full_name": "Jauan Jennings",
+    "team": "SF",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7075",
+    "full_name": "Charlie Woerner",
+    "team": "ATL",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7090",
+    "full_name": "Darnell Mooney",
+    "team": "ATL",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7106",
+    "full_name": "Lawrence Cager",
+    "team": "WAS",
+    "position": "TE",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7216",
+    "full_name": "Giovanni Ricci",
+    "team": "NE",
+    "position": "FB",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7438",
+    "full_name": "Kristian Wilkerson",
+    "team": "LV",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7496",
+    "full_name": "Nick Westbrook-Ikhine",
+    "team": "MIA",
+    "position": "WR",
+    "years_exp": 5,
+    "rookie_year": "2020"
+  },
+  {
+    "player_id": "7523",
+    "full_name": "Trevor Lawrence",
+    "team": "JAX",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7525",
+    "full_name": "DeVonta Smith",
+    "team": "PHI",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7526",
+    "full_name": "Jaylen Waddle",
+    "team": "MIA",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7527",
+    "full_name": "Mac Jones",
+    "team": "SF",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7528",
+    "full_name": "Najee Harris",
+    "team": "LAC",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7529",
+    "full_name": "Gary Brightwell",
+    "team": "CIN",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7531",
+    "full_name": "Feleipe Franks",
+    "team": "FA",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7535",
+    "full_name": "Hunter Long",
+    "team": "JAX",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7537",
+    "full_name": "Jaret Patterson",
+    "team": "LAC",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7538",
+    "full_name": "Zach Wilson",
+    "team": "MIA",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7543",
+    "full_name": "Travis Etienne",
+    "team": "JAX",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7547",
+    "full_name": "Amon-Ra St. Brown",
+    "team": "DET",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7553",
+    "full_name": "Kyle Pitts",
+    "team": "ATL",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7554",
+    "full_name": "Tre' McKitty",
+    "team": "CLE",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7561",
+    "full_name": "Elijah Mitchell",
+    "team": "KC",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7562",
+    "full_name": "Tutu Atwell",
+    "team": "LAR",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7564",
+    "full_name": "Ja'Marr Chase",
+    "team": "CIN",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7567",
+    "full_name": "Kenneth Gainwell",
+    "team": "PIT",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7568",
+    "full_name": "Brevin Jordan",
+    "team": "HOU",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7569",
+    "full_name": "Nico Collins",
+    "team": "HOU",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7571",
+    "full_name": "Rashod Bateman",
+    "team": "BAL",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7585",
+    "full_name": "Davis Mills",
+    "team": "HOU",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7587",
+    "full_name": "Dyami Brown",
+    "team": "JAX",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7588",
+    "full_name": "Javonte Williams",
+    "team": "DAL",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7591",
+    "full_name": "Justin Fields",
+    "team": "NYJ",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7594",
+    "full_name": "Chuba Hubbard",
+    "team": "CAR",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7597",
+    "full_name": "Kenny Yeboah",
+    "team": "DET",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7600",
+    "full_name": "Pat Freiermuth",
+    "team": "PIT",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7602",
+    "full_name": "Kylen Granson",
+    "team": "PHI",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7605",
+    "full_name": "Kyle Trask",
+    "team": "TB",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7607",
+    "full_name": "Michael Carter",
+    "team": "ARI",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7608",
+    "full_name": "Khalil Herbert",
+    "team": "IND",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7611",
+    "full_name": "Rhamondre Stevenson",
+    "team": "NE",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7670",
+    "full_name": "Joshua Palmer",
+    "team": "BUF",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7694",
+    "full_name": "Tommy Tremble",
+    "team": "CAR",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7720",
+    "full_name": "Kene Nwangwu",
+    "team": "NYJ",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7809",
+    "full_name": "Avery Williams",
+    "team": "PHI",
+    "position": "RB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7828",
+    "full_name": "Noah Gray",
+    "team": "KC",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7842",
+    "full_name": "Luke Farrell",
+    "team": "SF",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7891",
+    "full_name": "Brock Wright",
+    "team": "DET",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7943",
+    "full_name": "Zach Davidson",
+    "team": "BUF",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "7946",
+    "full_name": "Jack Stoll",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8002",
+    "full_name": "Shane Buechele",
+    "team": "BUF",
+    "position": "QB",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8013",
+    "full_name": "Tim Jones",
+    "team": "MIN",
+    "position": "WR",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8033",
+    "full_name": "Bernhard Seikovits",
+    "team": "ARI",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8041",
+    "full_name": "Shane Zylstra",
+    "team": "DET",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8094",
+    "full_name": "Michael Jacobson",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 4,
+    "rookie_year": "2021"
+  },
+  {
+    "player_id": "8110",
+    "full_name": "Jake Ferguson",
+    "team": "DAL",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8111",
+    "full_name": "Cade Otton",
+    "team": "TB",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8112",
+    "full_name": "Drake London",
+    "team": "ATL",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8116",
+    "full_name": "Pierre Strong",
+    "team": "CLE",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8117",
+    "full_name": "Jalen Tolbert",
+    "team": "DAL",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8118",
+    "full_name": "David Bell",
+    "team": "CLE",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8119",
+    "full_name": "Jahan Dotson",
+    "team": "PHI",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8121",
+    "full_name": "Romeo Doubs",
+    "team": "GB",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8125",
+    "full_name": "Calvin Austin",
+    "team": "PIT",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8126",
+    "full_name": "Wan'Dale Robinson",
+    "team": "NYG",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8127",
+    "full_name": "Charlie Kolar",
+    "team": "BAL",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8129",
+    "full_name": "Dameon Pierce",
+    "team": "HOU",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8130",
+    "full_name": "Trey McBride",
+    "team": "ARI",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8131",
+    "full_name": "Isaiah Likely",
+    "team": "BAL",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8132",
+    "full_name": "Tyler Allgeier",
+    "team": "ATL",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8134",
+    "full_name": "Khalil Shakir",
+    "team": "BUF",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8135",
+    "full_name": "Treylon Burks",
+    "team": "TEN",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8136",
+    "full_name": "Rachaad White",
+    "team": "TB",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8137",
+    "full_name": "George Pickens",
+    "team": "PIT",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8138",
+    "full_name": "James Cook",
+    "team": "BUF",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8139",
+    "full_name": "Zamir White",
+    "team": "LV",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8142",
+    "full_name": "Alec Pierce",
+    "team": "IND",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8143",
+    "full_name": "Jerome Ford",
+    "team": "CLE",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8144",
+    "full_name": "Chris Olave",
+    "team": "NO",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8145",
+    "full_name": "Jeremy Ruckert",
+    "team": "NYJ",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8146",
+    "full_name": "Garrett Wilson",
+    "team": "NYJ",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8147",
+    "full_name": "John Metchie",
+    "team": "HOU",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8148",
+    "full_name": "Jameson Williams",
+    "team": "DET",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8150",
+    "full_name": "Kyren Williams",
+    "team": "LAR",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8151",
+    "full_name": "Kenneth Walker",
+    "team": "SEA",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8153",
+    "full_name": "Isaiah Spiller",
+    "team": "LV",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8154",
+    "full_name": "Brian Robinson",
+    "team": "WAS",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8155",
+    "full_name": "Breece Hall",
+    "team": "NYJ",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8157",
+    "full_name": "Bailey Zappe",
+    "team": "KC",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8160",
+    "full_name": "Kenny Pickett",
+    "team": "CLE",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8161",
+    "full_name": "Malik Willis",
+    "team": "GB",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8162",
+    "full_name": "Sam Howell",
+    "team": "SEA",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8167",
+    "full_name": "Christian Watson",
+    "team": "GB",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8170",
+    "full_name": "James Mitchell",
+    "team": "CAR",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8171",
+    "full_name": "Kyle Philips",
+    "team": "LV",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8172",
+    "full_name": "Greg Dulcich",
+    "team": "NYG",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8177",
+    "full_name": "Grant Calcaterra",
+    "team": "PHI",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8180",
+    "full_name": "Jalen Nailor",
+    "team": "MIN",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8181",
+    "full_name": "Connor Heyward",
+    "team": "PIT",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8183",
+    "full_name": "Brock Purdy",
+    "team": "SF",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8195",
+    "full_name": "Ronnie Rivers",
+    "team": "LAR",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8200",
+    "full_name": "Kevin Austin",
+    "team": "NO",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8202",
+    "full_name": "Michael Woods",
+    "team": "CLE",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8205",
+    "full_name": "Isiah Pacheco",
+    "team": "KC",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8206",
+    "full_name": "Skylar Thompson",
+    "team": "PIT",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8207",
+    "full_name": "Tyler Goodson",
+    "team": "IND",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8208",
+    "full_name": "Tyler Badie",
+    "team": "DEN",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8210",
+    "full_name": "Chig Okonkwo",
+    "team": "TEN",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8211",
+    "full_name": "Tyrion Davis-Price",
+    "team": "PHI",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8214",
+    "full_name": "Cole Turner",
+    "team": "WAS",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8221",
+    "full_name": "Keaontay Ingram",
+    "team": "KC",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8225",
+    "full_name": "Daniel Bellinger",
+    "team": "NYG",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8228",
+    "full_name": "Jaylen Warren",
+    "team": "PIT",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8230",
+    "full_name": "Ty Chandler",
+    "team": "MIN",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8249",
+    "full_name": "Lucas Krull",
+    "team": "DEN",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8254",
+    "full_name": "Julius Chestnut",
+    "team": "TEN",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8408",
+    "full_name": "Jordan Mason",
+    "team": "MIN",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8413",
+    "full_name": "Chris Oladokun",
+    "team": "KC",
+    "position": "QB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8484",
+    "full_name": "Ko Kieft",
+    "team": "TB",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8489",
+    "full_name": "Drew Ogletree",
+    "team": "IND",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8583",
+    "full_name": "Stone Smartt",
+    "team": "NYJ",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8665",
+    "full_name": "Armani Rogers",
+    "team": "BUF",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8676",
+    "full_name": "Rashid Shaheed",
+    "team": "NO",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8698",
+    "full_name": "Jake Tonges",
+    "team": "SF",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8820",
+    "full_name": "Troy Hairston",
+    "team": "CLE",
+    "position": "RB",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8849",
+    "full_name": "Tanner Conner",
+    "team": "MIA",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8885",
+    "full_name": "Tucker Fisk",
+    "team": "LAC",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8917",
+    "full_name": "KaVontae Turpin",
+    "team": "DAL",
+    "position": "WR",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "8924",
+    "full_name": "Thomas Odukoya",
+    "team": "TEN",
+    "position": "TE",
+    "years_exp": 3,
+    "rookie_year": "2022"
+  },
+  {
+    "player_id": "9220",
+    "full_name": "Evan Hull",
+    "team": "PIT",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9221",
+    "full_name": "Jahmyr Gibbs",
+    "team": "DET",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9224",
+    "full_name": "Chase Brown",
+    "team": "CIN",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9225",
+    "full_name": "Tank Bigsby",
+    "team": "JAX",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9226",
+    "full_name": "De'Von Achane",
+    "team": "MIA",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9227",
+    "full_name": "Israel Abanikanda",
+    "team": "SF",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9228",
+    "full_name": "Bryce Young",
+    "team": "CAR",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9229",
+    "full_name": "Anthony Richardson",
+    "team": "IND",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9230",
+    "full_name": "Tanner McKee",
+    "team": "PHI",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9231",
+    "full_name": "Jaren Hall",
+    "team": "SEA",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9479",
+    "full_name": "Darnell Washington",
+    "team": "PIT",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9480",
+    "full_name": "Brenton Strange",
+    "team": "JAX",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9481",
+    "full_name": "Luke Musgrave",
+    "team": "GB",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9482",
+    "full_name": "Michael Mayer",
+    "team": "LV",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9483",
+    "full_name": "Zack Kuntz",
+    "team": "NYJ",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9484",
+    "full_name": "Tucker Kraft",
+    "team": "GB",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9486",
+    "full_name": "Dontayvion Wicks",
+    "team": "GB",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9487",
+    "full_name": "Parker Washington",
+    "team": "JAX",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9488",
+    "full_name": "Jaxon Smith-Njigba",
+    "team": "SEA",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9489",
+    "full_name": "Justin Shorter",
+    "team": "LV",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9490",
+    "full_name": "Tyler Scott",
+    "team": "CHI",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9492",
+    "full_name": "Trey Palmer",
+    "team": "TB",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9493",
+    "full_name": "Puka Nacua",
+    "team": "LAR",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9494",
+    "full_name": "Marvin Mims",
+    "team": "DEN",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9497",
+    "full_name": "Jalin Hyatt",
+    "team": "NYG",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9500",
+    "full_name": "Josh Downs",
+    "team": "IND",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9501",
+    "full_name": "DeMario Douglas",
+    "team": "NE",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9502",
+    "full_name": "Tank Dell",
+    "team": "HOU",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9505",
+    "full_name": "Deuce Vaughn",
+    "team": "DAL",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9506",
+    "full_name": "Sean Tucker",
+    "team": "TB",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9508",
+    "full_name": "Tyjae Spears",
+    "team": "TEN",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9509",
+    "full_name": "Bijan Robinson",
+    "team": "ATL",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9511",
+    "full_name": "Keaton Mitchell",
+    "team": "BAL",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9753",
+    "full_name": "Zach Charbonnet",
+    "team": "SEA",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9754",
+    "full_name": "Quentin Johnston",
+    "team": "LAC",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9756",
+    "full_name": "Jordan Addison",
+    "team": "MIN",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9757",
+    "full_name": "Kendre Miller",
+    "team": "NO",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9758",
+    "full_name": "C.J. Stroud",
+    "team": "HOU",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9997",
+    "full_name": "Zay Flowers",
+    "team": "BAL",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9998",
+    "full_name": "Hendon Hooker",
+    "team": "DET",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "9999",
+    "full_name": "Will Levis",
+    "team": "TEN",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10210",
+    "full_name": "Cameron Latu",
+    "team": "PHI",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10212",
+    "full_name": "Josh Whyle",
+    "team": "TEN",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10213",
+    "full_name": "Tre Tucker",
+    "team": "LV",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10214",
+    "full_name": "Davis Allen",
+    "team": "LAR",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10215",
+    "full_name": "Jake Haener",
+    "team": "NO",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10216",
+    "full_name": "Kenny McIntosh",
+    "team": "SEA",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10217",
+    "full_name": "Clayton Tune",
+    "team": "ARI",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10219",
+    "full_name": "Chris Rodriguez",
+    "team": "WAS",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10220",
+    "full_name": "Will Mallory",
+    "team": "IND",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10222",
+    "full_name": "Jayden Reed",
+    "team": "GB",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10223",
+    "full_name": "Eric Gray",
+    "team": "NYG",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10224",
+    "full_name": "Brayden Willis",
+    "team": "SF",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10225",
+    "full_name": "Jonathan Mingo",
+    "team": "DAL",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10226",
+    "full_name": "Andrei Iosivas",
+    "team": "CIN",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10227",
+    "full_name": "Payne Durham",
+    "team": "TB",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10229",
+    "full_name": "Rashee Rice",
+    "team": "KC",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10231",
+    "full_name": "Elijah Higgins",
+    "team": "ARI",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10232",
+    "full_name": "Michael Wilson",
+    "team": "ARI",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10235",
+    "full_name": "Roschon Johnson",
+    "team": "CHI",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10236",
+    "full_name": "Dalton Kincaid",
+    "team": "BUF",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10444",
+    "full_name": "Cedric Tillman",
+    "team": "CLE",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10857",
+    "full_name": "Stetson Bennett",
+    "team": "LAR",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10859",
+    "full_name": "Sam LaPorta",
+    "team": "DET",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10862",
+    "full_name": "Dorian Thompson-Robinson",
+    "team": "PHI",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10863",
+    "full_name": "A.T. Perry",
+    "team": "DEN",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10866",
+    "full_name": "Aidan O'Connell",
+    "team": "LV",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10867",
+    "full_name": "Jake Bobo",
+    "team": "SEA",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10871",
+    "full_name": "Luke Schoonmaker",
+    "team": "DAL",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "10983",
+    "full_name": "Sean Clifford",
+    "team": "GB",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11065",
+    "full_name": "Adrian Martinez",
+    "team": "NYJ",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11082",
+    "full_name": "Ben Sims",
+    "team": "GB",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11186",
+    "full_name": "Carlos Washington",
+    "team": "ATL",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11199",
+    "full_name": "Emari Demercado",
+    "team": "ARI",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11201",
+    "full_name": "Blake Whiteheart",
+    "team": "CLE",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11256",
+    "full_name": "Tyson Bagent",
+    "team": "CHI",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11280",
+    "full_name": "Brady Russell",
+    "team": "SEA",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11292",
+    "full_name": "Tommy DeVito",
+    "team": "NYG",
+    "position": "QB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11304",
+    "full_name": "E.J. Jenkins",
+    "team": "PHI",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11306",
+    "full_name": "Xavier Gipson",
+    "team": "NYJ",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11370",
+    "full_name": "Chris Brooks",
+    "team": "GB",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11371",
+    "full_name": "Julian Hill",
+    "team": "MIA",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11378",
+    "full_name": "Jordan Mims",
+    "team": "NO",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11381",
+    "full_name": "Travis Vokolek",
+    "team": "ARI",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11421",
+    "full_name": "Ryan Miller",
+    "team": "TB",
+    "position": "WR",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11433",
+    "full_name": "Nate Adkins",
+    "team": "DEN",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11435",
+    "full_name": "Emanuel Wilson",
+    "team": "GB",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11439",
+    "full_name": "Jaleel McLaughlin",
+    "team": "DEN",
+    "position": "RB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11508",
+    "full_name": "Princeton Fant",
+    "team": "DAL",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11510",
+    "full_name": "Hunter Luepke",
+    "team": "DAL",
+    "position": "FB",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11511",
+    "full_name": "John Stephens",
+    "team": "DAL",
+    "position": "TE",
+    "years_exp": 2,
+    "rookie_year": "2023"
+  },
+  {
+    "player_id": "11556",
+    "full_name": "Devin Leary",
+    "team": "BAL",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11557",
+    "full_name": "Joe Milton",
+    "team": "NE",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11558",
+    "full_name": "Sam Hartman",
+    "team": "WAS",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11559",
+    "full_name": "Michael Penix",
+    "team": "ATL",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11560",
+    "full_name": "Caleb Williams",
+    "team": "CHI",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11561",
+    "full_name": "Michael Pratt",
+    "team": "TB",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11562",
+    "full_name": "Spencer Rattler",
+    "team": "NO",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11563",
+    "full_name": "Bo Nix",
+    "team": "DEN",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11564",
+    "full_name": "Drake Maye",
+    "team": "NE",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11565",
+    "full_name": "J.J. McCarthy",
+    "team": "MIN",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11566",
+    "full_name": "Jayden Daniels",
+    "team": "WAS",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11567",
+    "full_name": "Jordan Travis",
+    "team": "NYJ",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11568",
+    "full_name": "Blake Watson",
+    "team": "DEN",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11570",
+    "full_name": "Rasheen Ali",
+    "team": "BAL",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11571",
+    "full_name": "Isaiah Davis",
+    "team": "NYJ",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11573",
+    "full_name": "Frank Gore",
+    "team": "BUF",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11574",
+    "full_name": "Dylan Laube",
+    "team": "LV",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11575",
+    "full_name": "Ray Davis",
+    "team": "BUF",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11576",
+    "full_name": "Braelon Allen",
+    "team": "NYJ",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11577",
+    "full_name": "Will Shipley",
+    "team": "PHI",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11579",
+    "full_name": "Audric Estime",
+    "team": "DEN",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11581",
+    "full_name": "MarShawn Lloyd",
+    "team": "GB",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11582",
+    "full_name": "Carson Steele",
+    "team": "KC",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11583",
+    "full_name": "Jonathon Brooks",
+    "team": "CAR",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11584",
+    "full_name": "Bucky Irving",
+    "team": "TB",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11586",
+    "full_name": "Blake Corum",
+    "team": "LAR",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11589",
+    "full_name": "Trey Benson",
+    "team": "ARI",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11590",
+    "full_name": "Jase McClellan",
+    "team": "ATL",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11592",
+    "full_name": "Erick All",
+    "team": "CIN",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11593",
+    "full_name": "Brevyn Spann-Ford",
+    "team": "DAL",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11595",
+    "full_name": "Jared Wiley",
+    "team": "KC",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11596",
+    "full_name": "Ben Sinnott",
+    "team": "WAS",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11597",
+    "full_name": "Theo Johnson",
+    "team": "NYG",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11598",
+    "full_name": "Tanner McLachlan",
+    "team": "CIN",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11599",
+    "full_name": "Cade Stover",
+    "team": "HOU",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11600",
+    "full_name": "Ja'Tavion Sanders",
+    "team": "CAR",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11603",
+    "full_name": "AJ Barner",
+    "team": "SEA",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11604",
+    "full_name": "Brock Bowers",
+    "team": "LV",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11605",
+    "full_name": "Jaheim Bell",
+    "team": "NE",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11606",
+    "full_name": "Dallin Holker",
+    "team": "NO",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11610",
+    "full_name": "Malik Washington",
+    "team": "MIA",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11617",
+    "full_name": "Malachi Corley",
+    "team": "NYJ",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11618",
+    "full_name": "Jalen McMillan",
+    "team": "TB",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11619",
+    "full_name": "Ja'Lynn Polk",
+    "team": "NE",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11620",
+    "full_name": "Rome Odunze",
+    "team": "CHI",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11621",
+    "full_name": "Brenden Rice",
+    "team": "LAC",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11623",
+    "full_name": "Jordan Whittington",
+    "team": "LAR",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11624",
+    "full_name": "Xavier Worthy",
+    "team": "KC",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11625",
+    "full_name": "Adonai Mitchell",
+    "team": "IND",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11626",
+    "full_name": "Xavier Legette",
+    "team": "CAR",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11627",
+    "full_name": "Troy Franklin",
+    "team": "DEN",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11628",
+    "full_name": "Marvin Harrison",
+    "team": "ARI",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11629",
+    "full_name": "Devontez Walker",
+    "team": "BAL",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11630",
+    "full_name": "Roman Wilson",
+    "team": "PIT",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11631",
+    "full_name": "Brian Thomas",
+    "team": "JAX",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11632",
+    "full_name": "Malik Nabers",
+    "team": "NYG",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11635",
+    "full_name": "Ladd McConkey",
+    "team": "LAC",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11636",
+    "full_name": "Johnny Wilson",
+    "team": "PHI",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11637",
+    "full_name": "Keon Coleman",
+    "team": "BUF",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11638",
+    "full_name": "Ricky Pearsall",
+    "team": "SF",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11640",
+    "full_name": "Jermaine Burton",
+    "team": "CIN",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11643",
+    "full_name": "Jaylen Wright",
+    "team": "MIA",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11644",
+    "full_name": "Cody Schrader",
+    "team": "LAR",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11645",
+    "full_name": "Javon Baker",
+    "team": "NE",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11646",
+    "full_name": "Jalen Coker",
+    "team": "CAR",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11647",
+    "full_name": "Kimani Vidal",
+    "team": "LAC",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11650",
+    "full_name": "Luke McCaffrey",
+    "team": "WAS",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11651",
+    "full_name": "Isaac Guerendo",
+    "team": "SF",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11652",
+    "full_name": "Louis Rees-Zammit",
+    "team": "JAX",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11654",
+    "full_name": "Dante Miller",
+    "team": "NYG",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11655",
+    "full_name": "Tyrone Tracy",
+    "team": "NYG",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11716",
+    "full_name": "Tip Reiman",
+    "team": "ARI",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11729",
+    "full_name": "Sione Vaki",
+    "team": "DET",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11748",
+    "full_name": "Bub Means",
+    "team": "NO",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11773",
+    "full_name": "Keilan Robinson",
+    "team": "JAX",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11808",
+    "full_name": "Jha'Quan Jackson",
+    "team": "TEN",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11820",
+    "full_name": "Devin Culp",
+    "team": "TB",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11851",
+    "full_name": "Carter Bradley",
+    "team": "LV",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11924",
+    "full_name": "Tanner Mordecai",
+    "team": "SF",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11931",
+    "full_name": "Austin Reed",
+    "team": "CHI",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11942",
+    "full_name": "Colson Yankoff",
+    "team": "WAS",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11959",
+    "full_name": "Bryce Oliver",
+    "team": "TEN",
+    "position": "WR",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11961",
+    "full_name": "Emory Jones",
+    "team": "ATL",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11963",
+    "full_name": "Chris Collier",
+    "team": "LV",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11989",
+    "full_name": "D.J. Williams",
+    "team": "TB",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "11998",
+    "full_name": "Emani Bailey",
+    "team": "CAR",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12009",
+    "full_name": "Jack Plummer",
+    "team": "CAR",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12045",
+    "full_name": "Jack Westover",
+    "team": "NE",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12048",
+    "full_name": "George Holani",
+    "team": "SEA",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12062",
+    "full_name": "Cam Grandy",
+    "team": "CIN",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12190",
+    "full_name": "Jason Bean",
+    "team": "IND",
+    "position": "QB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12356",
+    "full_name": "Jabari Small",
+    "team": "TEN",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12357",
+    "full_name": "David Martin-Robinson",
+    "team": "TEN",
+    "position": "TE",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  },
+  {
+    "player_id": "12412",
+    "full_name": "Terrell Jennings",
+    "team": "NE",
+    "position": "RB",
+    "years_exp": 1,
+    "rookie_year": "2024"
+  }
+]
