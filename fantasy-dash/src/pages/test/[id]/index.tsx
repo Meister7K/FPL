@@ -2,28 +2,30 @@
 import { useRouter } from 'next/router';
 import useLeagueStore from '../../../store/testStore';
 import Link from 'next/link';
-import {getRosterOwnerName} from '@/utils/usernameUtil'
+import { getRosterOwnerName } from '@/utils/usernameUtil'
 import StandingsBoard from '@/components/test/dashboard/StandingsBoard';
 import LeagueChart from '@/components/charts/LeagueChart';
 import FPTSSeasonChart from '@/components/charts/FPTSSeasonChart';
 import PowerRankingsChart from '@/components/test/dashboard/PowerRankings';
+import Projections from '@/components/home/Projections';
+import MatchupProjections from '@/components/MatchupProjections';
 
 const LeagueDetailsPage: React.FC = () => {
   const router = useRouter();
-  const { id } = router.query; 
+  const { id } = router.query;
   const leagueData = useLeagueStore((state) => state.leagueData);
   const currentRoster = useLeagueStore((state) => state.currentRoster);
   const rosterHistory = useLeagueStore((state) => state.rosterHistory);
-  const leagueUsers = useLeagueStore((state)=>state.leagueUsers)
-const leagueBrackets = useLeagueStore((state)=>state.leagueBrackets)
-const leagueTransactions = useLeagueStore((state)=>state.leagueTransactions)
-const leagueMatchups = useLeagueStore((state)=>state.leagueMatchups)
+  const leagueUsers = useLeagueStore((state) => state.leagueUsers)
+  const leagueBrackets = useLeagueStore((state) => state.leagueBrackets)
+  const leagueTransactions = useLeagueStore((state) => state.leagueTransactions)
+  const leagueMatchups = useLeagueStore((state) => state.leagueMatchups)
 
   const selectedLeagueData = leagueData.find((league) => league.league_id === id);
 
-  // console.log(selectedLeagueData)
+  console.log(currentRoster)
 
-  if(!leagueData){
+  if (!leagueData) {
     return {
       notfound: true
     }
@@ -36,12 +38,19 @@ const leagueMatchups = useLeagueStore((state)=>state.leagueMatchups)
       {selectedLeagueData ? (
         <div>
           <h1 className="text-2xl font-bold my-2 text-center">Welcome the the {selectedLeagueData.season} {selectedLeagueData.name} </h1>
-        
-          <StandingsBoard data={currentRoster}/>
-          <FPTSSeasonChart currentRosterData={currentRoster} matchupData={leagueMatchups}/>
-          <LeagueChart leagueId={leagueData[0].league_id} rosterData={currentRoster}/>
-          <PowerRankingsChart data={leagueMatchups}/>
 
+          <StandingsBoard data={currentRoster} />
+          <FPTSSeasonChart currentRosterData={currentRoster} matchupData={leagueMatchups} />
+          <LeagueChart leagueId={leagueData[0].league_id} rosterData={currentRoster} />
+          <PowerRankingsChart data={leagueMatchups} />
+          {/* <Projections/> */}
+          <MatchupProjections
+            leagueMatchups={leagueMatchups}
+            currentRoster={currentRoster}
+            leagueUsers={leagueUsers}
+            week={16}
+            year={parseInt(selectedLeagueData.season)}
+          />
         </div>
       ) : (
         <p>No data found for this league.</p>

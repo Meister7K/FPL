@@ -17,11 +17,24 @@ const PlayersDash: React.FC = () => {
 
 //  console.log(Object.entries(playerDB))
 
+const allowedPositions = new Set(["TE", "QB", "RB", "WR", "FB"]);
+
+const filteredData = Object.fromEntries(
+  Object.entries(playerDB).filter(([_, player]) => 
+    allowedPositions.has(player.position) &&
+    Number.isInteger(player.depth_chart_order) &&
+    player.depth_chart_order >= 1 &&
+    player.depth_chart_order <= 4
+  )
+);
+
+  // console.log(filteredData);
+
  useEffect(() => {
 
   const filterPlayers = (searchTerm: string) => {
-    if (searchTerm.length > 2) {
-      return Object.entries(playerDB)
+    if (searchTerm.length > 1) {
+      return Object.entries(filteredData)
         .filter(([_, player]) => {
    
           return player.full_name?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -34,7 +47,7 @@ const PlayersDash: React.FC = () => {
 
   setFilteredPlayers1(filterPlayers(searchTerm1));
   setFilteredPlayers2(filterPlayers(searchTerm2));
-}, [searchTerm1, searchTerm2, playerDB]); 
+}, [searchTerm1, searchTerm2]); 
 
 
   useEffect(() => {
@@ -89,7 +102,7 @@ const PlayersDash: React.FC = () => {
     if (!playerData) return null;
 
     return (
-      <div className="border rounded p-4 mt-4">
+      <div className="border rounded p-4 mt-4 ">
         <h2 className="text-xl font-bold mb-2">{playerData.full_name}</h2>
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -120,15 +133,15 @@ const PlayersDash: React.FC = () => {
   return (
     <div className="p-4">
       <h1 className="text-2xl font-bold mb-4">Player Dashboard</h1>
-      <div className="flex space-x-4">
+      <div className="flex ">
         {renderPlayerSearch(1, searchTerm1, setSearchTerm1, filteredPlayers1)}
         {renderPlayerSearch(2, searchTerm2, setSearchTerm2, filteredPlayers2)}
       </div>
-      <div className="flex space-x-4 mt-4">
-        <div className="w-1/2">
+      <div className="flex  mt-4 flex-wrap">
+        <div className=" w-full">
           {renderPlayerCard(player1Data)}
         </div>
-        <div className="w-1/2">
+        <div className=" w-full">
           {renderPlayerCard(player2Data)}
         </div>
       </div>

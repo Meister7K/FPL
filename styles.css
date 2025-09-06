@@ -1,0 +1,187 @@
+/* Add this to your styles.css file or include in a <style> tag in the HTML head */
+
+body {
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1, h2, h3, h4 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#sortButton {
+    cursor: pointer;
+    margin-left: 5px;
+    border: none;
+    background: transparent;
+    font-weight: bold;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.year-stats {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.year-stats h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.summary-row {
+    background-color: #eaf7ea !important;
+    font-weight: bold;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+select {
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+/* Trend indicators */
+.trend-up {
+    background-color: #e6ffe6;
+    color: #006600;
+    font-weight: bold;
+}
+
+.trend-down {
+    background-color: #ffe6e6;
+    color: #cc0000;
+    font-weight: bold;
+}
+
+.trend-same {
+    background-color: #f9f9f9;
+    color: #666;
+}
+
+/* Chart styling */
+.charts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.chart-section {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.chart-section h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+canvas {
+    background-color: white;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media (min-width: 992px) {
+    .charts-container {
+        flex-direction: row;
+    }
+    
+    .chart-section {
+        flex: 1;
+    }
+}
+
+/* Add these styles to your existing CSS file */
+
+.chart-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 2px 5px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 10;
+    color: #333;
+}
+
+.fullscreen-btn:hover {
+    background-color: rgba(240, 240, 240, 0.9);
+}
+
+canvas {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+canvas:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Styles for when in fullscreen mode */
+:fullscreen canvas {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: none !important;
+    box-shadow: none;
+    border: none;
+    background-color: white;
+}
+
+:fullscreen .chart-wrapper {
+    margin: 0;
+    padding: 0;
+}
