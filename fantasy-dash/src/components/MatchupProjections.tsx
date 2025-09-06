@@ -101,7 +101,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
       }
     });
 
-    console.log(`Selected most current league: ${mostCurrentLeague?.leagueId} with data through week ${mostRecentWeek + 1}`);
+    // console.log(`Selected most current league: ${mostCurrentLeague?.leagueId} with data through week ${mostRecentWeek + 1}`);
     return mostCurrentLeague;
   }, [leagueMatchups]);
 
@@ -114,7 +114,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
       return [];
     }
 
-    console.log(`Processing current league ${currentLeague.leagueId}`);
+    // console.log(`Processing current league ${currentLeague.leagueId}`);
 
     // Process ALL weeks from the current league
     currentLeague.weeksData.forEach((weekData: RosterData[] | null) => {
@@ -133,7 +133,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
 
     const playerIdsArray: string[] = [];
     playerIds.forEach(id => playerIdsArray.push(id));
-    console.log('Found', playerIdsArray.length, 'unique player IDs in current league');
+    // console.log('Found', playerIdsArray.length, 'unique player IDs in current league');
 
     return playerIdsArray;
   }, [currentLeague]);
@@ -174,7 +174,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
           const week = allWeeks[i];
           setLoadingProgress({ completed: i, total: allWeeks.length });
           
-          console.log(`Fetching projections for week ${week}`);
+          // console.log(`Fetching projections for week ${week}`);
           const weekProjections = await projectionsService.getProjections(
             allPlayerIds, 
             week, 
@@ -241,7 +241,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
 
         const currentWeek = weekIndex + 1; // Week numbers start at 1
 
-        console.log(`Processing week ${currentWeek} with projection data`);
+        // console.log(`Processing week ${currentWeek} with projection data`);
 
         // Group rosters by matchup_id for this week
         const matchups = new Map<number, RosterData[]>();
@@ -345,7 +345,7 @@ const MatchupProjections: React.FC<MatchupProjectionsProps> = ({
         return a.matchupId - b.matchupId;
       });
 
-      console.log(`Calculated ${results.length} total matchup results for current league`);
+      // console.log(`Calculated ${results.length} total matchup results for current league`);
       setCalculateAllWeekResults(results);
     };
 
